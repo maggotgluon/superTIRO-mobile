@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('phone')->unique();
-            $table->boolean('phoneIsVerified')->default(false);
+            $table->string('phoneIsVerified');
             // optional field
             $table->string('pet_name')->nullable();
             $table->string('pet_breed')->nullable();
@@ -30,7 +30,8 @@ return new class extends Migration
             $table->foreignId('vet_id');
 
             // otp and codes and activated status
-            $table->string('otp_token')->nullable();
+            $table->dateTime('active_date')->nullable();
+            $table->dateTime('active_status')->nullable();
 
             $table->timestamps();
         });

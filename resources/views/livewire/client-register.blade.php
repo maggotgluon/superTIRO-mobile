@@ -28,8 +28,10 @@
             <!-- <x-button wire:click="sendCode" type="button" label="Send Code" /> -->
             <x-input wire:model="email" label="อีเมลล์" placeholder="อีเมลล์"/>
             <div class="flex flex-col justify-center py-2">
-                <x-toggle lg wire:model.defer="consent" label="ยินยอมและรับทราบนโยบายคุ้มครองข้อมูลส่วนบุคคล" required/>
-                <x-button flat red label="อ่านเพิ่มเติม" wire:click="openConsent"/>
+                @if ($consent == 1)
+                    <x-toggle lg wire:model.lazy="consent"  label="ยินยอมและรับทราบนโยบายคุ้มครองข้อมูลส่วนบุคคล" required/>
+                @endif
+                <x-button flat red label="อ่านเพิ่มเติม นโยบายคุ้มครองข้อมูลส่วนบุคคล" wire:click="openConsent"/>
 
             </div>
 
@@ -109,26 +111,26 @@
         <div class="grid gap-2 pb-8">
             <x-input wire:model="pet_name" label="ชื่อน้อมงหมา" placeholder="ชื่อน้อมงหมา"/>
 
-            <x-native-select label="ชื่อพันธุ์สุนัข" wire:model.defer="pet_breed"
+            <x-native-select label="ชื่อพันธุ์สุนัข" wire:model.lazy="pet_breed"
                 placeholder="เลือกพันธุ์สุนัข"
                 :options="['Active', 'Pending', 'Stuck', 'Done']" />
 
 
                 เลือกช่วงน้ำหนักของน้อมหมา
         <div class="grid grid-cols-2 gap-2">
-            <x-radio id="weigth-1" value="weigth-1" label="1.25-2.5 กก." wire:model.defer="pet_weigth" />
-            <x-radio id="weigth-2" value="weigth-2" label="2.6-5 กก." wire:model.defer="pet_weigth" />
-            <x-radio id="weigth-3" value="weigth-3" label="5.1-10 กก." wire:model.defer="pet_weigth" />
-            <x-radio id="weigth-4" value="weigth-4" label="10.1-20 กก." wire:model.defer="pet_weigth" />
-            <x-radio id="weigth-5" value="weigth-5" label="20.1-40 กก." wire:model.defer="pet_weigth" />
-            <x-radio id="weigth-6" value="weigth-6" label="40.1-60 กก." wire:model.defer="pet_weigth" />
+            <x-radio id="weigth-1" value="1.25-2.5 กก." label="1.25-2.5 กก." wire:model.lazy="pet_weigth" />
+            <x-radio id="weigth-2" value="2.6-5 กก." label="2.6-5 กก." wire:model.lazy="pet_weigth" />
+            <x-radio id="weigth-3" value="5.1-10 กก." label="5.1-10 กก." wire:model.lazy="pet_weigth" />
+            <x-radio id="weigth-4" value="10.1-20 กก." label="10.1-20 กก." wire:model.lazy="pet_weigth" />
+            <x-radio id="weigth-5" value="20.1-40 กก." label="20.1-40 กก." wire:model.lazy="pet_weigth" />
+            <x-radio id="weigth-6" value="40.1-60 กก." label="40.1-60 กก." wire:model.lazy="pet_weigth" />
         </div>
 
             <div class="grid grid-cols-2 gap-2">
-                <x-native-select label="อายุ (เดือน)" wire:model.defer="pet_age_month"
+                <x-native-select label="อายุ (เดือน)" wire:model.lazy="pet_age_month"
                     placeholder="ระบุเดือน"
                     :options="['1', '2', '3', '4']" />
-                <x-native-select label="อายุ (ปี)" wire:model.defer="pet_age_year"
+                <x-native-select label="อายุ (ปี)" wire:model.lazy="pet_age_year"
                     placeholder="ระบุปี"
                     :options="['1', '2', '3', '4']" />
             </div>
@@ -136,7 +138,7 @@
 
 
 
-        <div class="py-2 text-center flex justify-between mt-auto">
+        <div class="py-2 text-center flex justify-center mt-auto">
             <!-- <div></div> -->
             <!-- <x-button lg outline icon="chevron-left" primary
                 wire:click="back(1)" type="button" label="Back" /> -->
@@ -144,6 +146,7 @@
                 wire:click="secondStepSubmit" type="button" label="ถัดไป" />
         </div>
     </div>
+
     <div class="row setup-content  min-h-[70vh] flex flex-col {{ $currentStep != 3 ? 'hidden' : '' }}" id="step-3">
                 <h3> เลือกคลีนิก หรือโรงพยาบาลสัตว์ </h3>
                 <p>ที่ต้องการรับคำปรึกษาและเข้าร่วมโปรแกรม Super TRIO</p>
@@ -192,7 +195,7 @@
                     <div class="mb-4">
                         <x-radio id="{{$vetlist->id}}" label="{{$vetlist->vet_name}}"
                         value="{{$vetlist->id}}"
-                        wire:model.defer="vet_id" />
+                        wire:model.lazy="vet_id" />
                     </div>
                 @endforeach
                 </div>
@@ -204,7 +207,7 @@
 
 
 
-        <div class="py-2 text-center flex justify-between mt-auto">
+        <div class="py-2 text-center flex justify-center mt-auto">
             <!-- <div></div> -->
             <!-- <x-button lg outline icon="chevron-left" primary
                 wire:click="back(1)" type="button" label="Back" /> -->
@@ -212,24 +215,36 @@
                 wire:click="thirdStepSubmit" type="button" label="ถัดไป" />
         </div>
     </div>
+
     <div class="row setup-content  min-h-[70vh] flex flex-col {{ $currentStep != 4 ? 'hidden' : '' }}" id="step-4">
-        <h3 class="text-center text-xl mt-8 pb-2 font-bold"> การลงทะเบียนเสร็จสมบูรณ์ </h3>
+        <h3 class="text-center text-xl my-8 p-4 font-bold text-white bg-blue-600"> การลงทะเบียนเสร็จสมบูรณ์ </h3>
         <p class="text-center">
             ท่านได้รับสิทธิ์ รับคำปรึกษา <br>
             และเข้าร่วมโปรแกรม Super TRIO<br>
             โปรแกรมปกป้องสุนัขจากปรสิตร้ายที่อันตรายถึงชีวิต
         </p>
+        <img class="outline-1 outline-black outline my-4" src="{{url('/logo.png')}}"/>
         <p class="text-center">
             สามารถพาน้อง {{$pet_name}}<br>
-            ขนาด<br>
+            ขนาด {{$pet_weigth}}<br>
             ไปรับคำปรึกษา<br>
             และเข้าร่วมโปรแกรม Super TRIO<br>
-            ได้ที่ vet_id<br>
+            ได้ที่ {{$vet_id?App\Models\Vet::find($vet_id)->vet_name:'-'}}<br>
         </p>
         <p class="text-center">
             กรุณากดรับสิทธิ์ขณะอยู่ที่คลีนิกตามที่ลงทะเบียน
         </p>
-    </div>
+        {{$client_id}}
+        <div class="py-2 text-center flex justify-center mt-auto">
+            <!-- <div></div> -->
+            <!-- <x-button lg outline icon="chevron-left" primary
+                wire:click="back(1)" type="button" label="Back" /> -->
+                
+            <x-button lg right-icon="chevron-right" primary
+                wire:click="activateClient()" type="button" label="กดเพื่อแสดงหลักฐาน" />
+                
+        </div>
 
+    </div>
 </div>
 

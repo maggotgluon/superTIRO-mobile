@@ -10,13 +10,14 @@ use App\Models\Vet;
 class ClientRegister extends Component
 {
 
+    public $skip=false;
     public Client $client;
     public $vet,$vetall;
     public $vet_province,$vet_city,$vet_area,$vet_id;
     public $selected_vet_province,$selected_vet_city,$selected_vet_area,$selected_vet_text;
 
     public $currentStep = 1, $status = 1;
-    public $firstname, $lastname, $phone,$email,$consent;
+    public $firstname, $lastname, $phone,$email,$consent,$client_id;
     public $pet_name,$pet_breed,$pet_weigth,$pet_age_month,$pet_age_year;
     public $successMessage = '';
     public $error;
@@ -64,12 +65,15 @@ class ClientRegister extends Component
         $validatedData = $this->validate([
             'firstname' => ['required', 'string', 'max:255'],
             'lastname' => ['required', 'string', 'max:255'],
-            'phone' => ['required', 'numeric'],//, 'unique:'.Client::class],
-            'email' => ['required', 'string', 'email', 'max:255'],//, 'unique:'.Client::class],
+            'phone' => ['required', 'numeric', 'unique:'.Client::class],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.Client::class],
             'consent' => ['required','bool']
         ]);
-        $this->sendCode();
+        if($this->skip){
+            $this->sendCode();
+        }
         $this->currentStep = 1.5;
+        
         if($this->status=='pending'){
         }
     }
@@ -77,14 +81,16 @@ class ClientRegister extends Component
     public function varifyOTP(){
 
         $this->code = implode('',$this->otp);
-        $this->currentStep = 2;
-        $result = $this->verifyCode(implode('',$this->otp));
-        // $this->successMessage = $result;
-
-        if($this->status=="approved" || $result){
-            $this->currentStep = 2;
+        
+        if($this->skip){
+            $result = $this->verifyCode(implode('',$this->otp));
+            if($this->status=="approved" || $result){
+                $this->currentStep = 2;
+            }else{
+                $this->status = 'error';
+            }
         }else{
-            $this->status = 'error';
+            $this->currentStep = 2;
         }
 
     }
@@ -121,7 +127,7 @@ class ClientRegister extends Component
             'email'=>$this->email,
             'phone'=>$this->phone,
             'email'=>$this->email,
-            'phoneIsVerified'=>true,
+            'phoneIsVerified'=>$this->code,
             'pet_name'=>$this->pet_name,
             'pet_breed'=>$this->pet_breed,
             'pet_weight'=>$this->pet_weigth,
@@ -129,7 +135,7 @@ class ClientRegister extends Component
             'pet_age_year'=>$this->pet_age_year,
             'vet_id'=>$this->vet_id,
         ]);
-        dd($client);
+        $this->client_id = $client->id;
         $this->currentStep = 4;
     }
 
@@ -138,19 +144,9 @@ class ClientRegister extends Component
      *
      * @return response()
      */
-    public function submitForm()
+    public function activateClient()
     {
-        // Product::create([
-        //     'name' => $this->name,
-        //     'amount' => $this->amount,
-        //     'description' => $this->description,
-        //     'stock' => $this->stock,
-        //     'status' => $this->status,
-        // ]);
-
-        $this->successMessage = 'Product Created Successfully.';
-
-        $this->clearForm();
+        redirect( route('client.ticket',['phone'=>$this->phone]) );
 
         $this->currentStep = 1;
     }
@@ -189,7 +185,7 @@ class ClientRegister extends Component
     public function sendCode()
     {
         $twilio = resolve('TwilioClient');
-        // dd($this->phone, $twilio);
+        
         $verification = $twilio
             ->verify
             ->v2
@@ -202,9 +198,8 @@ class ClientRegister extends Component
 
     public function verifyCode()
     {
-        // return;
         $twilio = resolve('TwilioClient');
-        // dd($this->code,$twilio );
+        
         try {
             $verification_check = $twilio
                 ->verify
@@ -239,6 +234,7 @@ class ClientRegister extends Component
      */
     public function openConsent()
     {
+        $this->consent = 1;
         $this->currentStep =1.25;
     }
 

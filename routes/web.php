@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -43,8 +44,8 @@ Route::name('client.')->prefix('client')->group(function (){
         return view('client.register');
     } )->name('register');
 
-    Route::get('/ticket', function () {
-        dd('client');
+    Route::get('/ticket/{phone}', function ($phone) {
+        return view('client.dashboard',['phone'=>$phone]);
     } )->name('ticket');
 });
 
