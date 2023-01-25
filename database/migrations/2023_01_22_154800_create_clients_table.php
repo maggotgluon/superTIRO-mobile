@@ -31,7 +31,7 @@ return new class extends Migration
 
             // otp and codes and activated status
             $table->dateTime('active_date')->nullable();
-            $table->dateTime('active_status')->nullable();
+            $table->string('active_status')->nullable();
 
             $table->timestamps();
         });

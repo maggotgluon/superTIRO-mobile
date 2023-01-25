@@ -10,7 +10,7 @@ use App\Models\Vet;
 class ClientRegister extends Component
 {
 
-    public $skip=false;
+    public $validate_test=true;
     public Client $client;
     public $vet,$vetall;
     public $vet_province,$vet_city,$vet_area,$vet_id;
@@ -69,7 +69,7 @@ class ClientRegister extends Component
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.Client::class],
             'consent' => ['required','bool']
         ]);
-        if($this->skip){
+        if($this->validate_test){
             $this->sendCode();
         }
         $this->currentStep = 1.5;
@@ -82,7 +82,7 @@ class ClientRegister extends Component
 
         $this->code = implode('',$this->otp);
         
-        if($this->skip){
+        if($this->validate_test){
             $result = $this->verifyCode(implode('',$this->otp));
             if($this->status=="approved" || $result){
                 $this->currentStep = 2;
