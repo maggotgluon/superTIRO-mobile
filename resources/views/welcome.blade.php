@@ -12,10 +12,10 @@
                     @auth
                         <x-button label="Dashboard" href="{{ route('login') }}" />
                     @else
-                        <x-button label="Client Login" href="{{ route('client.login') }}" />
+                        <!-- <x-button label="Client Login" href="{{ route('client.login') }}" /> -->
                         <x-button label="Client Register" href="{{ route('client.register') }}" />
 
-                        <x-button label="Vet Login" href="{{ route('login') }}" />
+                        <!-- <x-button label="Vet Login" href="{{ route('login') }}" /> -->
                         <x-button label="Vet Register" href="{{ route('vet.register') }}" />
                     @endauth
                 </div>
