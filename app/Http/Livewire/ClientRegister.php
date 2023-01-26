@@ -9,8 +9,8 @@ use App\Models\Vet;
 
 class ClientRegister extends Component
 {
-
-    public $validate_test=false;
+    
+    public $validate_test=true;
     public Client $client;
     public $vet,$vetall;
     public $vet_province,$vet_city,$vet_area,$vet_id;
@@ -28,6 +28,7 @@ class ClientRegister extends Component
 
     public function mount()
     {
+        $this->validate_test = env('TWILIO', false);
         $this->vetall = Vet::all();
         $this->vet = Vet::all();
         $this->vet_province = $this->vetall->unique('vet_province');
@@ -50,6 +51,7 @@ class ClientRegister extends Component
 
     public function render()
     {
+        
         return view('livewire.client-register');
     }
 

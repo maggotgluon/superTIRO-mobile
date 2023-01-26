@@ -4,7 +4,11 @@
         msg: {{ $successMessage }}
     </div>
     @endif
-
+    @if ($validate_test===false)
+    <span class="absolute top-2 right-2">
+        <x-badge negative icon="exclamation" nagative label="SMS verlifacition turn off" />
+    </span>
+    @endif
     <div class="flex justify-around {{$currentStep>=2? '' : 'hidden'}}">
         <x-button href="#step-1" label="1" class="rounded-full font-bold {{$currentStep!=1? 'text-secondary-red ring ring-gray-dark' : 'bg-primary-blue  ring ring-primary-blue hover:text-primary-blue text-gray-light'}} {{$currentStep>1?'text-primary-blue ring-primary-blue':''}}" />
         <x-button href="#step-2" label="2" class="rounded-full font-bold {{$currentStep!=2? 'text-secondary-red ring ring-gray-dark' : 'bg-primary-blue  ring ring-primary-blue hover:text-primary-blue text-gray-light'}} {{$currentStep>2?'text-primary-blue ring-primary-blue':''}}" />
@@ -112,15 +116,16 @@
         <div class="mt-8 pb-2">
             <h3 class="text-center text-xl pb-2 font-bold text-primary-blue"> กรุณากรอกข้อมูลสุนัข </h3>
             <p class="text-center">
-                ที่ต้องการรับโปรแกรม Super TRIO<br>
-                ปลุกพลัง 3 ชั้น ป้องกันปรสิต
+                ที่ต้องการรับคำปรึกษาและเข้าร่วม<br>
+                โปรแกรม Super TRIO<br>
             </p>
         </div>
 
         <div class="grid gap-2 pb-8">
-            <x-input wire:model="pet_name" label="ชื่อสุนัข" placeholder="ชื่อน้อมงหมา" />
+            <x-input wire:model="pet_name" label="ชื่อสุนัข" placeholder="ชื่อสุนัข" />
+            <x-input wire:model="pet_breed" label="ชื่อพันธุ์สุนัข" placeholder="ชื่อพันธุ์สุนัข" />
 
-            <x-native-select label="ชื่อพันธุ์สุนัข" wire:model.lazy="pet_breed" placeholder="เลือกพันธุ์สุนัข" :options="['German Shepherd','Bulldog','Labrador Retriever','Golden Retriever','French Bulldog','Siberian Husky','Poodle','Alaskan Malamute','Chihuahua','Border Collie','Afghan Hound','Airedale Terrier']" />
+            <!-- <x-native-select label="ชื่อพันธุ์สุนัข" wire:model.lazy="pet_breed" placeholder="เลือกพันธุ์สุนัข" :options="['German Shepherd','Bulldog','Labrador Retriever','Golden Retriever','French Bulldog','Siberian Husky','Poodle','Alaskan Malamute','Chihuahua','Border Collie','Afghan Hound','Airedale Terrier']" /> -->
 
 
             เลือกช่วงน้ำหนักของสุนัข
@@ -146,8 +151,8 @@
             </div>
 
             <div class="grid grid-cols-2 gap-2">
-                <x-native-select label="อายุ (เดือน)" wire:model.lazy="pet_age_month" placeholder="ระบุเดือน" :options="['1', '2', '3', '4']" />
                 <x-native-select label="อายุ (ปี)" wire:model.lazy="pet_age_year" placeholder="ระบุปี" :options="['1', '2', '3', '4']" />
+                <x-native-select label="อายุ (เดือน)" wire:model.lazy="pet_age_month" placeholder="ระบุเดือน" :options="['1', '2', '3', '4']" />
             </div>
         </div>
 
