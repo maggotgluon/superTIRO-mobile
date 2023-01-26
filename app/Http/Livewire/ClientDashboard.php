@@ -31,7 +31,7 @@ class ClientDashboard extends Component
     }
     
     // public $firstname, $lastname, $phone,$email,$consent;
-    // public $pet_name,$pet_breed,$pet_weigth,$pet_age_month,$pet_age_year;
+    // public $pet_name,$pet_breed,$pet_weight,$pet_age_month,$pet_age_year;
     
     // public Client $client;
     // public $vet,$vetall;

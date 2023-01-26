@@ -17,6 +17,16 @@ module.exports = {
 
     theme: {
         extend: {
+            colors:{
+                'content-dark':'#585958',
+                'gray-light':'#F7F7F7',
+                'gray-dark':'#C8C8C8',
+                'primary-blue':'#36737A',
+                'primary-lite':'#E9EFF6',
+                'secondary-red':'#9F1236', 
+                'gradient-start':'#789866',
+                'gradient-end':'#367379',
+            },
             fontFamily: {
                 sans: ['prompt','Nunito', ...defaultTheme.fontFamily.sans],
             },

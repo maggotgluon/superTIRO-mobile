@@ -10,7 +10,7 @@ use App\Models\Vet;
 class ClientRegister extends Component
 {
 
-    public $validate_test=true;
+    public $validate_test=false;
     public Client $client;
     public $vet,$vetall;
     public $vet_province,$vet_city,$vet_area,$vet_id;
@@ -18,7 +18,7 @@ class ClientRegister extends Component
 
     public $currentStep = 1, $status = 1;
     public $firstname, $lastname, $phone,$email,$consent,$client_id;
-    public $pet_name,$pet_breed,$pet_weigth,$pet_age_month,$pet_age_year;
+    public $pet_name,$pet_breed,$pet_weight,$pet_age_month,$pet_age_year;
     public $successMessage = '';
     public $error;
     public $otp=array() ,$code;
@@ -104,7 +104,7 @@ class ClientRegister extends Component
         $validatedData = $this->validate([
             'pet_name' => 'required',
             'pet_breed' => 'required',
-            'pet_weigth' => 'required',
+            'pet_weight' => 'required',
             'pet_age_month' => 'required',
             'pet_age_year' => 'required',
         ]);
@@ -130,7 +130,7 @@ class ClientRegister extends Component
             'phoneIsVerified'=>$this->code,
             'pet_name'=>$this->pet_name,
             'pet_breed'=>$this->pet_breed,
-            'pet_weight'=>$this->pet_weigth,
+            'pet_weight'=>$this->pet_weight,
             'pet_age_month'=>$this->pet_age_month,
             'pet_age_year'=>$this->pet_age_year,
             'vet_id'=>$this->vet_id,
@@ -175,7 +175,7 @@ class ClientRegister extends Component
         $this->email="";
         $this->pet_name="";
         $this->pet_breed="";
-        $this->pet_weigth="";
+        $this->pet_weight="";
         $this->pet_age_month="";
         $this->pet_age_year="";
         $this->vet_id="";
