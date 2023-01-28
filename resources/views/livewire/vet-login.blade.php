@@ -1,8 +1,10 @@
 <div>
-    <x-input label="email" wire:model="email" />
-    <x-input type="password" label="password" wire:model="password" />
+    <x-input label="ชื่อคลีนิก หรือ โรงพยาบาลสัตว์" wire:model="user" />
+    <x-input type="password" label="รหัสผ่าน" placeholder="รหัสผ่าน" wire:model="password" />
+
+    <x-checkbox label="จดจำรหัสผ่านของฉันเอาไว้" wire:model.defer="remember_me" />
 
     <x-button lg right-icon="chevron-right" primary
-                wire:click="firstStepSubmit" type="button" label="login" />
+                wire:click="login" type="button" label="login" />
 
 </div>

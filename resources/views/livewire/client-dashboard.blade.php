@@ -91,7 +91,8 @@
                 {{$leftMin}} : {{$leftSec}}
             </span>
         </p>
-        @if ($timeleft>0)
+        <!-- {{$client->active_status}} -->
+        @if ($timeleft>0 && $client->active_status === 'await')
             <button wire:poll.1000ms="decrement"></button>
         @endif
             
@@ -116,6 +117,28 @@
             รหัสของคุณหมดอายุแล้ว
             <span class="text-center text-xl mb-8 p-4 font-bold text-white bg-gray-dark block">
                 {{$client_code}}
+            </span>
+        </p>
+        
+        <!-- <div class="py-2 text-center flex justify-center mt-auto">
+            <x-button lg right-icon="chevron-right" primary
+                wire:click="countdown" type="button" label="รับสิทธิ์" />
+        </div> -->
+    </div>
+
+
+    <div class="row setup-content  min-h-[70vh] flex flex-col {{ $currentStep != 6 ? 'hidden' : '' }}" id="step-4">
+        <p class="text-center mb-8">
+            น้อง {{$client->pet_name}}<br>
+            ขนาด {{$client->pet_weight}}<br>
+            ไปรับคำปรึกษา และเข้าร่วมโปรแกรม Super TRIO<br>
+            ที่ {{$client->vet_id?App\Models\Vet::find($client->vet_id)->vet_name:'-'}}<br>
+        </p>
+        
+        <p class="text-center">
+            
+            <span class="text-center text-xl mb-8 p-4 font-bold text-white bg-primary-blue block">
+                ยืนยันแล้ว
             </span>
         </p>
         

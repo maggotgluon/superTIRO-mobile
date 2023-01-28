@@ -2,13 +2,14 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Client;
 use Livewire\Component;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 
 class ClientDashboard extends Component
 {
-    public $client;
+    public Client $client;
 
     public $phone;
     public $input_vet_id,$client_code;
@@ -25,7 +26,10 @@ class ClientDashboard extends Component
         $this->timeleft-=1;
         $this->leftMin=floor($this->timeleft/60);
         $this->leftSec=$this->timeleft - ($this->leftMin*60);
-        if($this->timeleft==0){
+        
+        if($this->client->active_status==='activated'){
+            $this->go(6);
+        }else if($this->timeleft==0){
             $this->go(5);
         }
     }
@@ -42,8 +46,22 @@ class ClientDashboard extends Component
 
     public function mount()
     {
-        $this->client = \App\Models\Client::where('phone',$this->phone)->first();
-        $this->client_code = 'TRIO'.Str::padLeft($this->client->id, 5, '0');
+        $this->client = Client::where('phone',$this->phone)->first();
+        $this->client_code = $this->client->client_code;
+        
+        switch ($this->client->active_status) {
+            case 'await':
+                $this->go(4);
+                break;
+            case 'expired':
+                $this->go(5);
+                break;
+            case 'activated':
+                $this->go(6);
+                break;            
+            default:
+                break;
+        }
         // dd($this->client);
         if($this->client->active_date){
             $this->countdown();
@@ -62,25 +80,28 @@ class ClientDashboard extends Component
         if($this->input_vet_id == $this->client->vet_id){
             //update record
             $this->client->active_date = now();
-            $this->client->active_status = now(); //'await';
+            $this->client->active_status = 'await';
             $this->client->save();
-            $this->countdown();
             $this->go($this->currentStep+1);
+            $this->countdown();
         }else{
             $this->status=-1;
         }
     }
     public function countdown(){
         $this->startTime = Carbon::create($this->client->active_date);
-        $this->endTime = Carbon::create($this->client->active_date)->addMinutes(15);
+        $this->endTime = Carbon::create($this->client->active_date)->addMinutes(1);
         $this->timeleft=Carbon::now()->diffInSeconds($this->endTime);
-        if($this->endTime->isPast()){
-            $this->go(5);
-        }else{
-            $this->leftMin=$this->timeleft/60;
-            $this->leftSec=$this->timeleft-($this->leftMin*60);
-            $this->go(4);
-        }
+        
+        // if($this->endTime->isPast()){
+        //     $this->go(5);
+        //     $this->client->active_status = 'expired';
+        //     $this->client->save();
+        // }else{
+        //     $this->leftMin=$this->timeleft/60;
+        //     $this->leftSec=$this->timeleft-($this->leftMin*60);
+        //     $this->go(4);
+        // }
     }
     /**
      * Write code on Method

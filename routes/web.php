@@ -37,7 +37,7 @@ Route::name('client.')->prefix('client')->group(function (){
     } )->name('index');
 
     Route::get('/login', function () {
-        dd('client');
+        return view('client.login');
     } )->name('login');
 
     Route::get('/register', function () {

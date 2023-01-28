@@ -6,6 +6,7 @@ use Livewire\Component;
 use Illuminate\Support\Facades\DB;
 use App\Models\Client;
 use App\Models\Vet;
+use Illuminate\Support\Str;
 
 class ClientRegister extends Component
 {
@@ -82,10 +83,10 @@ class ClientRegister extends Component
 
     public function varifyOTP(){
 
-        $this->code = implode('',$this->otp);
+        // $this->code = implode('',$this->otp);
         
         if($this->validate_test){
-            $result = $this->verifyCode(implode('',$this->otp));
+            $result = $this->verifyCode($this->code);
             if($this->status=="approved" || $result){
                 $this->currentStep = 2;
             }else{
@@ -125,6 +126,7 @@ class ClientRegister extends Component
         ]);
 
         $client = Client::create([
+            'client_code'=>0,
             'name'=>$this->firstname.' '.$this->lastname,
             'email'=>$this->email,
             'phone'=>$this->phone,
@@ -137,7 +139,9 @@ class ClientRegister extends Component
             'pet_age_year'=>$this->pet_age_year,
             'vet_id'=>$this->vet_id,
         ]);
-        $this->client_id = $client->id;
+        $client->client_code = 'TRIO'.Str::padLeft($client->id, 5, '0');
+        $client->save();
+        redirect( route('client.ticket',['phone'=>$this->phone]) );
         $this->currentStep = 4;
     }
 

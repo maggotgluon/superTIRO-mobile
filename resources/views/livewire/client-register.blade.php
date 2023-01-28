@@ -89,15 +89,18 @@
                 เราได้ส่ง SMS ไปยังหมายเลข {{$phone}}
             </p>
         </div>
-
         <div class="single-input-container flex gap-2 my-8">
+        <input wire:model="code" type="text" maxlength="6" 
+            class="{{$status=='error'?'border-secondary-red ring-2 ring-secondary-red':'border-gray-300'}} text-center focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" />
+        </div>
+        <!-- <div class="single-input-container flex gap-2 my-8">
             <input wire:model="otp.0" type="text" maxlength="1" class="{{$status=='error'?'border-secondary-red ring-2 ring-secondary-red':'border-gray-300'}} text-center focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" />
             <input wire:model="otp.1" type="text" maxlength="1" class="{{$status=='error'?'border-secondary-red ring-2 ring-secondary-red':'border-gray-300'}} text-center focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" />
             <input wire:model="otp.2" type="text" maxlength="1" class="{{$status=='error'?'border-secondary-red ring-2 ring-secondary-red':'border-gray-300'}} text-center focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" />
             <input wire:model="otp.3" type="text" maxlength="1" class="{{$status=='error'?'border-secondary-red ring-2 ring-secondary-red':'border-gray-300'}} text-center focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" />
             <input wire:model="otp.4" type="text" maxlength="1" class="{{$status=='error'?'border-secondary-red ring-2 ring-secondary-red':'border-gray-300'}} text-center focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" />
             <input wire:model="otp.5" type="text" maxlength="1" class="{{$status=='error'?'border-secondary-red ring-2 ring-secondary-red':'border-gray-300'}} text-center focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" />
-        </div>
+        </div> -->
         @if ($status == 'error')
         <x-badge icon="exclamation" nagative label="Your OTP is not match, please try agein" />
 
@@ -151,8 +154,8 @@
             </div>
 
             <div class="grid grid-cols-2 gap-2">
-                <x-native-select label="อายุ (ปี)" wire:model.lazy="pet_age_year" placeholder="ระบุปี" :options="['1', '2', '3', '4']" />
-                <x-native-select label="อายุ (เดือน)" wire:model.lazy="pet_age_month" placeholder="ระบุเดือน" :options="['1', '2', '3', '4']" />
+                <x-native-select label="อายุ (ปี)" wire:model.lazy="pet_age_year" placeholder="ระบุปี" :options="['0','1', '2', '3', '4','5','6','7','8','9','10','11']" />
+                <x-native-select label="อายุ (เดือน)" wire:model.lazy="pet_age_month" placeholder="ระบุเดือน" :options="['0','1', '2', '3', '4','5','6','7','8','9','10','11']" />
             </div>
         </div>
 
