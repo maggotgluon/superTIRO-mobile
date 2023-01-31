@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('vet_province');
             $table->string('vet_city');
             $table->string('vet_area');
-            $table->text('vet_remark');
+            $table->text('vet_remark')->nullable();
             $table->foreignId('user_id')->nullable();
             $table->timestamps();
         });
