@@ -89,19 +89,20 @@ class ClientDashboard extends Component
         }
     }
     public function countdown(){
+        
         $this->startTime = Carbon::create($this->client->active_date);
         $this->endTime = Carbon::create($this->client->active_date)->addMinutes(15);
         $this->timeleft=Carbon::now()->diffInSeconds($this->endTime);
         
-        // if($this->endTime->isPast()){
-        //     $this->go(5);
-        //     $this->client->active_status = 'expired';
-        //     $this->client->save();
-        // }else{
-        //     $this->leftMin=$this->timeleft/60;
-        //     $this->leftSec=$this->timeleft-($this->leftMin*60);
-        //     $this->go(4);
-        // }
+        if($this->endTime->isPast()){
+            $this->go(5);
+            $this->client->active_status = 'expired';
+            $this->client->save();
+        }else{
+            $this->leftMin=$this->timeleft/60;
+            $this->leftSec=$this->timeleft-($this->leftMin*60);
+            $this->go(4);
+        }
     }
     /**
      * Write code on Method
