@@ -45,37 +45,37 @@ class VetRegister extends Component
     }
 
     public function save(){
-
         $validatedData = $this->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
-
+        
         $this->addr['Tambon'] =$this->thai->where('Tambon',$this->vet_area)->unique('Tambon');
-        $vet_id = Str::padLeft(Arr::first($this->addr['Tambon'])->id, 6, '0');
-
+        
         // dd('TRIO'.$vet_id.Vet::all()->count());
         $user = User::create([
             'name' => $this->name,
             'email' => $this->email,
             'password' => Hash::make($this->password),
         ]);
-
+        $vet_id = Arr::first($this->addr['Tambon'])->id.Str::padLeft($user->id,3,0);
+        
         $Vet = Vet::create([
-            'id'=> '1'.$vet_id.Vet::all()->count(),
+            'id'=> $vet_id,
             'vet_name' => $this->vet_name,
             'vet_province' => $this->vet_province,
             'vet_city' => $this->vet_city,
             'vet_area' => $this->vet_area,
             'user_id' => $user->id
         ]);
+        // dd($vet_id,$user,$Vet);
 
 
         // event(new Registered($user));
 
-        // Auth::login($user);
+        Auth::login($user);
 
-        // return redirect(RouteServiceProvider::HOME);
+        return redirect(RouteServiceProvider::HOME);
     }
 }

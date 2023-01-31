@@ -28,7 +28,7 @@ return new class extends Migration
         while (($data = fgetcsv($csvFile, 2000, ",")) !== FALSE) {
             if (!$firstline) {
                 ThailandAddr::create([
-                    // "id" => $data['0'],
+                    "id" => $data['0'],
                     "Tambon" => $data['1'],
                     "District" => $data['6'],
                     "Province" => $data['11']

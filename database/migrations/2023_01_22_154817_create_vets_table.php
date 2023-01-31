@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Vet;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -20,9 +21,29 @@ return new class extends Migration
             $table->string('vet_province');
             $table->string('vet_city');
             $table->string('vet_area');
+            $table->text('vet_remark');
             $table->foreignId('user_id')->nullable();
             $table->timestamps();
         });
+        //seed data
+        $csvFile = fopen(base_path("database/data/trioUser.csv"), "r");
+
+        $firstline = true;
+        while (($data = fgetcsv($csvFile, 2000, ",")) !== FALSE) {
+            if (!$firstline) {
+                Vet::create([
+                    "id" => $data['3'],
+                    "vet_name"=>$data['4'],
+                    "vet_area" => $data['5'],
+                    "vet_city" => $data['6'],
+                    "vet_province" => $data['7'],
+                    "user_id"=>$data['0'],
+                ]);
+            }
+            $firstline = false;
+        }
+
+        fclose($csvFile);
     }
 
     /**

@@ -13,13 +13,23 @@ use Livewire\Component;
 
 class VetLogin extends Component
 {
+    public $vet_list,$vet_all;
+    public $user_list;
     public $user,$password,$remember_me;
 
     public function mount(){
-        // $user = $this->user;
+        $this->user_list = User::all();
+        $this->vet_all = Vet::all();
+
+        foreach ($this->vet_all as $index => $vet) {
+            $this->vet_list[$index]['id']=$vet->id;
+            $this->vet_list[$index]['name']=$vet->vet_name;
+            $this->vet_list[$index]['description']=$vet->vet_area.' '.$vet->vet_city.' '.$vet->vet_province;
+        }
     }
     public function render()
     {
+        // dd($this->vet_list);
         return view('livewire.vet-login');
     }
 

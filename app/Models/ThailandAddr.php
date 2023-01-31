@@ -9,6 +9,7 @@ class ThailandAddr extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'id',
         'Tambon',
         'District',
         'Province'
