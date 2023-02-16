@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Jobs\SendEmail;
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
 use App\Models\Client;
@@ -25,10 +26,19 @@ class ClientRegister extends Component
     public $otp=array() ,$code;
 
 
+    protected $messages = [
+        'email.required' => 'จำเป็นต้องระบุ อีเมลล์',
+        'email.email' => 'กรุณากรอก อีเมล์ ที่ถูกต้อง',
+        'email.unique' => 'อีเมล์ นี้ลงทะเบียนรับสิทธิ์แล้ว',
+        'phone.required' => 'จำเป็นต้องระบุ หมายเลขโทรศัพท์',
+        'phone.unique' => 'หมายเลขโทรศัพท์ นี้ลงทะเบียนรับสิทธิ์แล้ว',
+    ];
+
     public bool $blurModal = true;
 
     public function mount()
     {
+        // $this->confirmation();
         $this->validate_test = env('TWILIO', false);
         $this->vetall = Vet::all();
         $this->vet = Vet::all();
@@ -57,6 +67,7 @@ class ClientRegister extends Component
     }
 
 
+
     /**
      * Write code on Method
      *
@@ -72,9 +83,12 @@ class ClientRegister extends Component
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.Client::class],
             'consent' => ['required','bool']
         ]);
+
+        // dd($this->email,$this->firstname.' '.$this->lastname);
         if($this->validate_test){
             $this->sendCode();
         }
+
         $this->currentStep = 1.5;
         
         if($this->status=='pending'){
@@ -141,8 +155,54 @@ class ClientRegister extends Component
         ]);
         $client->client_code = 'TRIO'.Str::padLeft($client->id, 5, '0');
         $client->save();
+
+        $this->confirmation();
+
         redirect( route('client.ticket',['phone'=>$this->phone]) );
         $this->currentStep = 4;
+    }
+    public function confirmation(){
+
+        $details = [
+            'email' => $this->email,
+            'phone' => $this->phone,
+            'pet_weight' => $this->pet_weight,
+            'vet_name' => Vet::find($this->vet_id)->vet_name,
+            'name' => $this->firstname.' '.$this->lastname,
+        ];
+        // $details = [
+        //     'email' => 'maggotgluon@gmail.com',
+        //     'phone' => '0809166690',
+        //     'pet_weight' => 'pet_weight',
+        //     'vet_name' => 'vet_id',
+        //     'name' => 'firstname'.' '.'lastname',
+        // ];
+        SendEmail::dispatch($details);
+
+        $body_sms = 'หมายเลข '.$details['phone'].' ลงทะเบียนรับโปรแกรม SUPER TRIO';
+
+        try {
+            $accountSid = getenv("TWILIO_SID");
+            $authToken = getenv("TWILIO_AUTH_TOKEN");
+            $twilioNumber = getenv("TWILIO_FROM");
+            // dd($accountSid,$authToken);
+            $twilio = resolve('TwilioClient');
+            // $client = new Client($accountSid, $authToken);
+            
+            $twilio->messages->create(
+                '+66' . str_replace('-', '', $details['phone']) , [
+                'from' => $twilioNumber,
+                'body' => $body_sms
+            ]);
+ 
+            return back()
+            ->with('success','Sms has been successfully sent.');
+ 
+        } catch (\Exception $e) {
+            dd($e->getMessage());
+            return back()
+            ->with('error', $e->getMessage());
+        }
     }
 
     /**
