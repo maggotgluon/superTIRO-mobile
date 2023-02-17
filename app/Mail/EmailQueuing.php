@@ -31,7 +31,7 @@ class EmailQueuing extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'Test Queued Email',
+            subject: 'SuperTRIO confirmation',
         );
     }
 
