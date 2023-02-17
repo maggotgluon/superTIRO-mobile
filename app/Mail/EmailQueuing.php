@@ -45,7 +45,7 @@ class EmailQueuing extends Mailable
         return new Content(
             view: 'mails.email',
             with: [ 'phone' => $this->details['phone'],
-                    'pet_weight' => $this->details['pet_weight'],
+                    'pet_name' => $this->details['pet_name'],
                     'vet_name' => $this->details['vet_name'],
                     'name' => $this->details['name'],
          ],

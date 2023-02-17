@@ -166,7 +166,7 @@ class ClientRegister extends Component
         $details = [
             'email' => $this->email,
             'phone' => $this->phone,
-            'pet_weight' => $this->pet_weight,
+            'pet_name' => $this->pet_name,
             'vet_name' => Vet::find($this->vet_id)->vet_name,
             'name' => $this->firstname.' '.$this->lastname,
         ];
@@ -179,7 +179,7 @@ class ClientRegister extends Component
         // ];
         SendEmail::dispatch($details);
 
-        $body_sms = 'หมายเลข '.$details['phone'].' ลงทะเบียนรับโปรแกรม SUPER TRIO';
+        $body_sms = 'ยืนยันลงทะเบียนสำเร็จ ใช้สิทธิ์คลิก supertrio.app.mag.codes/client/login';
 
         try {
             $accountSid = getenv("TWILIO_SID");
