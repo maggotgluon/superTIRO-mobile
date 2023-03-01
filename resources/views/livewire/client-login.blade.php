@@ -9,6 +9,7 @@
             
     @endif
     <x-input wire:model="phone" label="หมายเลขโทรศัพท์" placeholder="หมายเลขโทรศัพท์" 
+    inputmode="tel" type="tel"
     class="{{$error!=''?'ring-secondary-red':''}}"/>
 
     <div class="py-2 text-center mt-auto flex justify-between items-center">

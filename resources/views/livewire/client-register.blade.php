@@ -29,9 +29,9 @@
         <div class="grid gap-2 pb-8">
             <x-input wire:model="firstname" label="ชื่อ" placeholder="ชื่อ" />
             <x-input wire:model="lastname" label="นามสกุล" placeholder="นามสกุล" />
-            <x-input wire:model="phone" label="หมายเลขโทรศัพท์" placeholder="หมายเลขโทรศัพท์" />
+            <x-input wire:model="phone" label="หมายเลขโทรศัพท์" placeholder="หมายเลขโทรศัพท์" pattern="[0-9]*" inputmode="tel"/>
             <!-- <x-button wire:click="sendCode" type="button" label="Send Code" /> -->
-            <x-input wire:model="email" label="อีเมล์" placeholder="อีเมล์" />
+            <x-input wire:model="email" label="อีเมล์" placeholder="อีเมล์" type="email" />
             <div class="flex flex-col justify-center py-2">
                 <!-- if ($consent == 1) -->
                 <x-toggle lg wire:model.lazy="consent" wire:click="openConsent" label="ยินยอมและรับทราบนโยบายคุ้มครองข้อมูลส่วนบุคคล" required />
@@ -90,7 +90,7 @@
             </p>
         </div>
         <div class="single-input-container flex gap-2 my-8">
-        <input wire:model="code" type="text" maxlength="6" 
+        <input wire:model="code" type="text" maxlength="6" inputmode="numeric"
             class="{{$status=='error'?'border-secondary-red ring-2 ring-secondary-red':'border-gray-300'}} text-center focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" />
         </div>
         <!-- <div class="single-input-container flex gap-2 my-8">
