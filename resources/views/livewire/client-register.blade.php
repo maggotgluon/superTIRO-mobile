@@ -90,7 +90,7 @@
             </p>
         </div>
         <div class="single-input-container flex gap-2 my-8">
-        <input wire:model="code" type="text" maxlength="6" inputmode="numeric"
+        <input wire:model.defer="code" type="text" maxlength="6" inputmode="numeric"
             class="{{$status=='error'?'border-secondary-red ring-2 ring-secondary-red':'border-gray-300'}} text-center focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" />
         </div>
         <!-- <div class="single-input-container flex gap-2 my-8">

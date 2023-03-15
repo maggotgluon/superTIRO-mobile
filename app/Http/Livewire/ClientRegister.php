@@ -9,6 +9,8 @@ use App\Models\Client;
 use App\Models\Vet;
 use Illuminate\Support\Str;
 
+use GuzzleHttp\Client as smsClient;
+
 class ClientRegister extends Component
 {
     
@@ -24,6 +26,7 @@ class ClientRegister extends Component
     public $successMessage = '';
     public $error;
     public $otp=array() ,$code;
+    public $token;
 
 
     protected $messages = [
@@ -38,6 +41,7 @@ class ClientRegister extends Component
 
     public function mount()
     {
+        
         // $this->confirmation();
         $this->validate_test = env('TWILIO', false);
         $this->vetall = Vet::all();
@@ -85,8 +89,10 @@ class ClientRegister extends Component
         ]);
 
         // dd($this->email,$this->firstname.' '.$this->lastname);
+        // $this->verifyCodeTH();
+        
         if($this->validate_test){
-            $this->sendCode();
+            $this->sendCodeTH();
         }
 
         $this->currentStep = 1.5;
@@ -100,7 +106,7 @@ class ClientRegister extends Component
         // $this->code = implode('',$this->otp);
         
         if($this->validate_test){
-            $result = $this->verifyCode($this->code);
+            $result = $this->verifyCodeTH($this->code);
             if($this->status=="approved" || $result){
                 $this->currentStep = 2;
             }else{
@@ -179,24 +185,40 @@ class ClientRegister extends Component
         // ];
         SendEmail::dispatch($details);
 
-        $body_sms = 'ยืนยันลงทะเบียนสำเร็จ ใช้สิทธิ์คลิก supertrio.app.mag.codes/client/login';
+        $body_sms = 'ยืนยันลงทะเบียนสำเร็จ ใช้สิทธิ์คลิก http://supertrio.app.mag.codes/client/login';
 
         try {
-            $accountSid = getenv("TWILIO_SID");
-            $authToken = getenv("TWILIO_AUTH_TOKEN");
-            $twilioNumber = getenv("TWILIO_FROM");
-            // dd($accountSid,$authToken);
-            $twilio = resolve('TwilioClient');
-            // $client = new Client($accountSid, $authToken);
+            $client = new \GuzzleHttp\Client();
+
+            $response = $client->request('POST', 'https://api-v2.thaibulksms.com/sms', [
+                'form_params' => [
+                  'msisdn' => '+66' . str_replace('-', '', $details['phone']) ,
+                  'message' => $body_sms,
+                  'sender' => 'SuperTRIO',
+                  'shorten_url' => 'true'
+                ],
+                'headers' => [
+                  'accept' => 'application/json',
+                  'authorization' => getenv('BULKSMS_AUTH'),
+                  'content-type' => 'application/x-www-form-urlencoded',
+                ],
+              ]);
+
+            // $accountSid = getenv("TWILIO_SID");
+            // $authToken = getenv("TWILIO_AUTH_TOKEN");
+            // $twilioNumber = getenv("TWILIO_FROM");
+            // // dd($accountSid,$authToken);
+            // $twilio = resolve('TwilioClient');
+            // // $client = new Client($accountSid, $authToken);
             
-            $twilio->messages->create(
-                '+66' . str_replace('-', '', $details['phone']) , [
-                'from' => $twilioNumber,
-                'body' => $body_sms
-            ]);
+            // $twilio->messages->create(
+            //     '+66' . str_replace('-', '', $details['phone']) , [
+            //     'from' => $twilioNumber,
+            //     'body' => $body_sms
+            // ]);
  
-            return back()
-            ->with('success','Sms has been successfully sent.');
+            // return back()
+            // ->with('success','Sms has been successfully sent.');
  
         } catch (\Exception $e) {
             dd($e->getMessage());
@@ -290,6 +312,60 @@ class ClientRegister extends Component
         }
         return $verification_check->valid;
 
+
+    }
+
+    public function sendCodeTH(){
+        
+        $client = new smsClient;
+
+        $response = $client->request('POST', 'https://otp.thaibulksms.com/v2/otp/request', [
+            'form_params' => [
+              'key' => getenv('BULKSMS_KEY'),
+              'secret' => getenv('BULKSMS_SECRET'),
+              'msisdn' => '+66' . str_replace('-', '', $this->phone)
+            ],
+            'headers' => [
+                'accept' => 'application/json',
+                'content-type' => 'application/x-www-form-urlencoded',
+            ],
+        ]);
+
+        $this->token = json_decode($response->getBody()->getContents())->token;
+        // dd($response,$response->getBody(),$this->token );
+          
+    }
+    public function verifyCodeTH(){
+        // dd($this->status);
+        $client = new smsClient;
+
+        try {
+            $response = $client->request('POST', 'https://otp.thaibulksms.com/v2/otp/verify', [
+            'form_params' => [
+                'key' => getenv('BULKSMS_KEY'),
+                'secret' => getenv('BULKSMS_SECRET'),
+                'token' => $this->token,
+                'pin' => $this->code
+            ],
+            'headers' => [
+                'accept' => 'application/json',
+                'content-type' => 'application/x-www-form-urlencoded',
+            ],
+            ]);
+        } catch (\Exception $e) {
+            $this->error = $e->getMessage();
+            return false;
+        }
+
+        // dd(json_decode($response->getBody()->getContents()) , $response, $response,$this->status );
+
+        if (json_decode($response->getBody()->getContents())->status != 'success') {
+            $this->error = 'That code is invalid, please try again.';
+        }else{
+            $this->error = '';
+            $this->status = 'approved';
+        }
+        return $this->status == 'approved';
 
     }
 
