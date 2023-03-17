@@ -78,7 +78,7 @@
         </div>
 
         <div class="py-2 text-center mt-auto">
-            <x-button lg icon="chevron-left" primary class="bg-gradient-to-br from-gradient-start to-gradient-end rounded-2xl" wire:click="back(1)" type="button" label="กลับ" />
+            <x-button lg icon="chevron-left" primary class="bg-gradient-to-br from-gradient-start to-gradient-end rounded-2xl" wire:click="termStepSubmit(1)" type="button" label="กลับ" />
         </div>
     </div>
 

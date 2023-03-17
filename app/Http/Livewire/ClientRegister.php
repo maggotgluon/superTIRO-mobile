@@ -66,7 +66,6 @@ class ClientRegister extends Component
 
     public function render()
     {
-        
         return view('livewire.client-register');
     }
 
@@ -100,7 +99,13 @@ class ClientRegister extends Component
         if($this->status=='pending'){
         }
     }
+    public function termStepSubmit(){
+        $validatedData = $this->validate([
+            'consent' => ['required','bool']
+        ]);
 
+        $this->currentStep = 1;
+    }
     public function varifyOTP(){
 
         // $this->code = implode('',$this->otp);
