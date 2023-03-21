@@ -15,7 +15,7 @@
             ได้ที่ {{$client->vet_id?App\Models\Vet::find($client->vet_id)->vet_name:'-'}}<br>
         </p>
         <p class="text-center">
-            กรุณากดรับสิทธิ์ขณะอยู่ที่คลีนิกตามที่ลงทะเบียน
+            กรุณากดรับสิทธิ์ขณะอยู่ที่คลินิกตามที่ลงทะเบียน
         </p>
 
         <div class="py-2 text-center flex justify-center mt-auto">
@@ -33,7 +33,7 @@
             <p class="my-4 leading-loose text-2xl">
                 รหัสจะมีอายุ 15 นาที <br>
                 ท่านจะสามารถใช้งานได้<br>
-                ขณะอยู่ที่ คลีนิก หรือ <br>
+                ขณะอยู่ที่ คลินิก หรือ <br>
                 โรงพยาบาลสัตว์<br>
                 ที่ลงทะเบียนเท่านั้น
             </p>
@@ -54,15 +54,15 @@
     </div>
 
     <div class="row setup-content  min-h-[70vh] flex flex-col {{ $currentStep != 3 ? 'hidden' : '' }}" id="step-4">
-        <h3 class="text-center text-xl my-8 p-4 font-bold text-white bg-primary-blue"> การลงทะเบียนเสร็จสมบูรณ์ </h3>
+        <h3 class="text-center text-xl my-8 p-4 font-bold text-primary-blue"> กรุณากรอกรหัสคลินิก <br>หรือ โรงพยาบาลสัตว์ </h3>
         <p class="text-center mb-8">
             (สอบถามที่พนักงานของคลินิก)
         </p>
         
-        <x-input wire:model="input_vet_id" label="รหัสคลีนิก หรือ โรงพยาบาลสัตว์" placeholder="รหัสคลีนิก หรือ โรงพยาบาลสัตว์"/>
+        <x-input wire:model="input_vet_id" label="รหัสคลินิก หรือ โรงพยาบาลสัตว์" placeholder="รหัสคลินิก หรือ โรงพยาบาลสัตว์"/>
         @if ($status == -1)
             <div class="my-2">
-                <x-badge negative label="รหัสคลีนิก หรือ โรงพยาบาลสัตว์ ไม่ถูกต้อง" />
+                <x-badge negative label="รหัสคลินิก หรือ โรงพยาบาลสัตว์ ไม่ถูกต้อง" />
             </div>
         @endif
         <div class="py-2 text-center flex justify-center mt-auto">

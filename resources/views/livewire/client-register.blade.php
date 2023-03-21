@@ -42,7 +42,13 @@
 
             <div class="text-secondary-red text-xs text-center">
                 หากลงทะเบียนไม่สำเร็จ <br>
-                กรุณาติดต่อ <a href="#">เบอร์ 089-xxx-xxxx</a>
+                กรุณาติดต่อ 
+                <div>
+                    <x-button rounded class="m-2 p-2"  green href="https://line.me/ti/p/%40PetsSociety" label="Line : @PetsSociety" />
+                    <x-button rounded class="m-2 p-2"  sky href="https://www.facebook.com/PetsSocietybyZoetis" label="facebool.com/PetsSocietybyZoetis" />
+                </div>
+                
+
             </div>
         </div>
 

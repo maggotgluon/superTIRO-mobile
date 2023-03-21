@@ -7,7 +7,7 @@
 
         <!-- Email Address -->
         <div>
-            <x-input-label for="id" :value="__('ชื่อคลีนิก หรือ โรงพยาบาลสัตว์')" />
+            <x-input-label for="id" :value="__('ชื่อคลินิก หรือ โรงพยาบาลสัตว์')" />
             <x-text-input id="id" class="block mt-1 w-full" type="text" name="id" :value="old('id')" required autofocus />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>

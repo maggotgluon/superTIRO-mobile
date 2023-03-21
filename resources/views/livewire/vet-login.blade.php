@@ -1,11 +1,11 @@
 <div>
-    <!-- <x-input label="ชื่อคลีนิก หรือ โรงพยาบาลสัตว์" wire:model="user" /> -->
+    <!-- <x-input label="ชื่อคลินิก หรือ โรงพยาบาลสัตว์" wire:model="user" /> -->
     
     
     
     <x-select
-    label="ชื่อคลีนิก หรือ โรงพยาบาลสัตว์"
-    placeholder="ชื่อคลีนิก หรือ โรงพยาบาลสัตว์"
+    label="ชื่อคลินิก หรือ โรงพยาบาลสัตว์"
+    placeholder="ชื่อคลินิก หรือ โรงพยาบาลสัตว์"
     :options="$vet_list"
     option-label="name"
     option-value="id"
