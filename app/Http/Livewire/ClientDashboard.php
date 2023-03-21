@@ -16,6 +16,7 @@ class ClientDashboard extends Component
     public $currentStep=1,$status=0;
     public $timeleft=0,$startTime,$endTime;
     public $leftMin,$leftSec;
+    public $offer=[];
 
     public $count=1 ;
 
@@ -76,11 +77,16 @@ class ClientDashboard extends Component
     public function verifyVet()
     {
         // dd($this->client->active_date);
+
+        $validatedData = $this->validate([
+            'offer' => ['required', 'array']
+        ]);
         // active_status
         if($this->input_vet_id == $this->client->vet_id){
             //update record
             $this->client->active_date = now();
             $this->client->active_status = 'await';
+            $this->client->phoneIsVerified .= '-'.implode(",",$this->offer);
             $this->client->save();
             $this->go($this->currentStep+1);
             $this->countdown();

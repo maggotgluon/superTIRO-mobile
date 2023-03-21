@@ -58,7 +58,7 @@
     </div>
 
     <div class="row setup-content  min-h-[70vh] flex flex-col {{ $currentStep != 3 ? 'hidden' : '' }}" id="step-4">
-        <h3 class="text-center text-xl my-8 p-4 font-bold text-primary-blue"> กรุณากรอกรหัสคลินิก <br>หรือ โรงพยาบาลสัตว์ </h3>
+        <h3 class="text-center text-xl my-4 p-4 font-bold text-primary-blue"> กรุณากรอกรหัสคลินิก <br>หรือ โรงพยาบาลสัตว์ </h3>
         <p class="text-center mb-8">
             (สอบถามที่พนักงานของคลินิก)
         </p>
@@ -69,6 +69,12 @@
                 <x-badge negative label="รหัสคลินิก หรือ โรงพยาบาลสัตว์ ไม่ถูกต้อง" />
             </div>
         @endif
+        <div class="mt-2">
+            <x-checkbox class="rounded-full" label="รับคำปรึกษาและเข้าร่วมโปรแกรม Super TRIO" 
+                        value="standard" wire:model="offer" />
+            <x-checkbox class="rounded-full" label="รับสิทธิพิเศษเพิ่มเติม" 
+                        value="extra" wire:model="offer" />
+        </div>
         <div class="py-2 text-center flex justify-center mt-auto">
             <x-button lg right-icon="chevron-right" primary  class="bg-gradient-to-br from-gradient-start to-gradient-end rounded-2xl"
                 wire:click="verifyVet" type="button" label="รับสิทธิ์" />
