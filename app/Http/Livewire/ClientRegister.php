@@ -200,6 +200,7 @@ class ClientRegister extends Component
                   'msisdn' => '+66' . str_replace('-', '', $details['phone']) ,
                   'message' => $body_sms,
                   'sender' => 'SuperTRIO',
+                  'force'=>'corporate',
                   'shorten_url' => 'true'
                 ],
                 'headers' => [
