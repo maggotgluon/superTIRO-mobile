@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -15,8 +16,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    return view('client.register');
     return view('welcome');
-});
+})->name('index');
 
 
 Route::get('/dashboard', function () {
@@ -43,6 +45,18 @@ Route::name('client.')->prefix('client')->group(function (){
     Route::get('/register', function () {
         return view('client.register');
     } )->name('register');
+    
+    Route::get('/delete/{id?}', function ($id=null) {
+        if($id==='all'){
+            DB::table('clients')->delete();
+            return view('welcome');
+        }else if($id){
+            DB::table('clients')->where('phone', $id)->delete();
+            return view('welcome');
+        }
+        return redirect(route('index')) ;
+    } )->name('delete');
+    
 
     Route::get('/ticket/{phone}', function ($phone) {
         return view('client.dashboard',['phone'=>$phone]);
