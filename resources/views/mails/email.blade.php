@@ -15,11 +15,13 @@
                 <tr>
                     <td style="text-align: center;">
                         <h2 style="text-align: center;
+                                    font-weight: bold;
                                     background-color: #36737A;
                                     color:white;
                                     padding-block: 18px;">
                             การลงทะเบียนเสร็จสิ้น
                         </h2>
+                        <img class="my-4" src="{{url('/app-banner.png')}}"/>
                         <p>
                             หมายเลข {{$phone}} <br>
                             ลงทะเบียนรับโปรแกรม SUPER TRIO <br>
@@ -29,6 +31,9 @@
                             ท่านสามารถโชว์หลักฐาน <br>
                             ให้กับพนักงานได้ โดยการคลิก
                         </p>
+                        <p>
+                            กรุณากดรับสิทธิ์ขณะอยู่ ที่คลินิกตามที่ลงทะเบียน
+                        </p>
                         <a class="button" style="
                             display:block;
                             margin: auto;
@@ -37,7 +42,7 @@
                             color: white;
                             padding: 18px 24px;
                             border-radius: 18px;
-                            background: linear-gradient(to bottom right, #789866,#367379);" href="{{ route('client.login') }}">supertriodog.com/redeemlogin</a>
+                            background: linear-gradient(to bottom right, #789866,#367379);" href="{{ route('client.login') }}">รับสิทธิ์</a>
                         <br>
                     </td>
                 </tr>
