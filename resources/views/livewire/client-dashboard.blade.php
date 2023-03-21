@@ -41,7 +41,11 @@
                 มิฉะนั้น รหัส<br>
                 จะไม่สามารถใช้งานได้ <br>
                 หากมีข้อสงสัย ติดต่อ <br>
-                <a href="#">089-xxxxxxx</a>
+                <div class="flex flex-wrap justify-center gap-2 mt-4">
+                    <x-button rounded class="m-2 p-2"  green href="https://line.me/ti/p/%40PetsSociety" label="Line : @PetsSociety" />
+                    <x-button rounded class="m-2 p-2"  sky href="https://www.facebook.com/PetsSocietybyZoetis" label="facebool.com/PetsSocietybyZoetis" />
+                </div>
+               
             </p>
         </div>
         <div class="py-2 text-center flex justify-between mt-auto">
