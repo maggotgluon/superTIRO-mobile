@@ -70,10 +70,10 @@
             </div>
         @endif
         <div class="mt-2">
-            <x-checkbox class="rounded-full" label="รับคำปรึกษาและเข้าร่วมโปรแกรม Super TRIO" 
-                        value="standard" wire:model="offer" />
-            <x-checkbox class="rounded-full" label="รับสิทธิพิเศษเพิ่มเติม" 
-                        value="extra" wire:model="offer" />
+            <span class="p-4"><x-checkbox lg class="rounded-full" label="รับคำปรึกษาและเข้าร่วมโปรแกรม Super TRIO" 
+                        value="standard" wire:model="offer" /></span>
+            <span class="p-4"><x-checkbox lg class="rounded-full" label="รับสิทธิพิเศษเพิ่มเติม" 
+                        value="extra" wire:model="offer" /></span>
         </div>
         <div class="py-2 text-center flex justify-center mt-auto">
             <x-button lg right-icon="chevron-right" primary  class="bg-gradient-to-br from-gradient-start to-gradient-end rounded-2xl"
