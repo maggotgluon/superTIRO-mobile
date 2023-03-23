@@ -19,7 +19,7 @@
                                     background-color: #36737A;
                                     color:white;
                                     padding-block: 18px;">
-                            การลงทะเบียนเสร็จสิ้น
+                            การลงทะเบียนเสร็จสมบูรณ์
                         </h2>
                         <img style="margin-top:0.75rem;margin-bottom:0.75rem" src="{{url('/app-banner.png')}}"/>
                         <p style="text-align: center;">
