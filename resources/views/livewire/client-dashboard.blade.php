@@ -30,14 +30,15 @@
 
     <div class="row setup-content  min-h-[70vh] flex flex-col {{ $currentStep != 2 ? 'hidden' : '' }}" id="step-4">
         <div class="text-center my-8 p-4 rounded-3xl text-white bg-primary-blue"> 
-            <p class="my-4 leading-loose text-2xl">
+            <p class="my-4 leading-relaxed text-2xl">
                 รหัสจะมีอายุ 15 นาที <br>
                 ท่านจะสามารถใช้งานได้<br>
-                ขณะอยู่ที่ คลินิก หรือ <br>
-                โรงพยาบาลสัตว์<br>
+            </p><p class="my-4 leading-relaxed text-2xl">
+                กรุณากดรับสิทธิ์ขณะอยู่ที่คลินิก<br>
+                หรือ โรงพยาบาลสัตว์<br>
                 ที่ลงทะเบียนเท่านั้น
             </p>
-            <p class="my-4 leading-loose text-2xl">
+            <p class="my-4 leading-relaxed text-2xl">
                 มิฉะนั้น รหัส<br>
                 จะไม่สามารถใช้งานได้ <br>
                 หากมีข้อสงสัย ติดต่อ <br>
@@ -58,7 +59,7 @@
     </div>
 
     <div class="row setup-content  min-h-[70vh] flex flex-col {{ $currentStep != 3 ? 'hidden' : '' }}" id="step-4">
-        <h3 class="text-center text-xl my-4 p-4 font-bold text-primary-blue"> กรุณากรอกรหัสคลินิก <br>หรือ โรงพยาบาลสัตว์ </h3>
+        <h3 class="text-center text-xl my-4 pt-4 font-bold text-primary-blue"> กรุณากรอกรหัสคลินิก <br>หรือ โรงพยาบาลสัตว์ </h3>
         <p class="text-center mb-8">
             (สอบถามที่พนักงานของคลินิก)
         </p>
@@ -72,7 +73,7 @@
         <div class="mt-2">
             <span class="p-4"><x-checkbox lg class="rounded-full" label="รับคำปรึกษาและเข้าร่วมโปรแกรม Super TRIO" 
                         value="standard" wire:model="offer" /></span>
-            <span class="p-4"><x-checkbox lg class="rounded-full" label="รับสิทธิพิเศษเพิ่มเติม" 
+            <span class="p-4"><x-checkbox lg class="rounded-full" label="รับสิทธิพิเศษเพิ่มเติม (สอบถามที่พนักงานของคลินิก)" 
                         value="extra" wire:model="offer" /></span>
         </div>
         <div class="py-2 text-center flex justify-center mt-auto">
