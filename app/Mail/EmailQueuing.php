@@ -43,7 +43,7 @@ class EmailQueuing extends Mailable
     public function content()
     {
         return new Content(
-            view: 'mails.email',
+            html: 'mails.email',
             with: [ 'phone' => $this->details['phone'],
                     'pet_name' => $this->details['pet_name'],
                     'vet_name' => $this->details['vet_name'],

@@ -46,6 +46,10 @@ Route::name('client.')->prefix('client')->group(function (){
         return view('client.register');
     } )->name('register');
     
+    Route::get('/email/{id?}', function ($id=null) {
+        return view('mails.email',['phone'=>'0809166690','pet_name'=>'มอมแมม','vet_name'=>'โรงพยาบาลสัตว์สักที่']);
+    } )->name('email');
+    
     Route::get('/delete/{id?}', function ($id=null) {
         if($id==='all'){
             DB::table('clients')->delete();

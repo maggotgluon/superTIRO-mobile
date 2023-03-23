@@ -21,8 +21,8 @@
                                     padding-block: 18px;">
                             การลงทะเบียนเสร็จสิ้น
                         </h2>
-                        <img class="my-4" src="{{url('/app-banner.png')}}"/>
-                        <p>
+                        <img style="margin-top:0.75rem;margin-bottom:0.75rem" src="{{url('/app-banner.png')}}"/>
+                        <p style="text-align: center;">
                             หมายเลข {{$phone}} <br>
                             ลงทะเบียนรับโปรแกรม SUPER TRIO <br>
                             ปลุกพลัง 3 ชั้น ป้องกันปรสิต <br>
@@ -30,9 +30,6 @@
                             สามารถรับสิทธิ์ได้ที่ {{$vet_name}} <br>
                             ท่านสามารถโชว์หลักฐาน <br>
                             ให้กับพนักงานได้ โดยการคลิก
-                        </p>
-                        <p>
-                            กรุณากดรับสิทธิ์ขณะอยู่ ที่คลินิกตามที่ลงทะเบียน
                         </p>
                         <a class="button" style="
                             display:block;
@@ -43,6 +40,11 @@
                             padding: 18px 24px;
                             border-radius: 18px;
                             background: linear-gradient(to bottom right, #789866,#367379);" href="{{ route('client.login') }}">รับสิทธิ์</a>
+
+                        <p style="text-align: center;">
+                        กรุณากดรับสิทธิ์ขณะอยู่ที่คลินิกหรือ โรงพยาบาลสัตว์<br>
+                        ที่ลงทะเบียนเท่านั้น
+                        </p>
                         <br>
                     </td>
                 </tr>
