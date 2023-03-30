@@ -22,8 +22,10 @@
             และเข้าร่วมโปรแกรม Super TRIO<br>
             ได้ที่ {{$client->vet_id?App\Models\Vet::find($client->vet_id)->vet_name:'-'}}<br>
         </p>
-        <p class="text-center">
-            กรุณากดรับสิทธิ์ขณะอยู่ที่คลินิกตามที่ลงทะเบียน
+        <p class="text-center text-sm text-secondary-red">
+            กรุณากดรับสิทธิ์ขณะอยู่ที่คลินิกตามที่ลงทะเบียน <br>
+            เพื่อโชว์หลักฐานการลงทะเบียนให้คลินิกรับทราบ <br>
+            (รหัสมีอายุ 15 นาที)
         </p>
 
         <div class="py-2 text-center flex justify-center mt-auto">
