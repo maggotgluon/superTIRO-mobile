@@ -2,10 +2,10 @@
     <div class="row setup-content  min-h-[70vh] flex flex-col {{ $currentStep != 1 ? 'hidden' : '' }}" id="step-4">
     
     <div class="flex justify-around">
-        <x-button href="#step-1" label="1" class="rounded-full font-bold text-primary-blue ring-primary-blue" />
-        <x-button href="#step-2" label="2" class="rounded-full font-bold text-primary-blue ring-primary-blue" />
-        <x-button href="#step-3" label="3" class="rounded-full font-bold text-primary-blue ring-primary-blue" />
-        <x-button href="#step-4" label="4" class="rounded-full font-bold text-primary-blue ring-primary-blue" disabled="disabled" />
+        <x-button href="#step-1" label="1" class="rounded-full font-bold bg-primary-blue  ring ring-primary-blue hover:text-primary-blue text-gray-light" />
+        <x-button href="#step-2" label="2" class="rounded-full font-bold bg-primary-blue  ring ring-primary-blue hover:text-primary-blue text-gray-light" />
+        <x-button href="#step-3" label="3" class="rounded-full font-bold bg-primary-blue  ring ring-primary-blue hover:text-primary-blue text-gray-light" />
+        <x-button href="#step-4" label="4" class="rounded-full font-bold bg-primary-blue  ring ring-primary-blue hover:text-primary-blue text-gray-light" disabled="disabled" />
     </div>
     
         <h3 class="text-center text-xl my-4 p-4 font-bold text-white bg-primary-blue"> การลงทะเบียนเสร็จสมบูรณ์ </h3>
