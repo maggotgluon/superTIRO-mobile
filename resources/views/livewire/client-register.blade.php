@@ -27,6 +27,7 @@
 
         </div>
         <div class="grid gap-2 pb-8">
+            <p>ข้อมูลเจ้าของสุนัข</p>
             <x-input wire:model="firstname" label="ชื่อ" placeholder="ชื่อ" />
             <x-input wire:model="lastname" label="นามสกุล" placeholder="นามสกุล" />
             <x-input wire:model="phone" label="หมายเลขโทรศัพท์" placeholder="หมายเลขโทรศัพท์" pattern="[0-9]*" inputmode="tel"/>
