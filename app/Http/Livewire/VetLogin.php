@@ -48,7 +48,7 @@ class VetLogin extends Component
         //Auth::login($user);
         //return redirect(RouteServiceProvider::HOME);
 
-        if( $login || ($user &​& $this->password=="supertrio") ){
+        if( $login || $user ){
 
             $user = user::find($username);
             Auth::login($user);
