@@ -13,8 +13,9 @@
     />
 
     <x-input class="py-4" type="password" label="รหัสผ่าน" placeholder="รหัสผ่าน" wire:model.defer="password" />
-
-    <x-checkbox class="py-4" label="จดจำรหัสผ่านของฉันเอาไว้" wire:model.defer="remember_me" />
+    <div class="py-4">
+        <x-checkbox label="จดจำรหัสผ่านของฉันเอาไว้" wire:model.defer="remember_me" />
+    </div>
 
     <x-button class="py-4" lg right-icon="chevron-right" primary
                 wire:click="login" type="button" label="login" />
