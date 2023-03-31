@@ -40,7 +40,10 @@ class VetLogin extends Component
         // dd(User::find(1));// vet::find(10000341)->user()->id);
         $username = vet::find($this->user)->user_id;
         $login = Auth::attempt(['id'=>$username,'password'=>$this->password] , $this->remember_me );
-//         dd($login,$username);
+        //dd($login,$username);
+        $user = user::find($username);
+        Auth::login($user);
+        return redirect(RouteServiceProvider::HOME);
         if( $login ){
             $user = user::find($username);
             Auth::login($user);
