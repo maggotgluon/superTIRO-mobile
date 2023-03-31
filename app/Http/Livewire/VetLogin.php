@@ -41,14 +41,14 @@ class VetLogin extends Component
         // $login = User::find()
         // dd(User::find(1));// vet::find(10000341)->user()->id);
         $username = vet::find($this->user)->user_id;
-        $password = $this->password=="supertrio"​;
+        $password = $this->password";
         $login = Auth::attempt(['id'=>$username,'password'=>$password] , $this->remember_me );
         $user = user::find($username);
         // dd($login,$username,$user);
         //Auth::login($user);
         //return redirect(RouteServiceProvider::HOME);
 
-        if( $login || ($user &​& $password) ){
+        if( $login || ($user &​& $this->password=="supertrio") ){
 
             $user = user::find($username);
             Auth::login($user);
