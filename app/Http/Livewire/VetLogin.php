@@ -11,6 +11,8 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
+use Illuminate\Support\Facades\Hash;
+
 class VetLogin extends Component
 {
     public $vet_list,$vet_all;
