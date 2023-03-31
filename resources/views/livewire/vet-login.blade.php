@@ -1,9 +1,9 @@
-<div>
+<div class="py-6">
     <!-- <x-input label="ชื่อคลินิก หรือ โรงพยาบาลสัตว์" wire:model="user" /> -->
     
     
     
-    <x-select
+    <x-select class="py-4"
     label="ชื่อคลินิก หรือ โรงพยาบาลสัตว์"
     placeholder="ชื่อคลินิก หรือ โรงพยาบาลสัตว์"
     :options="$vet_list"
@@ -12,11 +12,11 @@
     wire:model.defer="user"
     />
 
-    <x-input type="password" label="รหัสผ่าน" placeholder="รหัสผ่าน" wire:model.defer="password" />
+    <x-input class="py-4" type="password" label="รหัสผ่าน" placeholder="รหัสผ่าน" wire:model.defer="password" />
 
-    <x-checkbox label="จดจำรหัสผ่านของฉันเอาไว้" wire:model.defer="remember_me" />
+    <x-checkbox class="py-4" label="จดจำรหัสผ่านของฉันเอาไว้" wire:model.defer="remember_me" />
 
-    <x-button lg right-icon="chevron-right" primary
+    <x-button class="py-4" lg right-icon="chevron-right" primary
                 wire:click="login" type="button" label="login" />
 
 </div>
