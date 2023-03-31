@@ -13,7 +13,7 @@
     <div class="flex justify-around relative {{$currentStep>=2? '' : 'hidden'}}">
     
     
-        <progress value="100" max="100" style="
+        <progress value={{$currentStep}} max="4" style="
             position: absolute;
             top: calc(50% - .25rem);
             bottom: calc(50% - .25rem);
