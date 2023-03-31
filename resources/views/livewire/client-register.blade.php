@@ -9,11 +9,26 @@
         <x-badge negative icon="exclamation" nagative label="SMS verlifacition turn off" />
     </span>
     @endif
-    <div class="flex justify-around {{$currentStep>=2? '' : 'hidden'}}">
-        <x-button href="#step-1" label="1" class="rounded-full font-bold {{$currentStep!=1? 'text-secondary-red ring ring-gray-dark' : 'bg-primary-blue  ring ring-primary-blue hover:text-primary-blue text-gray-light'}} {{$currentStep>1?'text-primary-blue ring-primary-blue':''}}" />
-        <x-button href="#step-2" label="2" class="rounded-full font-bold {{$currentStep!=2? 'text-secondary-red ring ring-gray-dark' : 'bg-primary-blue  ring ring-primary-blue hover:text-primary-blue text-gray-light'}} {{$currentStep>2?'text-primary-blue ring-primary-blue':''}}" />
-        <x-button href="#step-3" label="3" class="rounded-full font-bold {{$currentStep!=3? 'text-secondary-red ring ring-gray-dark' : 'bg-primary-blue  ring ring-primary-blue hover:text-primary-blue text-gray-light'}} {{$currentStep>3?'text-primary-blue ring-primary-blue':''}}" />
-        <x-button href="#step-4" label="4" class="rounded-full font-bold {{$currentStep!=4? 'text-secondary-red ring ring-gray-dark' : 'bg-primary-blue  ring ring-primary-blue hover:text-primary-blue text-gray-light'}} {{$currentStep>4?'text-primary-blue ring-primary-blue':''}}" disabled="disabled" />
+    
+    <div class="flex justify-around relative {{$currentStep>=2? '' : 'hidden'}}">
+    
+    
+        <progress value="100" max="100" style="
+            position: absolute;
+            top: calc(50% - .25rem);
+            bottom: calc(50% - .25rem);
+            left: auto;
+            right: auto;
+            height:0.5rem;
+            width: calc(100% - 5rem);
+            z-index: 0;
+        ">
+        </progress>
+        
+        <x-button href="#step-1" label="1" style="aspect-ratio: 1/1; z-index:1;"  class="rounded-full font-bold {{$currentStep!=1? 'text-secondary-red ring ring-gray-dark' : 'bg-primary-blue  ring ring-primary-blue hover:text-primary-blue text-gray-light'}} {{$currentStep>1?'text-primary-blue ring-primary-blue':''}}" />
+        <x-button href="#step-2" label="2" style="aspect-ratio: 1/1; z-index:1;"  class="rounded-full font-bold {{$currentStep!=2? 'text-secondary-red ring ring-gray-dark' : 'bg-primary-blue  ring ring-primary-blue hover:text-primary-blue text-gray-light'}} {{$currentStep>2?'text-primary-blue ring-primary-blue':''}}" />
+        <x-button href="#step-3" label="3" style="aspect-ratio: 1/1; z-index:1;"  class="rounded-full font-bold {{$currentStep!=3? 'text-secondary-red ring ring-gray-dark' : 'bg-primary-blue  ring ring-primary-blue hover:text-primary-blue text-gray-light'}} {{$currentStep>3?'text-primary-blue ring-primary-blue':''}}" />
+        <x-button href="#step-4" label="4" style="aspect-ratio: 1/1; z-index:1;"  class="rounded-full font-bold {{$currentStep!=4? 'text-secondary-red ring ring-gray-dark' : 'bg-primary-blue  ring ring-primary-blue hover:text-primary-blue text-gray-light'}} {{$currentStep>4?'text-primary-blue ring-primary-blue':''}}" disabled="disabled" />
     </div>
 
 
