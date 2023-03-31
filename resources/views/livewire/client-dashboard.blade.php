@@ -8,6 +8,7 @@
             bottom: calc(50% - .25rem);
             left: auto;
             right: auto;
+            height:0.5rem;
             width: calc(100% - 5rem);
             z-index: 0;
         ">
