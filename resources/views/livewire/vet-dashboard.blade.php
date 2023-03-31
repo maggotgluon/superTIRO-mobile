@@ -16,7 +16,7 @@
     <div class="">
         <p class="text-center py-4">
             รับคำปรึกษา<br>
-            และเข้า่วมโปรแกรม Super TRIO โปรแกรม<br>
+            และเข้าร่วมโปรแกรม Super TRIO โปรแกรม<br>
             ปกป้องสุนัขจากปริสิตร้ายที่อันตรายถึงชีวิต
         </p>
         <div class="flex justify-center py-2 ">
