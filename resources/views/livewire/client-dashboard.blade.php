@@ -1,11 +1,21 @@
 <div class="text-content-dark">
     <div class="row setup-content  min-h-[70vh] flex flex-col {{ $currentStep != 1 ? 'hidden' : '' }}" id="step-4">
     
-    <div class="flex justify-around">
-        <x-button href="#step-1" label="1" class="rounded-full font-bold bg-primary-blue  ring ring-primary-blue hover:text-primary-blue text-gray-light" />
-        <x-button href="#step-2" label="2" class="rounded-full font-bold bg-primary-blue  ring ring-primary-blue hover:text-primary-blue text-gray-light" />
-        <x-button href="#step-3" label="3" class="rounded-full font-bold bg-primary-blue  ring ring-primary-blue hover:text-primary-blue text-gray-light" />
-        <x-button href="#step-4" label="4" class="rounded-full font-bold bg-primary-blue  ring ring-primary-blue hover:text-primary-blue text-gray-light" disabled="disabled" />
+    <div class="flex justify-around relative">
+    <progress value="100" max="100" style="
+            position: absolute;
+            top: calc(50% - .25rem);
+            bottom: calc(50% - .25rem);
+            left: auto;
+            right: auto;
+            width: calc(100% - 5rem);
+            z-index: 0;
+        ">
+        </progress>
+        <x-button href="#step-1" label="1" style="aspect-ratio: 1/1; z-index:1;" class="rounded-full font-bold bg-primary-blue  ring ring-primary-blue hover:text-primary-blue text-gray-light" />
+        <x-button href="#step-2" label="2" style="aspect-ratio: 1/1; z-index:1;" class="rounded-full font-bold bg-primary-blue  ring ring-primary-blue hover:text-primary-blue text-gray-light" />
+        <x-button href="#step-3" label="3" style="aspect-ratio: 1/1; z-index:1;" class="rounded-full font-bold bg-primary-blue  ring ring-primary-blue hover:text-primary-blue text-gray-light" />
+        <x-button href="#step-4" label="4" style="aspect-ratio: 1/1; z-index:1;" class="rounded-full font-bold bg-primary-blue  ring ring-primary-blue hover:text-primary-blue text-gray-light" disabled="disabled" />
     </div>
     
         <h3 class="text-center text-xl my-4 p-4 font-bold text-white bg-primary-blue"> การลงทะเบียนเสร็จสมบูรณ์ </h3>
