@@ -41,7 +41,7 @@ class VetLogin extends Component
         // $login = User::find()
         // dd(User::find(1));// vet::find(10000341)->user()->id);
         $username = vet::find($this->user)->user_id;
-        $password = $this->password";
+        $password = $this->password;
         $login = Auth::attempt(['id'=>$username,'password'=>$password] , $this->remember_me );
         $user = user::find($username);
         // dd($login,$username,$user);
