@@ -1,4 +1,4 @@
-<div class="py-6">
+<div class="py-6 min-h-[50vh]">
     <!-- <x-input label="ชื่อคลินิก หรือ โรงพยาบาลสัตว์" wire:model="user" /> -->
     
     
