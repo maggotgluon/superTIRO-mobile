@@ -43,8 +43,8 @@ class VetLogin extends Component
         $username = vet::find($this->user)->user_id;
         $password = Hash::make($this->password);
         $login = Auth::attempt(['id'=>$username,'password'=>$password] , $this->remember_me );
-        //dd($login,$username);
         $user = user::find($username);
+        // dd($login,$username,$user);
         Auth::login($user);
         return redirect(RouteServiceProvider::HOME);
 

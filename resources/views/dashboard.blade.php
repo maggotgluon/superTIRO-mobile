@@ -1,3 +1,7 @@
 <x-app-layout>
-    <livewire:vet-dashboard />
+    @if(Auth::user()->name=='admin')
+        admin
+    @else
+        <livewire:vet-dashboard />
+    @endif
 </x-app-layout>

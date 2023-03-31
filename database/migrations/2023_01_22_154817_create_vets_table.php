@@ -25,13 +25,14 @@ return new class extends Migration
             $table->foreignId('user_id')->nullable();
             $table->timestamps();
         });
+        
         //seed data
         $csvFile = fopen(base_path("database/data/trioUser.csv"), "r");
 
         $firstline = true;
         while (($data = fgetcsv($csvFile, 2000, ",")) !== FALSE) {
             if (!$firstline) {
-                Vet::create([
+                $v = Vet::create([
                     "id" => $data['3'],
                     "vet_name"=>$data['4'],
                     "vet_area" => $data['5'],
@@ -39,6 +40,7 @@ return new class extends Migration
                     "vet_province" => $data['7'],
                     "user_id"=>$data['0'],
                 ]);
+                print($v->vet_name.$v->user_id );
             }
             $firstline = false;
         }
