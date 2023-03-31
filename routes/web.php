@@ -20,6 +20,10 @@ Route::get('/', function () {
     return view('welcome');
 })->name('index');
 
+Route::get('/admin', function () {
+    return view('welcome');
+})->name('admin');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
