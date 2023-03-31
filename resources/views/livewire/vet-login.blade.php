@@ -17,7 +17,7 @@
         <x-checkbox label="จดจำรหัสผ่านของฉันเอาไว้" wire:model.defer="remember_me" />
     </div>
 
-    <x-button class="py-4" lg right-icon="chevron-right" primary
+    <x-button class="my-4" lg right-icon="chevron-right" primary
                 wire:click="login" type="button" label="login" />
 
 </div>
