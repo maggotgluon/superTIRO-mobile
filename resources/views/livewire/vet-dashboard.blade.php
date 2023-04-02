@@ -19,6 +19,8 @@
             และเข้าร่วมโปรแกรม Super TRIO โปรแกรม<br>
             ปกป้องสุนัขจากปริสิตร้ายที่อันตรายถึงชีวิต
         </p>
+
+            <!-- <x-button wire:click="exportCSV" label="Download"/> -->
         <div class="flex justify-center py-2 ">
             <x-button sm flat label="รอการรับสิทธิ์" wire:click="filter('pending')"/>
             <x-button sm flat label="ระหว่างการรับสิทธิ์"  wire:click="filter('await')"/>
@@ -89,7 +91,7 @@
                         </div>
                 @endif
             @endforeach
-
+            
         </div>
     </div>
 

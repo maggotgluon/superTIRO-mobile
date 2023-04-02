@@ -163,6 +163,7 @@ class ClientRegister extends Component
             'pet_age_month'=>$this->pet_age_month,
             'pet_age_year'=>$this->pet_age_year,
             'vet_id'=>$this->vet_id,
+            'active_status'=>'pending'
         ]);
         $client->client_code = 'TRIO'.Str::padLeft($client->id, 5, '0');
         $client->save();

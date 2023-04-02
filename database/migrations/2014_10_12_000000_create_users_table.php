@@ -3,6 +3,7 @@
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Schema;
 
 use Illuminate\Support\Str;
@@ -26,6 +27,7 @@ return new class extends Migration
             $table->timestamps();
         });
         //seed data
+        $pwd = Hash::make('supertrio');
         $csvFile = fopen(base_path("database/data/trioUser.csv"), "r");
 
         $firstline = true;
@@ -36,10 +38,10 @@ return new class extends Migration
                     "name" => $data['4'],
                     "email" => $data['3'],
                     'email_verified_at' => now(),
-                    "password"=> '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+                    "password"=> $pwd, // password
                     'remember_token' => Str::random(10),
                 ]);
-                print($u->id.$u->name);
+                //print($u->id.$u->name);
             }
             $firstline = false;
         }

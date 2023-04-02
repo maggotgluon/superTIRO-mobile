@@ -18,7 +18,10 @@
                         <x-button label="Vet Login" href="{{ route('vet.login') }}" />
                         <x-button label="Vet Register" href="{{ route('vet.register') }}" />
                     @endauth
+
                 </div>
+
+                    <x-button label="Download all client Data" href="{{ route('dl') }}" />
             </div>
         </div>
     </div>
