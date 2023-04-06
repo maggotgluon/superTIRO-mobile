@@ -23,6 +23,20 @@
 
                     <x-button label="Download all client Data" href="{{ route('dl') }}" />
             </div>
+
+
+            
         </div>
     </div>
+
+ 
+
+    <!-- <div class="py-12">
+    <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+        
+        <livewire:vet-stock />
+      
+    </div>
+    </div>  -->
+
 </x-guest-layout>

@@ -1,7 +1,8 @@
 <x-app-layout>
     @if(Auth::user()->name=='admin')
-        admin
+        <livewire:vet-stock />
     @else
         <livewire:vet-dashboard />
     @endif
+
 </x-app-layout>

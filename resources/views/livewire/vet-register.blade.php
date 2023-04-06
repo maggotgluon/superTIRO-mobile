@@ -1,6 +1,6 @@
 <div>
 <div class="mb-4">
-    <x-input label="name" wire:model="name" />
+    <!-- <x-input label="name" wire:model="name" /> -->
     <x-input label="email" wire:model="email" />
     <x-input type="password" label="password" wire:model="password" />
     <x-input type="password" label="password_confirmation" wire:model="password_confirmation" />
@@ -9,6 +9,7 @@
 <div class="mb-4">
 
     <x-input label="ชื่อโรงพยาบาล" wire:model="vet_name" />
+    <x-input label="รหัสโรงพยาบาล" wire:model="vet_id" />
     <div class="mt-4">
         <x-native-select
             label="จังหวัด"

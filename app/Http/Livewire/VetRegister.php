@@ -18,7 +18,7 @@ use Illuminate\Support\Arr;
 class VetRegister extends Component
 {
     public $name,$email,$password,$password_confirmation;
-    public $vet_name, $vet_province, $vet_city, $vet_area;
+    public $vet_name, $vet_province, $vet_city, $vet_area,$vet_id;
     public $addr, $thai;
 
     public function mount()
@@ -46,30 +46,31 @@ class VetRegister extends Component
 
     public function save(){
         $validatedData = $this->validate([
-            'name' => ['required', 'string', 'max:255'],
+            'vet_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'vet_id' => ['required','unique:vets,id']
         ]);
         
-        $this->addr['Tambon'] =$this->thai->where('Tambon',$this->vet_area)->unique('Tambon');
+        $this->addr['Tambon'] = $this->thai->where('Tambon',$this->vet_area)->unique('Tambon');
         
         // dd('TRIO'.$vet_id.Vet::all()->count());
         $user = User::create([
-            'name' => $this->name,
+            'name' => $this->vet_name,
             'email' => $this->email,
             'password' => Hash::make($this->password),
         ]);
-        $vet_id = Arr::first($this->addr['Tambon'])->id.Str::padLeft($user->id,3,0);
+        // $vet_id = Arr::first($this->addr['Tambon'])->id.Str::padLeft($user->id,3,0);
         
         $Vet = Vet::create([
-            'id'=> $vet_id,
+            'id'=> $this->vet_id,
             'vet_name' => $this->vet_name,
             'vet_province' => $this->vet_province,
             'vet_city' => $this->vet_city,
             'vet_area' => $this->vet_area,
             'user_id' => $user->id
         ]);
-        // dd($vet_id,$user,$Vet);
+        dd($this->vet_id,$user,$Vet);
 
 
         // event(new Registered($user));

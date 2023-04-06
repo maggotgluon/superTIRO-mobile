@@ -35,6 +35,8 @@
                         <x-badge flat label="{{$client->active_status}}" />
                         <h3 class="text-2xl font-bold text-center py-4">{{$client->client_code}}</h3>
                         <p class="pb-2 text-center">
+                            ชื่อเจ้าของ {{$client->name}}<br> 
+                            เบอร์โทร {{$client->phone}}<br>
                             ชื่อน้อง {{$client->pet_name}}<br>
                             ขนาด {{$client->pet_weight}}
                         </p>
@@ -52,6 +54,8 @@
                         <x-badge flat label="{{$client->active_status}}" class="absolute"/>
                         <!-- <h3 class="text-xl font-bold text-right py-2">{{$client->client_code}}</h3> -->
                         <p class="pb-2 text-right">
+                            ชื่อเจ้าของ {{$client->name}}<br> 
+                            เบอร์โทร {{$client->phone}}<br>
                             ชื่อน้อง {{$client->pet_name}}
                             ขนาด {{$client->pet_weight}}
                         </p>
@@ -76,6 +80,8 @@
                             <x-badge flat label="{{$client->active_status}}" class="absolute"/>
                             <h3 class="text-xl font-bold text-right py-2">{{$client->client_code}}</h3>
                             <p class="pb-2 text-right">
+                                ชื่อเจ้าของ {{$client->name}}<br> 
+                                เบอร์โทร {{$client->phone}}<br>
                                 ชื่อน้อง {{$client->pet_name}}<br>
                                 ขนาด {{$client->pet_weight}}
                             </p>
@@ -84,8 +90,8 @@
                                     <x-badge flat label="{{$client->active_date}}"/>
                                 @endif
                                 <!-- if($client->active_status === 'expired') -->
-                                    <x-button sm primary class="font-bold bg-gradient-to-br from-gradient-start to-gradient-end rounded-2xl shadow-white"
-                                    label="ล้าง" wire:click="revokeClient({{$client->id}})"/>
+                                    <!-- <x-button sm primary class="font-bold bg-gradient-to-br from-gradient-start to-gradient-end rounded-2xl shadow-white"
+                                    label="ล้าง" wire:click="revokeClient({{$client->id}})"/> -->
                                 <!-- endif -->
                             </div>
                         </div>

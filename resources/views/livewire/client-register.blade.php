@@ -63,13 +63,13 @@
                     <x-button rounded class="m-2 p-2"  green href="https://line.me/ti/p/%40PetsSociety" label="Line : @PetsSociety" />
                     <x-button rounded class="m-2 p-2"  sky href="https://www.facebook.com/PetsSocietybyZoetis" label="facebook.com/PetsSocietybyZoetis" />
                 </div>
-                
-
             </div>
         </div>
 
-        <div class="py-2 text-center mt-auto">
+        <div class="py-2 text-center mt-auto ">
+            
             <x-button lg right-icon="chevron-right" primary class="bg-gradient-to-br from-gradient-start to-gradient-end rounded-2xl" wire:click="firstStepSubmit" type="button" label="ถัดไป" />
+            
         </div>
     </div>
 
@@ -108,7 +108,7 @@
         <div class="mt-8 pb-2">
             <h3 class="text-center text-xl pb-2 font-bold"> ยืนยัน OTP </h3>
             <p class="text-center">
-                เราได้ส่ง SMS ไปยังหมายเลข {{$phone}}
+                เราได้ส่ง SMS ไปยังหมายเลข {{$phone}} (Ref.{{$token}})
             </p>
         </div>
         <div class="single-input-container flex gap-2 my-8">
@@ -176,7 +176,7 @@
             </div>
 
             <div class="grid grid-cols-2 gap-2">
-                <x-native-select label="อายุ (ปี)" wire:model.lazy="pet_age_year" placeholder="ระบุปี" :options="['0','1', '2', '3', '4','5','6','7','8','9','10','11']" />
+                <x-native-select label="อายุ (ปี)" wire:model.lazy="pet_age_year" placeholder="ระบุปี" :options="['0','1', '2', '3', '4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20']" />
                 <x-native-select label="อายุ (เดือน)" wire:model.lazy="pet_age_month" placeholder="ระบุเดือน" :options="['0','1', '2', '3', '4','5','6','7','8','9','10','11']" />
             </div>
         </div>
