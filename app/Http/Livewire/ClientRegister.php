@@ -338,7 +338,7 @@ class ClientRegister extends Component
                 'content-type' => 'application/x-www-form-urlencoded',
             ],
         ]);
-        dd(json_decode($response->getBody()->getContents()));
+        // dd(json_decode($response->getBody()->getContents()));
         $this->token = json_decode($response->getBody()->getContents())->token;
         $this->refno = json_decode($response->getBody()->getContents())->refno;
         // dd($response,$response->getBody(),$this->token );
