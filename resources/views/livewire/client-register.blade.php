@@ -108,7 +108,7 @@
         <div class="mt-8 pb-2">
             <h3 class="text-center text-xl pb-2 font-bold"> ยืนยัน OTP </h3>
             <p class="text-center">
-                เราได้ส่ง SMS ไปยังหมายเลข {{$phone}} (Ref.{{$token}})
+                เราได้ส่ง SMS ไปยังหมายเลข {{$phone}} 
             </p>
         </div>
         <div class="single-input-container flex gap-2 my-8">
