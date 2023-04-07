@@ -68,7 +68,7 @@
 
         <div class="py-2 text-center mt-auto ">
             
-            <x-button lg right-icon="chevron-right" primary class="bg-gradient-to-br from-gradient-start to-gradient-end rounded-2xl" wire:click="firstStepSubmit" type="button" label="ถัดไป" />
+            <x-button lg right-icon="chevron-right" primary class="bg-gradient-to-br from-gradient-start to-gradient-end rounded-2xl {{$consent?'':'opcaity-50 pointer-events-none'}}" wire:click="firstStepSubmit" type="button" label="ถัดไป" />
             
         </div>
     </div>
