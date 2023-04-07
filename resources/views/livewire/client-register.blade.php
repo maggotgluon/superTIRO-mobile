@@ -43,11 +43,11 @@
         </div>
         <div class="grid gap-2 pb-8">
             <p>ข้อมูลเจ้าของสุนัข</p>
-            <x-input wire:model="firstname" label="ชื่อ" placeholder="ชื่อ" />
-            <x-input wire:model="lastname" label="นามสกุล" placeholder="นามสกุล" />
-            <x-input wire:model="phone" label="หมายเลขโทรศัพท์" placeholder="หมายเลขโทรศัพท์" pattern="[0-9]*" inputmode="tel"/>
+            <x-input wire:model.defer="firstname" label="ชื่อ" placeholder="ชื่อ" />
+            <x-input wire:model.defer="lastname" label="นามสกุล" placeholder="นามสกุล" />
+            <x-input wire:model.defer="phone" label="หมายเลขโทรศัพท์" placeholder="หมายเลขโทรศัพท์" pattern="[0-9]*" inputmode="tel"/>
             <!-- <x-button wire:click="sendCode" type="button" label="Send Code" /> -->
-            <x-input wire:model="email" label="อีเมล์" placeholder="อีเมล์" type="email" />
+            <x-input wire:model.defer="email" label="อีเมล์" placeholder="อีเมล์" type="email" />
             <div class="flex flex-col justify-center py-2">
                 <!-- if ($consent == 1) -->
                 <x-toggle lg wire:model.lazy="consent" wire:click="openConsent" label="ยินยอมและรับทราบนโยบายคุ้มครองข้อมูลส่วนบุคคล" required />
