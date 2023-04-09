@@ -147,8 +147,8 @@
         </div>
 
         <div class="grid gap-2 pb-8">
-            <x-input wire:model="pet_name" label="ชื่อสุนัข" placeholder="ชื่อสุนัข" />
-            <x-input wire:model="pet_breed" label="ชื่อพันธุ์สุนัข" placeholder="ชื่อพันธุ์สุนัข" />
+            <x-input wire:model.defer="pet_name" label="ชื่อสุนัข" placeholder="ชื่อสุนัข" />
+            <x-input wire:model.defer="pet_breed" label="ชื่อพันธุ์สุนัข" placeholder="ชื่อพันธุ์สุนัข" />
 
             <!-- <x-native-select label="ชื่อพันธุ์สุนัข" wire:model.lazy="pet_breed" placeholder="เลือกพันธุ์สุนัข" :options="['German Shepherd','Bulldog','Labrador Retriever','Golden Retriever','French Bulldog','Siberian Husky','Poodle','Alaskan Malamute','Chihuahua','Border Collie','Afghan Hound','Airedale Terrier']" /> -->
 
@@ -156,28 +156,28 @@
             เลือกช่วงน้ำหนักของสุนัข
             <div class="grid grid-cols-2 gap-2">
                 <span class="my-2">
-                    <x-radio id="weigth-1" value="1.25-2.5 กก." label="1.25-2.5 กก." wire:model.lazy="pet_weight" />
+                    <x-radio id="weigth-1" value="1.25-2.5 กก." label="1.25-2.5 กก." wire:model.defer="pet_weight" />
                 </span>
                 <span class="my-2">
-                    <x-radio id="weigth-2" value="2.6-5 กก." label="2.6-5 กก." wire:model.lazy="pet_weight" />
+                    <x-radio id="weigth-2" value="2.6-5 กก." label="2.6-5 กก." wire:model.defer="pet_weight" />
                 </span>
                 <span class="my-2">
-                    <x-radio id="weigth-3" value="5.1-10 กก." label="5.1-10 กก." wire:model.lazy="pet_weight" />
+                    <x-radio id="weigth-3" value="5.1-10 กก." label="5.1-10 กก." wire:model.defer="pet_weight" />
                 </span>
                 <span class="my-2">
-                    <x-radio id="weigth-4" value="10.1-20 กก." label="10.1-20 กก." wire:model.lazy="pet_weight" />
+                    <x-radio id="weigth-4" value="10.1-20 กก." label="10.1-20 กก." wire:model.defer="pet_weight" />
                 </span>
                 <span class="my-2">
-                    <x-radio id="weigth-5" value="20.1-40 กก." label="20.1-40 กก." wire:model.lazy="pet_weight" />
+                    <x-radio id="weigth-5" value="20.1-40 กก." label="20.1-40 กก." wire:model.defer="pet_weight" />
                 </span>
                 <span class="my-2">
-                    <x-radio id="weigth-6" value="40.1-60 กก." label="40.1-60 กก." wire:model.lazy="pet_weight" />
+                    <x-radio id="weigth-6" value="40.1-60 กก." label="40.1-60 กก." wire:model.defer="pet_weight" />
                 </span>
             </div>
 
             <div class="grid grid-cols-2 gap-2">
-                <x-native-select label="อายุ (ปี)" wire:model.lazy="pet_age_year" placeholder="ระบุปี" :options="['0','1', '2', '3', '4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20']" />
-                <x-native-select label="อายุ (เดือน)" wire:model.lazy="pet_age_month" placeholder="ระบุเดือน" :options="['0','1', '2', '3', '4','5','6','7','8','9','10','11']" />
+                <x-native-select label="อายุ (ปี)" wire:model.defer="pet_age_year" placeholder="ระบุปี" :options="['0','1', '2', '3', '4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20']" />
+                <x-native-select label="อายุ (เดือน)" wire:model.defer="pet_age_month" placeholder="ระบุเดือน" :options="['0','1', '2', '3', '4','5','6','7','8','9','10','11']" />
             </div>
         </div>
 
