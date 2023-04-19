@@ -1,4 +1,7 @@
 <div class="text-content-dark">
+    
+        <!-- VET ID : $client->vet_id -->
+    
     <div class="row setup-content  min-h-[70vh] flex flex-col {{ $currentStep != 1 ? 'hidden' : '' }}" id="step-4">
     
     <div class="flex justify-around relative">

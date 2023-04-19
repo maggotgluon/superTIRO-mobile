@@ -3,6 +3,8 @@
 namespace App\Http\Livewire;
 
 use App\Models\Client;
+use App\Models\ClientInfo;
+use Illuminate\Support\Arr;
 use Livewire\Component;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
@@ -82,12 +84,32 @@ class ClientDashboard extends Component
             'offer' => ['required', 'array']
         ]);
         // active_status
+
         if($this->input_vet_id == $this->client->vet_id){
+            
+            if(array_search('standard',$this->offer)>=0 ) {
+                ClientInfo::updateOrCreate(
+                    ['client_id' => $this->client->id, 'meta_name'=>'selected_standard_option','meta_type'=>'boolean'],
+                    ['meta_value'=>'1']
+                );
+            }
+            if(array_search('extra',$this->offer)>=0 ) {
+                ClientInfo::updateOrCreate(
+                    ['client_id' => $this->client->id, 'meta_name'=>'selected_extra_option','meta_type'=>'boolean'],
+                    ['meta_value'=>'1']
+                );
+            }
+            
             //update record
             $this->client->active_date = now();
             $this->client->active_status = 'await';
-            $this->client->phoneIsVerified .= '-'.implode(",",$this->offer);
+            // $this->client->phoneIsVerified .= '-'.implode(",",$this->offer);
             $this->client->save();
+
+            // $info = new ClientInfo();
+            // $info->client_id = 48;
+
+
             $this->go($this->currentStep+1);
             $this->countdown();
         }else{

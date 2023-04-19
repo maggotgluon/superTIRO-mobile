@@ -10,9 +10,13 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 flex justify-center flex-wrap gap-2">
                     @auth
-                        <x-button label="Dashboard" href="{{ route('login') }}" />
+                        @if (Auth::user()->name == 'admin')
+                            <x-button label="Admin Dashboard" href="{{ route('admin.dashboard') }}" />
+                        @else
+                            <x-button label="Dashboard" href="{{ route('dashboard') }}" />
+                        @endif
                     @else
-                        <x-button label="Client Login" href="{{ route('client.login') }}" />
+                        <!-- <x-button label="Client Login" href="{{ route('client.login') }}" /> -->
                         <x-button label="Client Register" href="{{ route('client.register') }}" />
 
                         <x-button label="Vet Login" href="{{ route('vet.login') }}" />
@@ -23,9 +27,6 @@
 
                   <!--  <x-button label="Download all client Data" href="{{ route('dl') }}" /> -->
             </div>
-
-
-            
         </div>
     </div>
 

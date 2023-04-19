@@ -1,10 +1,12 @@
 <?php
 
 use App\Models\Client;
+use App\Models\ClientInfo;
 use App\Models\Vet;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -71,6 +73,28 @@ Route::name('client.')->prefix('client')->group(function (){
     Route::get('/ticket/{phone}', function ($phone) {
         return view('client.dashboard',['phone'=>$phone]);
     } )->name('ticket');
+});
+Route::middleware('auth')->name('admin.')->prefix('admin')->group(function (){
+    // Route::get('/', function () {
+    //     // dd('dashboard');
+    //     return view('admin.dashboard');
+    // } )->name('index');
+
+    Route::get('/dashboard', function () {
+        // dd('dashboard');
+        return view('admin.dashboard');
+    } )->name('dashboard');
+    
+    Route::get('/vet', function () {
+        // dd('vets');
+        return view('admin.vets');
+    } )->name('vets');
+
+    Route::get('/vet/{id}', function ($id) {
+        // dd('vet single',$id);
+        return view('admin.vet_single',['id'=>$id]);
+    } )->name('vetSingle');
+
 });
 
 Route::name('vet.')->prefix('vet')->group(function (){
@@ -141,4 +165,54 @@ Route::get('/download',function(){
     
 })->name('dl');
 
+Route::get('/test',function(){
+    $cs = Client::all();
+    $cc =  array();
+    // foreach($cs as $c){
+    //     $ref =$c->phoneIsVerified;
+    //     $arr = explode("-",$ref);
+    //     // $arr = count($arr) > 1?explode(",",$arr[1]):null; 
+    //     $cc[$c->id]['id'] = $c->id;
+    //     $cc[$c->id]['select'] = $arr;
 
+    //     $offerBasic = count($arr)>1?str_contains($arr[1],'standard'):null;
+    //     $offerExtra = count($arr)>1?str_contains($arr[1],'extra'):null;
+    //     // dd($cc,$offerBasic,$offerExtra);
+
+    //     if($offerBasic){
+    //         $b = new ClientInfo();
+    //         $b->client_id = $c->id;
+    //         $b->meta_name = 'selected_standard_option';
+    //         $b->meta_type = 'boolean';
+    //         $b->meta_value = true;
+    //         $b->save();
+    //     }
+    //     if($offerExtra){
+    //         $be = new ClientInfo();
+    //         $be->client_id = $c->id;
+    //         $be->meta_name = 'selected_extra_option';
+    //         $be->meta_type = 'boolean';
+    //         $be->meta_value = true;
+    //         $be->save();
+    //     }
+    //     // dd($cc,$b,$be);
+    // }
+    // dd($cc);
+    // foreach($cc as $c){
+    //     $cl = Client::find($c['id']);
+    //     // $cli = ClientInfo::where('client_id',$c['id'])->get()??new ClientInfo();
+    //     $cli = new ClientInfo();
+    //     $cli->client_id = $c['id'];
+
+
+    //     // $cli->cilent_id = $c['id'];
+    //     dd($cl,$cli);
+    // }
+    // $info = new ClientInfo();
+    // $info->client_id = 49;
+    // $info->meta_name = 'selected_standard_option';
+    // $info->meta_type = 'boolean';
+    // $info->meta_value = true;
+    // $info->save();
+    // dd($info);
+});

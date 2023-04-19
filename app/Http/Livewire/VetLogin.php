@@ -18,6 +18,7 @@ class VetLogin extends Component
     public $vet_list,$vet_all;
     public $user_list;
     public $user,$password,$remember_me;
+    public $adm,$adm_user;
 
     public function mount(){
         $this->user_list = User::all();
@@ -40,18 +41,26 @@ class VetLogin extends Component
 
         // $login = User::find()
         // dd(User::find(1));// vet::find(10000341)->user()->id);
-        $username = vet::find($this->user)->user_id;
         $password = $this->password;
-        $login = Auth::attempt(['id'=>$username,'password'=>$password] , $this->remember_me );
+        if($this->adm){
+            $username = $this->adm_user;
+            $login = Auth::attempt(['name'=>$username,'password'=>$password] , $this->remember_me );
+        }else{
+            $username = vet::find($this->user)->user_id;
+            $login = Auth::attempt(['id'=>$username,'password'=>$password] , $this->remember_me );
+        }
         // $user = user::find($username);
         // dd($login,$username,$user,$password,$this->user);
         //Auth::login($user);
         //return redirect(RouteServiceProvider::HOME);
 
         if( $login ){
-
-            $user = user::find($username);
+            $user = user::find($username)??user::where('name',$username)->first();
             Auth::login($user);
+
+            if(Auth::user()->name == 'admin'){
+                return redirect(route('admin.dashboard'));    
+            }
             return redirect(RouteServiceProvider::HOME);
         }else{
             

@@ -1,4 +1,5 @@
 <div class="text-content-dark">
+    
     @if(!empty($successMessage))
     <div class="alert alert-success">
         msg: {{ $successMessage }}
@@ -73,7 +74,7 @@
         </div>
     </div>
 
-    <div class="setup-content min-h-[70vh] flex flex-col {{ $currentStep != 1.25 ? 'hidden' : '' }}" id="step-1-5">
+    <div class="setup-content min-h-[70vh] flex flex-col {{ $currentStep != 1.25 ? 'hidden' : '' }}" id="step-1-25">
         <div class="mt-8 pb-2">
             <h3 class="text-center text-xl py-2 font-bold text-primary-blue">
                 หนังสือขอความยินยอมสำหรับลูกค้า <br>
