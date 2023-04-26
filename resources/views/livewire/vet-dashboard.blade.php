@@ -13,6 +13,55 @@
             <x-badge flat icon="information-circle" info label="{{$vet->id}}" />
         </div>
     </nav>
+    <div class="grid sm:grid-cols-2 my-4 gap-4">
+        <div>
+            <div class="flex gap-2">
+                <div class=" rounded-2xl bg-primary-blue text-primary-lite/70 p-4 shadow-lg ">
+                    Total :
+                    <span class="text-2xl font-bold block">{{$clients->count()}}</span>
+                </div>
+                <div class=" rounded-2xl text-black/70 p-4 shadow-lg ">
+                    Complete :
+                    <span class="text-2xl font-bold block">{{$clients->where('active_status','activated')->count()}}</span>
+                </div>
+                <div class=" rounded-2xl text-black/70 p-4 shadow-lg ">
+                    Waiting :
+                    <span class="text-2xl font-bold block">{{$clients->where('active_status','<>','activated')->count()}}</span>
+                </div>
+            </div>
+            <div>
+                <p class="mt-4">
+                    รับคำปรึกษาและเข้าร่วมโปรแกรม Super TRIO 
+                    <span class="font-bold text-xl text-black/70">x</span>
+                </p>
+                <p class="mt-2">
+                    รับสิทธิ์พิเศษเพิ่มเติม - เข้าโปรแกรม 1 เดือน 
+                    <span class="font-bold text-xl text-black/70">x</span>
+                </p>
+                <p class="mt-2">
+                    รับสิทธิ์พิเศษเพิ่มเติม - เข้าโปรแกรม 3 เดือน 
+                    <span class="font-bold text-xl text-black/70">x</span>
+                </p>
+            </div>
+        </div>
+        <div class="flex gap-2 justify-end">
+            <div class="rounded-2xl text-black/70 p-4 shadow-lg ">
+                สินค้าทั้งหมด :
+                <span class="text-2xl font-bold block">x</span>
+            </div>
+            <div class=" rounded-2xl text-black/70 p-4 shadow-lg ">
+                    จำนวนครั้งที่เติม :
+                    <span class="text-2xl font-bold block">1,700</span>
+                </div>
+                <div class=" rounded-2xl text-black/70 p-4 shadow-lg ">
+                    สินค้าคงเหลือ :
+                    <span class="text-2xl font-bold block">1,700</span>
+                </div>
+                <div class=" rounded-2xl bg-red-300 text-black/70 p-4 shadow-lg ">
+                    สินค้าขาด :
+                    <span class="text-2xl font-bold block">1,700</span>
+                </div>
+        </div>
     <div class="">
         <p class="text-center py-4">
             รับคำปรึกษา<br>
@@ -24,7 +73,7 @@
         <div class="flex justify-center py-2 ">
             <x-button sm flat label="รอการรับสิทธิ์" wire:click="filter('pending')"/>
             <x-button sm flat label="ระหว่างการรับสิทธิ์"  wire:click="filter('await')"/>
-            <x-button sm flat label="หมดอายุ"  wire:click="filter('expired')"/>
+            <!-- <x-button sm flat label="หมดอายุ"  wire:click="filter('expired')"/> -->
             <x-button sm flat label="การรับสิทธิ์สมบูรณ์"  wire:click="filter('activated')"/>
         </div>
 

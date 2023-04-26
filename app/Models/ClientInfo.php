@@ -16,4 +16,7 @@ class ClientInfo extends Model
         'meta_value'
     ];
     
+    public function info(){
+        return $this->belongsTo(Client::class);
+    }
 }

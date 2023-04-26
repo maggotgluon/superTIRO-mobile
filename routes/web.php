@@ -74,7 +74,7 @@ Route::name('client.')->prefix('client')->group(function (){
         return view('client.dashboard',['phone'=>$phone]);
     } )->name('ticket');
 });
-Route::middleware('auth')->name('admin.')->prefix('admin')->group(function (){
+Route::name('admin.')->prefix('admin')->group(function (){
     // Route::get('/', function () {
     //     // dd('dashboard');
     //     return view('admin.dashboard');

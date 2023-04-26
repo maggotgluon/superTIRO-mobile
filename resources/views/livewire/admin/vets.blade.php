@@ -11,14 +11,23 @@
         <table class="border-collapse border border-primary-blue min-w-full">
             <thead>
                 <tr class="border border-primary-blue bg-primary-blue text-primary-lite text-xs">
-                    <th class="w-1/12">Code</th>
-                    <th class="w-4/12">ชื่อคลินิก</th>
-                    <th class="w-1/12 hidden sm:table-cell">จำนวน ที่รอ</th>
-                    <th class="w-1/12 hidden sm:table-cell">จำนวน ที่รับแล้ว</th>
-                    <th class="w-1/12 hidden sm:table-cell">จำนวน ที่ยกเลิก</th>
-                    <th class="w-1/12 hidden sm:table-cell">จำนวน ครั้งที่ดติม</th>
-                    <th class="w-1/12 hidden sm:table-cell">สินค้า คลเหลือ</th>
-                    <th class="w-1/12 hidden sm:table-cell">สินค้า ขาด</th>
+                    <th class="w-1/12">
+                        
+                        <x-button flat white right-icon="{{$sort_icon['id']}}"
+                            class="w-full hover:bg-white/10" 
+                            wire:click="order('id')" label="Code"/>
+                        </th>
+                    <th class="w-4/12">
+                        <x-button flat white right-icon="{{$sort_icon['vet_name']}}"
+                            class="w-full hover:bg-white/10" 
+                            wire:click="order('vet_name')" label="ชื่อคลินิก"/>
+                        </th>
+                    <th class="w-1/12 hidden sm:table-cell">สิทธิ์ทั้งหมด</th>
+                    <th class="w-1/12 hidden sm:table-cell">สิทธิ์ที่รับแล้ว</th>
+                    <th class="w-1/12 hidden sm:table-cell">สิทธิ์คงเหลือ</th>
+                    <th class="w-1/12 hidden sm:table-cell">สิทธิ์ที่รอ</th>
+                    <th class="w-1/12 hidden sm:table-cell">ครั้งที่เติมสิทธิ์</th>
+                    <th class="w-1/12 hidden sm:table-cell">สิทธิ์ที่ขาด</th>
                 </tr>
             </thead>
             <tbody>
@@ -36,28 +45,28 @@
                         </a>
                     </td>
                     <td class="border sm:border-primary-blue text-right p-2 table w-full sm:w-auto sm:table-cell">
-                        <span class="sm:hidden inline-block min-w-max mr-2">จำนวน ที่รอ</span>
-                        {{$vet->client->where('active_status','await')->count()}}
+                        <span class="sm:hidden inline-block min-w-max mr-2">สิทธิ์ทั้งหมด</span>
+                        {{$vet->info()->where('meta_name','stock')->first()->meta_value??'-'}}
                     </td>
                     <td class="border sm:border-primary-blue text-right p-2 table w-full sm:w-auto sm:table-cell">
-                        <span class="sm:hidden inline-block min-w-max mr-2">จำนวน ที่รับแล้ว</span>
+                        <span class="sm:hidden inline-block min-w-max mr-2">สิทธิ์ที่รับแล้ว</span>
                         {{$vet->client->where('active_status','activated')->count()}}
                     </td>
                     <td class="border sm:border-primary-blue text-right p-2 table w-full sm:w-auto sm:table-cell">
-                        <span class="sm:hidden inline-block min-w-max mr-2">จำนวน ที่ยกเลิก</span>
-                        {{$vet->client->where('active_status','expired')->count()}}
+                        <span class="sm:hidden inline-block min-w-max mr-2">สิทธิ์คงเหลือ</span>
+                        {{($vet->info()->where('meta_name','stock')->first()->meta_value??0) - $vet->client->where('active_status','<>','activated')->count()}}
                     </td>
                     <td class="border sm:border-primary-blue text-right p-2 table w-full sm:w-auto sm:table-cell">
-                        <span class="sm:hidden inline-block min-w-max mr-2">จำนวน ครั้งที่ดติม</span>
-                        {{$vet->client->count()}}
+                        <span class="sm:hidden inline-block min-w-max mr-2">สิทธิ์ที่รอ</span>
+                        {{$vet->client->where('active_status','<>','activated')->count()}}
                     </td>
                     <td class="border sm:border-primary-blue text-right p-2 table w-full sm:w-auto sm:table-cell">
-                        <span class="sm:hidden inline-block min-w-max mr-2">สินค้า คลเหลือ</span>
-                        {{$vet->info?$vet->info->where('meta_name','stock')->first()->meta_value:'-'}}
+                        <span class="sm:hidden inline-block min-w-max mr-2">ครั้งที่เติมสิทธิ์</span>
+                        {{$vet->info()->where('meta_name','stock_adj')->count()}}
                     </td>
                     <td class="border sm:border-primary-blue text-right p-2 table w-full sm:w-auto sm:table-cell">
-                        <span class="sm:hidden inline-block min-w-max mr-2">สินค้า ขาด</span>
-                        {{$vet->info?$vet->info->where('meta_name','stock')->first()->meta_value:'-'}}
+                        <span class="sm:hidden inline-block min-w-max mr-2">สิทธิ์ที่ขาด</span>
+                        {{($vet->info()->where('meta_name','stock')->first()->meta_value??0) - $vet->client->count()}}
                     </td>
                 </tr>
                 @endforeach
