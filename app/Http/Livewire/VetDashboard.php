@@ -15,12 +15,20 @@ class VetDashboard extends Component
 {
     public User $user;
     public $vet;
-    public $clients;
+    public $clients,$clients_info;
     
     public function mount(){
         $this->user = Auth::user();
         $this->vet = Vet::where('user_id',Auth::user()->id)->first();
         $this->clients = $this->vet->client;
+        $this->clients_info = collect();
+        foreach ($this->clients as $client) {
+            foreach($client->info as $info){
+                $this->clients_info->push($info);
+                // [$info->meta_name] += $info->meta_value;
+            }
+        }
+        // dd($this->clients_info);
     }
     public function render()
     {

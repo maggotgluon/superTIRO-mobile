@@ -32,36 +32,51 @@
             <div>
                 <p class="mt-4">
                     รับคำปรึกษาและเข้าร่วมโปรแกรม Super TRIO 
-                    <span class="font-bold text-xl text-black/70">x</span>
+                    <span class="font-bold text-xl text-black/70">
+                        {{$clients_info->where('meta_name','selected_standard_option')->count()}}
+                    </span>
                 </p>
                 <p class="mt-2">
                     รับสิทธิ์พิเศษเพิ่มเติม - เข้าโปรแกรม 1 เดือน 
-                    <span class="font-bold text-xl text-black/70">x</span>
+                    <span class="font-bold text-xl text-black/70">
+                        {{$clients_info->where('meta_name','selected_extra_option')->count()}}
+                    </span>
                 </p>
                 <p class="mt-2">
                     รับสิทธิ์พิเศษเพิ่มเติม - เข้าโปรแกรม 3 เดือน 
-                    <span class="font-bold text-xl text-black/70">x</span>
+                    <span class="font-bold text-xl text-black/70">
+                        {{$clients_info->where('meta_name','selected_extra_option_3')->count()}}
+                    </span>
                 </p>
             </div>
         </div>
-        <div class="flex gap-2 justify-end">
+        <div class="flex gap-2 h-auto">
             <div class="rounded-2xl text-black/70 p-4 shadow-lg ">
                 สินค้าทั้งหมด :
-                <span class="text-2xl font-bold block">x</span>
+                <span class="text-2xl font-bold block">
+                    {{$vet->info->where('meta_name','stock')->first()->meta_value??0}}
+                </span>
             </div>
-            <div class=" rounded-2xl text-black/70 p-4 shadow-lg ">
-                    จำนวนครั้งที่เติม :
-                    <span class="text-2xl font-bold block">1,700</span>
-                </div>
-                <div class=" rounded-2xl text-black/70 p-4 shadow-lg ">
-                    สินค้าคงเหลือ :
-                    <span class="text-2xl font-bold block">1,700</span>
-                </div>
-                <div class=" rounded-2xl bg-red-300 text-black/70 p-4 shadow-lg ">
-                    สินค้าขาด :
-                    <span class="text-2xl font-bold block">1,700</span>
-                </div>
+            <div class="rounded-2xl text-black/70 p-4 shadow-lg ">
+                จำนวนครั้งที่เติม :
+                <span class="text-2xl font-bold block">
+                    {{$vet->info->where('meta_name','stock_adj')->count()}}
+                </span>
+            </div>
+            <div class="rounded-2xl text-black/70 p-4 shadow-lg ">
+                สินค้าคงเหลือ :
+                <span class="text-2xl font-bold block">
+                    {{($vet->info->where('meta_name','stock')->first()->meta_value??0) - $clients->where('active_status','activated')->count() }}
+                </span>
+            </div>
+            <div class="rounded-2xl bg-red-300 text-black/70 p-4 shadow-lg ">
+                สินค้าขาด :
+                <span class="text-2xl font-bold block">
+                    {{($vet->info->where('meta_name','stock')->first()->meta_value??0) - $clients->count() }}
+                </span>
+            </div>
         </div>
+    </div>
     <div class="">
         <p class="text-center py-4">
             รับคำปรึกษา<br>
