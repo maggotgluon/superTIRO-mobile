@@ -26,7 +26,7 @@ class VetLogin extends Component
 
         foreach ($this->vet_all as $index => $vet) {
             $this->vet_list[$index]['id']=$vet->id;
-            $this->vet_list[$index]['name']=$vet->vet_name;
+            $this->vet_list[$index]['name']=$vet->id.' '.$vet->vet_name;
             $this->vet_list[$index]['description']=$vet->vet_area.' '.$vet->vet_city.' '.$vet->vet_province;
         }
     }
@@ -48,7 +48,9 @@ class VetLogin extends Component
         }else{
             $username = vet::find($this->user)->user_id;
             $login = Auth::attempt(['id'=>$username,'password'=>$password] , $this->remember_me );
+            // dd($username,$password,$login);
         }
+
         // $user = user::find($username);
         // dd($login,$username,$user,$password,$this->user);
         //Auth::login($user);
@@ -63,16 +65,10 @@ class VetLogin extends Component
             }
             return redirect(RouteServiceProvider::HOME);
         }else{
-            
+            $this->reset();
         }
         // dd( $this->user ,Auth::attempt(['id'=>$this->user,'password'=>$this->password] , $this->remember_me));
-        // if (! Auth::attempt($this->only('id', 'password'), $this->boolean('remember'))) {
-            // RateLimiter::hit($this->throttleKey());
-
-            // throw ValidationException::withMessages([
-                // 'id' => trans('auth.failed'),
-            // ]);
-        // }
+        
 
     }
 

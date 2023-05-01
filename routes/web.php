@@ -2,8 +2,10 @@
 
 use App\Models\Client;
 use App\Models\ClientInfo;
+use App\Models\User;
 use App\Models\Vet;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -90,9 +92,9 @@ Route::name('admin.')->prefix('admin')->group(function (){
         return view('admin.vets');
     } )->name('vets');
 
-    Route::get('/vet/{id}', function ($id) {
+    Route::get('/vet/{vet_id}', function ($vet_id) {
         // dd('vet single',$id);
-        return view('admin.vet_single',['id'=>$id]);
+        return view('admin.vet_single',['vet_id'=>$vet_id]);
     } )->name('vetSingle');
 
 });
@@ -197,7 +199,7 @@ Route::get('/test',function(){
     //     }
     //     // dd($cc,$b,$be);
     // }
-    // dd($cc);
+    // // dd($cc);
     // foreach($cc as $c){
     //     $cl = Client::find($c['id']);
     //     // $cli = ClientInfo::where('client_id',$c['id'])->get()??new ClientInfo();
@@ -215,4 +217,49 @@ Route::get('/test',function(){
     // $info->meta_value = true;
     // $info->save();
     // dd($info);
+});
+
+Route::get('/upuser',function(){
+
+    //seed data
+    $csvFile = fopen(base_path("database/data/vet-Table.csv"), "r");
+
+    $firstline = true;
+    while (($data = fgetcsv($csvFile, 2000, ",")) !== FALSE) {
+        if (!$firstline) {
+            $u = User::create([
+                "id" => $data['1'],
+                "name" => $data['1'],
+                "email" => $data['1'],
+                'email_verified_at' => now(),
+                "password"=> Hash::make($data['1']), // password
+            ]);
+        }
+        $firstline = false;
+    }
+
+    fclose($csvFile);
+});
+Route::get('/upvet',function(){
+
+    //seed data
+    $csvFile = fopen(base_path("database/data/vet-Table.csv"), "r");
+
+    $firstline = true;
+    while (($data = fgetcsv($csvFile, 2000, ",")) !== FALSE) {
+        if (!$firstline) {
+            $v = Vet::create([
+                "id" => $data['1'],
+                "vet_name"=>$data['3'],
+                "vet_area" => $data['4'],
+                "vet_city" => $data['5'],
+                "vet_province" => $data['6'],
+                "user_id"=>$data['1'],
+            ]);
+            // print($v->vet_name.$v->user_id );
+        }
+        $firstline = false;
+    }
+
+    fclose($csvFile);
 });

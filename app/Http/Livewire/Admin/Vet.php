@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Admin;
 
 use App\Models\Client;
 use App\Models\ClientInfo;
+use App\Models\stock;
 use App\Models\Vet as ModelsVet;
 use App\Models\VetInfo;
 use Livewire\Component;
@@ -31,18 +32,10 @@ class Vet extends Component
         'sort'
     ];
     
-    public function mount(){
-        $this->current_client_info = collect();
+    public function mount($vet_id){
         $this->stock_adj = 0;
-        $this->current_vet = ModelsVet::find($this->vet_id);
+        $this->current_vet = ModelsVet::find($vet_id);
         $this->current_client = Client::where('vet_id',$this->vet_id)->get();
-        foreach ($this->current_client as $client) {
-            foreach($client->info as $info){
-                $this->current_client_info->push($info);
-                // [$info->meta_name] += $info->meta_value;
-            }
-        }
-        // dd($this->current_client_info->where('meta_name','selected_standard_option')->count());
     }
     public function order($order){
         $this->sort_icon=[
@@ -67,13 +60,12 @@ class Vet extends Component
         $stock_adj = $this->stock_adj;
 
         if($stock_adj){
-            $current = $this->current_vet->info()->where('meta_name','stock')->first()->meta_value??0;
-            $stock = VetInfo::updateOrCreate(
-                ['vet_id'=>$this->vet_id,'meta_name'=>'stock','meta_type'=>'int'],
-                ['meta_value'=>$stock_adj+$current],
-            );
-            $record = VetInfo::create(
-                ['vet_id'=>$this->vet_id,'meta_name'=>'stock_adj','meta_type'=>'int','meta_value'=>$stock_adj],
+            $current = $this->current_vet->stock->total_stock;
+            $adj = $this->current_vet->stock->stock_adj+1;
+            // dd($current,$this->stock_adj,$adj);
+            stock::updateOrCreate(
+                ['id'=>$this->vet_id],
+                ['total_stock'=>$current+$this->stock_adj,'stock_adj'=>$adj],
             );
         }else{
             return null;
@@ -83,6 +75,7 @@ class Vet extends Component
 
     public function render()
     {
+        
         // dd(Client::where('vet_id',$this->vet_id)->paginate(10));
         return view('livewire.admin.vet',[
             'clients'=> Client::where('vet_id',$this->vet_id)

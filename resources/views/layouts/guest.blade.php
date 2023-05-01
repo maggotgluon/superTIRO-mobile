@@ -3,7 +3,7 @@
     <head>
         <!-- Google Tag Manager -->
 
-        <script>
+        <!-- <script>
             (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 
         new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -13,7 +13,7 @@
         'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 
         })(window,document,'script','dataLayer',"{{ env('GTM', 'SuperTRIO') }}");
-        </script>
+        </script> -->
 
         <!-- End Google Tag Manager -->
         <meta charset="utf-8">
@@ -35,11 +35,11 @@
     <body class="font-sans text-gray-900 antialiased">
 
         <!-- Google Tag Manager (noscript) -->
-        <noscript>
+        <!-- <noscript>
             <iframe src="https://www.googletagmanager.com/ns.html?id={{ env('GTM', 'SuperTRIO') }}"
                 height="0" width="0" style="display:none;visibility:hidden">
             </iframe>
-        </noscript>
+        </noscript> -->
         <!-- End Google Tag Manager (noscript) -->
 
         <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">

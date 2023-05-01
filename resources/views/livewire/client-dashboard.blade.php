@@ -5,7 +5,7 @@
     <div class="row setup-content  min-h-[70vh] flex flex-col {{ $currentStep != 1 ? 'hidden' : '' }}" id="step-4">
     
     <div class="flex justify-around relative">
-    <progress value="100" max="100" style="
+        <progress value="100" max="100" style="
             position: absolute;
             top: calc(50% - .25rem);
             bottom: calc(50% - .25rem);
@@ -98,7 +98,9 @@
             <span class="p-4"><x-checkbox lg class="rounded-full" label="รับคำปรึกษาและเข้าร่วมโปรแกรม Super TRIO" 
                         value="standard" wire:model="offer" /></span>
             <span class="p-4"><x-checkbox lg class="rounded-full" label="รับสิทธิพิเศษเพิ่มเติม (สอบถามที่พนักงานของคลินิก)" 
-                        value="extra" wire:model="offer" /></span>
+                        value="extra_1" wire:model="offer" /></span>
+            <span class="p-4"><x-checkbox lg class="rounded-full" label="รับสิทธิพิเศษเพิ่มเติม (สอบถามที่พนักงานของคลินิก)" 
+                        value="extr_2" wire:model="offer" /></span>
         </div>
         <div class="py-2 text-center flex justify-center mt-auto">
             <x-button lg right-icon="chevron-right" primary  class="bg-gradient-to-br from-gradient-start to-gradient-end rounded-2xl"

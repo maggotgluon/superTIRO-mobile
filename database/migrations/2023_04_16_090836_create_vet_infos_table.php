@@ -13,14 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('vet_infos', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('vet_id');
-            $table->string('meta_name');
-            $table->string('meta_type');
-            $table->string('meta_value');
-            $table->timestamps();
-        });
+        // Schema::create('vet_infos', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->foreignUuid('vet_id');
+        //     $table->string('meta_name');
+        //     $table->string('meta_type');
+        //     $table->string('meta_value');
+        //     $table->timestamps();
+        // });
     }
 
     /**

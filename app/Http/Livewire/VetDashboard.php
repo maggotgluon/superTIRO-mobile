@@ -19,16 +19,21 @@ class VetDashboard extends Component
     
     public function mount(){
         $this->user = Auth::user();
-        $this->vet = Vet::where('user_id',Auth::user()->id)->first();
-        $this->clients = $this->vet->client;
-        $this->clients_info = collect();
-        foreach ($this->clients as $client) {
-            foreach($client->info as $info){
-                $this->clients_info->push($info);
-                // [$info->meta_name] += $info->meta_value;
-            }
+        if(!$this->user){
+            $this->logout();
         }
-        // dd($this->clients_info);
+        $this->vet = Vet::where('user_id',Auth::user()->id)->first();
+        $this->clients = $this->vet->client??null;
+        $this->clients_info = collect();
+        // if($this->clients){
+        //     foreach ($this->clients as $client) {
+        //         foreach($client->info as $info){
+        //             $this->clients_info->push($info);
+        //             // [$info->meta_name] += $info->meta_value;
+        //         }
+        //     }
+        // }
+        // dd($this->user,$this->vet);
     }
     public function render()
     {

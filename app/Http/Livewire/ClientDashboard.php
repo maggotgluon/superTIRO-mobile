@@ -88,16 +88,19 @@ class ClientDashboard extends Component
         if($this->input_vet_id == $this->client->vet_id){
             
             if(array_search('standard',$this->offer)>=0 ) {
-                ClientInfo::updateOrCreate(
-                    ['client_id' => $this->client->id, 'meta_name'=>'selected_standard_option','meta_type'=>'boolean'],
-                    ['meta_value'=>'1']
-                );
+                $this->client->option_1=true;
+                $this->client->save();
+                
             }
-            if(array_search('extra',$this->offer)>=0 ) {
-                ClientInfo::updateOrCreate(
-                    ['client_id' => $this->client->id, 'meta_name'=>'selected_extra_option','meta_type'=>'boolean'],
-                    ['meta_value'=>'1']
-                );
+            if(array_search('extra_1',$this->offer)>=0 ) {
+                $this->client->option_2=true;
+                $this->client->save();
+                ;
+            }
+            if(array_search('extra_2',$this->offer)>=0 ) {
+                $this->client->option_3=true;
+                $this->client->save();
+                
             }
             
             //update record

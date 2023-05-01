@@ -5,7 +5,7 @@
     <div class="flex justify-between">
         <p>
             {{$current_vet->vet_area}} {{$current_vet->vet_city}} {{$current_vet->vet_province}}<br>
-            <span>tel </span> / <span> site </span>
+            <!-- <span>tel </span> / <span> site </span> -->
         </p>
         <span class="rounded-2xl bg-primary-blue text-primary-lite/70 p-4 shadow-lg ">
             รหัส : {{$current_vet->id}}
@@ -17,37 +17,39 @@
             <div class="flex gap-2">
                 <div class=" rounded-2xl bg-primary-blue text-primary-lite/70 p-4 shadow-lg ">
                     Total :
-                    <span class="text-2xl font-bold block">{{$current_client?$current_client->count():0}}</span>
+                    <span class="text-2xl font-bold block">
+                        {{$current_client->count()}}
+                    </span>
                 </div>
                 <div class=" rounded-2xl text-black/70 p-4 shadow-lg ">
                     Complete :
-                    <span class="text-2xl font-bold block">{{$current_client?$current_client->where('active_status','activated')->count():0}}</span>
+                    <span class="text-2xl font-bold block">
+                        {{$current_client->where('active_status','activated')->count()}}
+                    </span>
                 </div>
                 <div class=" rounded-2xl text-black/70 p-4 shadow-lg ">
                     Waiting :
-                    <span class="text-2xl font-bold block">{{$current_client?$current_client->where('active_status','pending')->count()+$current_client->where('active_status','await')->count():0}}</span>
-                </div>
-                <div class=" rounded-2xl bg-red-300 text-black/70 p-4 shadow-lg ">
-                    Cancel :
-                    <span class="text-2xl font-bold block">{{$current_client?$current_client->where('active_status','expired')->count()+$current_client->where('active_status',null)->count():0}}</span>
+                    <span class="text-2xl font-bold block">
+                        {{$current_client->where('active_status','pending')->count()+$current_client->where('active_status','await')->count()}}
+                    </span>
                 </div>
             </div>
                 <p class="mt-4">
                     รับคำปรึกษาและเข้าร่วมโปรแกรม Super TRIO 
                     <span class="font-bold text-xl text-black/70">
-                        {{$current_client_info->where('meta_name','selected_standard_option')->count()}}
+                        {{$current_client->where('option_1',1)->count()}}
                     </span>
                 </p>
                 <p class="mt-2">
                     รับสิทธิ์พิเศษเพิ่มเติม - เข้าโปรแกรม 1 เดือน 
                     <span class="font-bold text-xl text-black/70">
-                    {{$current_client_info->where('meta_name','selected_extra_option')->count()}}
+                        {{$current_client->where('option_2',1)->count()}}
                     </span>
                 </p>
                 <p class="mt-2">
                     รับสิทธิ์พิเศษเพิ่มเติม - เข้าโปรแกรม 3 เดือน 
                     <span class="font-bold text-xl text-black/70">
-                    {{$current_client_info->where('meta_name','selected_extra_option_3')->count()}}
+                        {{$current_client->where('option_3',1)->count()}}
                     </span>
                 </p>
         </div>
@@ -58,25 +60,30 @@
                 <div class=" rounded-2xl text-black/70 p-4 shadow-lg ">
                     สินค้าทั้งหมด :
                     <span class="text-2xl font-bold block">
-                        {{$current_vet->info()->where('meta_name','stock')->first()->meta_value??0}}
+                        {{$current_vet->stock->total_stock}}
                     </span>
                 </div>
                 <div class=" rounded-2xl text-black/70 p-4 shadow-lg ">
                     จำนวนครั้งที่เติม :
                     <span class="text-2xl font-bold block">
-                        {{$current_vet->info()->where('meta_name','stock_adj')->count()}}
+                        {{$current_vet->stock->stock_adj}}
                     </span>
                 </div>
                 <div class=" rounded-2xl text-black/70 p-4 shadow-lg ">
                     สินค้าคงเหลือ :
                     <span class="text-2xl font-bold block">
-                        {{($current_vet->info()->where('meta_name','stock')->first()->meta_value??0) - $current_client->where('active_status','activated')->count() }}
+                        {{$current_vet->stock->total_stock - $current_client->where('active_status','activated')->count()}}
                     </span>
                 </div>
                 <div class=" rounded-2xl bg-red-300 text-black/70 p-4 shadow-lg ">
                     สินค้าขาด :
                     <span class="text-2xl font-bold block">
-                        {{($current_vet->info()->where('meta_name','stock')->first()->meta_value??0) - $current_client->count() }}
+                        @if($current_vet->stock->total_stock - $current_client->count() < 0)
+                            {{$current_vet->stock->total_stock - $current_client->count()}}
+                        @else
+                            -
+                        @endif
+                        
                     </span>
                 </div>
             </div>
@@ -127,17 +134,17 @@
                     <td class="border sm:border-primary-blue p-2 table w-full sm:w-auto sm:table-cell">{{Carbon\Carbon::parse($client->updated_at)->format('d/m/y')}}</td>
                     <td class="border border-primary-blue p-2 sm:table-cell">{{$client->name}}</td>
                     <td class="border sm:border-primary-blue p-2 table w-full sm:w-auto sm:table-cell text-center ">
-                        @if($client->info->where('meta_name','selected_standard_option')->count() )
+                        @if($client->option_1)
                             <x-badge.circle positive icon="check" class="w-5 h-5 m-auto" />
                         @endif
                     </td>
                     <td class="border sm:border-primary-blue p-2 table w-full sm:w-auto sm:table-cell text-center ">
-                        @if($client->info->where('meta_name','selected_extra_option')->count() )
+                        @if($client->option_2 )
                             <x-badge.circle positive icon="check" class="w-5 h-5 m-auto" />
                         @endif 
                     </td>
                     <td class="border sm:border-primary-blue p-2 table w-full sm:w-auto sm:table-cell text-center ">
-                        @if($client->info->where('meta_name','selected_standard_option_3')->count() )
+                        @if($client->option_3 )
                             <x-badge.circle positive icon="check" class="w-5 h-5 m-auto" />
                         @endif    
                         

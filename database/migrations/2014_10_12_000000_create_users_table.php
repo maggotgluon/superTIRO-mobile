@@ -18,7 +18,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id');
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
@@ -27,26 +27,26 @@ return new class extends Migration
             $table->timestamps();
         });
         //seed data
-        $pwd = Hash::make('supertrio');
-        $csvFile = fopen(base_path("database/data/trioUser.csv"), "r");
+        // $pwd = Hash::make('supertrio');
+        // $csvFile = fopen(base_path("database/data/trioUser.csv"), "r");
 
-        $firstline = true;
-        while (($data = fgetcsv($csvFile, 2000, ",")) !== FALSE) {
-            if (!$firstline) {
-                $u = User::create([
-                    "id" => $data['0'],
-                    "name" => $data['4'],
-                    "email" => $data['3'],
-                    'email_verified_at' => now(),
-                    "password"=> $pwd, // password
-                    'remember_token' => Str::random(10),
-                ]);
-                //print($u->id.$u->name);
-            }
-            $firstline = false;
-        }
+        // $firstline = true;
+        // while (($data = fgetcsv($csvFile, 2000, ",")) !== FALSE) {
+        //     if (!$firstline) {
+        //         $u = User::create([
+        //             "id" => $data['0'],
+        //             "name" => $data['4'],
+        //             "email" => $data['3'],
+        //             'email_verified_at' => now(),
+        //             "password"=> $pwd, // password
+        //             'remember_token' => Str::random(10),
+        //         ]);
+        //         //print($u->id.$u->name);
+        //     }
+        //     $firstline = false;
+        // }
 
-        fclose($csvFile);
+        // fclose($csvFile);
     }
 
     /**

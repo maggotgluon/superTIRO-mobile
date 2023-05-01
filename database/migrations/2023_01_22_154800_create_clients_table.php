@@ -27,8 +27,12 @@ return new class extends Migration
             $table->string('pet_weight')->nullable();
             $table->integer('pet_age_month')->nullable();
             $table->integer('pet_age_year')->nullable();
+
+            $table->boolean('option_1')->nullable();
+            $table->boolean('option_2')->nullable();
+            $table->boolean('option_3')->nullable();
             // vet data -> point to vet data
-            $table->foreignId('vet_id');
+            $table->foreignUuid('vet_id');
 
             // otp and codes and activated status
             $table->dateTime('active_date')->nullable();

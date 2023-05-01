@@ -13,14 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        // Schema::create('client_infos', function (Blueprint $table) {
-        //     $table->id();
-        //     $table->foreignUuid('client_id');
-        //     $table->string('meta_name');
-        //     $table->string('meta_type');
-        //     $table->string('meta_value');
-        //     $table->timestamps();
-        // });
+        Schema::create('stocks', function (Blueprint $table) {
+            $table->uuid('id');
+            $table->integer('total_stock');
+            $table->integer('stock_adj');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -30,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('client_infos');
+        Schema::dropIfExists('stocks');
     }
 };

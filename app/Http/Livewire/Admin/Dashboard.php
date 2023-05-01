@@ -12,7 +12,7 @@ class Dashboard extends Component
 {
     use WithPagination;
 
-    public $all_vet, $all_client;
+    public $all_vet, $all_client,$client,$client_info;
 
     public $search='',$order='id',$sort='asc';
 
@@ -50,15 +50,28 @@ class Dashboard extends Component
     }
 
     public function mount(){
-        $this->all_vet = Vet::all();
-        $this->all_client = Client::all();;
-    
+        // $this->all_vet = Vet::all();
+
+        // $this->client_info = ClientInfo::all();
+        // $this->all_client = Client::all();
     }
     public function render()
     {
-        $client=Client::orderBy($this->order,$this->sort);
+        // $this->client = Client::orderBy($this->order,$this->sort);
+        $client = Client::orderBy($this->order,$this->sort)->paginate(10);
+
+        foreach($client as $k=>$c){
+            $c->vet_id = $c->vet->vet_name;
+            $c->vet_regis = $c->vet->client->count();
+            $c->vet_total_activated = $c->vet->client->where('active_status','activated')->count();
+            $c->vet_total_pending = $c->vet->client->where('active_status','pending')->count();
+            $c->vet_total_await = $c->vet->client->where('active_status','await')->count();
+            // dd($k,$c);
+        }
+        // dd(getType($client),getType($this->client));
         return view('livewire.admin.dashboard',[
-            'clients'=>$client->paginate(10)]
+            // 'clients'=>Client::orderBy($this->order,$this->sort)->paginate(10)]
+            'clients'=>$client]
         );
     }
 }

@@ -16,6 +16,7 @@ class Vet extends Model
         'vet_city',
         'vet_area',
         'user_id',
+        'stock_id',
     ];
     /**
      * Get the user associated with the user.
@@ -33,5 +34,9 @@ class Vet extends Model
     }
     public function info(){
         return $this->hasMany(VetInfo::class);
+    }
+    public function stock()
+    {
+        return $this->belongsTo(stock::class);
     }
 }
