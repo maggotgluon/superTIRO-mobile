@@ -53,7 +53,7 @@ class Dashboard extends Component
         // $this->all_vet = Vet::all();
 
         // $this->client_info = ClientInfo::all();
-        // $this->all_client = Client::all();
+        $this->all_client = Client::all();
     }
     public function render()
     {

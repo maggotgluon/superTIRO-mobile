@@ -3,15 +3,15 @@
      <div class="flex justify-start gap-4 mt-4">
         <div class="text-right bg-primary-blue rounded-2xl text-primary-lite p-4 shadow-lg ">
             Total :
-            <span class="text-4xl font-black">{{$clients->count()}}</span>
+            <span class="text-4xl font-black">{{$all_client->count()}}</span>
         </div>
         <div class="text-right rounded-2xl text-black/70 p-4 shadow-lg ">
         Complete :
-            <span class="text-2xl font-bold block">{{$clients->where('active_status','activated')->count()}}</span>
+            <span class="text-2xl font-bold block">{{$all_client->where('active_status','activated')->count()}}</span>
         </div>
         <div class="text-right rounded-2xl text-black/70 p-4 shadow-lg ">
         Waiting :
-            <span class="text-2xl font-bold block">{{$clients->where('active_status','pending')->count() + $clients->where('active_status','await')->count()}}</span>
+            <span class="text-2xl font-bold block">{{$all_client->where('active_status','<>','activated')->count()}}</span>
         </div>
 
     </div>
@@ -73,7 +73,7 @@
                     <td class="border border-primary-blue p-2 text-center sm:table-cell">{{$client->pet_weight}}</td>
                     <td class="border border-primary-blue p-2 text-center sm:table-cell">{{$client->active_status}}</td>
                     <td class="border border-primary-blue p-2 text-right table-row sm:table-cell">
-                        {{$client->vet_regis}}
+                        {{$client->vet->stock->stock_total}}
                         <!-- $client->vet?$client->vet->info()->where('meta_name','stock')->first()->meta_value:'-' }}  -->
                     </td>
                     <td class="border border-primary-blue p-2 text-right table-row sm:table-cell">
