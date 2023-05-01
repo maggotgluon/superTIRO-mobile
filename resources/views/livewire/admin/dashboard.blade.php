@@ -73,7 +73,7 @@
                     <td class="border border-primary-blue p-2 text-center sm:table-cell">{{$client->pet_weight}}</td>
                     <td class="border border-primary-blue p-2 text-center sm:table-cell">{{$client->active_status}}</td>
                     <td class="border border-primary-blue p-2 text-right table-row sm:table-cell">
-                        {{$client->vet->stock->stock_total}}
+                        {{$client->vet->stock->total_stock}}
                         <!-- $client->vet?$client->vet->info()->where('meta_name','stock')->first()->meta_value:'-' }}  -->
                     </td>
                     <td class="border border-primary-blue p-2 text-right table-row sm:table-cell">
