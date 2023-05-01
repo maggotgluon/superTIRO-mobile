@@ -39,24 +39,24 @@
         <table class="w-full table-fixed">
             <thead>
                 <tr class="border border-primary-blue bg-primary-blue text-primary-lite text-xs">
-                    <th class="w-8">
+                    <th class="w-4">
                         <x-button flat white right-icon="{{$sort_icon['id']}}"
                             class="w-full hover:bg-white/10" 
                             wire:click="order('id')" label="ลำดับ"/>
                         </th>
-                    <th class="w-12 hidden sm:table-cell">
+                    <th class="w-4 hidden sm:table-cell">
                         <x-button flat white right-icon="{{$sort_icon['updated_at']}}"
                             class="w-full hover:bg-white/10" 
                             wire:click="order('updated_at')" label="วันที่"/>
                         </th>
                     <th class="w-2/12 hidden sm:table-cell">ชื่อคลินิก</th>
-                    <th class="w-2/12">ชื่อลูกค้า</th>
-                    <th class="w-1/12">น้ำหนัก สุนัข</th>
-                    <th class="w-1/12">สถานะ</th>
-                    <th class="w-8 hidden sm:table-cell">สิทธิ์ทั้งหมด</th>
-                    <th class="w-8 hidden sm:table-cell">สิทธิ์ลงเหลือ</th>
-                    <th class="w-8 hidden sm:table-cell">สิทธิ์ที่รับแล้ว</th>
-                    <th class="w-8">สินค้าขาด</th>
+                    <th class="w-8">ชื่อลูกค้า</th>
+                    <th class="w-4">น้ำหนัก สุนัข</th>
+                    <th class="w-4">สถานะ</th>
+                    <th class="w-4 hidden sm:table-cell">สิทธิ์ทั้งหมด</th>
+                    <th class="w-4 hidden sm:table-cell">สิทธิ์ลงเหลือ</th>
+                    <th class="w-4 hidden sm:table-cell">สิทธิ์ที่รับแล้ว</th>
+                    <th class="w-4">สินค้าขาด</th>
                 </tr>
             </thead>
             <tbody>
@@ -66,7 +66,7 @@
                     <td class="border border-primary-blue p-2 table-row sm:table-cell">{{Carbon\Carbon::parse($client->updated_at)->format('d/m/y')}}</td>
                     <td class="border border-primary-blue p-2 table-row sm:table-cell">
                         <a href="{{route('admin.vetSingle',[$client->vet->user_id??''])}}">
-                        {{$client->vet->vet_name??''}} {{$client->vet->id??''}}
+                        {{$client->vet->vet_name}}
                         </a>
                     </td>
                     <td class="border border-primary-blue p-2 sm:table-cell">{{$client->name}}</td>
