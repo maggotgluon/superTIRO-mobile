@@ -77,17 +77,22 @@
                         <!-- $client->vet?$client->vet->info()->where('meta_name','stock')->first()->meta_value:'-' }}  -->
                     </td>
                     <td class="border border-primary-blue p-2 text-right table-row sm:table-cell">
-                        {{$client->vet_regis}}
+                    <!-- สิทธิ์ลงเหลือ     -->
+                    {{$client->vet->stock->total_stock - $client->vet_total_activated}}
                         <!-- $client->vet?$client->vet->client()->count():'0'}} -->
                     </td>
                     <td class="border border-primary-blue p-2 text-right table-row sm:table-cell">
-                        {{$client->vet_total_activated}}
+                    <!-- สิทธิ์ที่รับแล้ว     -->
+                    {{$client->vet_total_activated}}
                         <!-- $client->vet?$client->vet->client()->where('active_status','activated')->count():'0' }} -->
                     </td>
                     <td class="border border-primary-blue p-2 text-right table-row sm:table-cell">
-                        {{$client->vet_total_pending+$client->vet_total_await}}    
-                        @if($client->vet)
+                    <!-- สินค้าขาด     -->
+                        @if($client->vet->stock->total_stock - $client->vet_regis <=0)
+                            {{$client->vet_total_pending+$client->vet_total_await}}    
                         <!-- ($client->vet->info()->where('meta_name','stock')->first()->meta_value??'0') - $client->vet->client()->count()>0?'':($client->vet->info()->where('meta_name','stock')->first()->meta_value??'0') - $client->vet->client()->count() }} -->
+                        @else
+                        0
                         @endif
                     </td>
                 </tr>

@@ -26,7 +26,7 @@ class VetLogin extends Component
 
         foreach ($this->vet_all as $index => $vet) {
             $this->vet_list[$index]['id']=$vet->id;
-            $this->vet_list[$index]['name']=$vet->id.' '.$vet->vet_name;
+            $this->vet_list[$index]['name']=$vet->user_id.' '.$vet->vet_name;
             $this->vet_list[$index]['description']=$vet->vet_area.' '.$vet->vet_city.' '.$vet->vet_province;
         }
     }

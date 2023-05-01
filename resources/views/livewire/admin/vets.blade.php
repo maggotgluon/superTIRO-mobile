@@ -72,7 +72,7 @@
                         @if($vet->stocks - $vet->total_client <=0)
                             {{$vet->stocks - $vet->total_client}}
                         @else
-                            -
+                            0
                         @endif
                     </td>
                 </tr>
