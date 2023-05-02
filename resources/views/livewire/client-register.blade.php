@@ -217,7 +217,7 @@
 
                 clearable=false
             />
-            <!-- x-native-select label="จังหวัด" placeholder="เลือกจังหวัด" :options="$vet_province" option-label="vet_province" option-value="vet_province" wire:model="selected_vet_province" /> -->
+            <!-- x-native-select label="จังหวัด" placeholder="เลือกจังหวัด" :options="$vet_province" option-label="vet_province" option-value="vet_province" wire:model="selected_vet_province"  -->
         </div>
         @if ($selected_vet_province!=null)
         <div class="mt-4">
@@ -231,7 +231,7 @@
                 option-value="vet_city"
 
                 clearable=false
-            /> -->
+             -->
             <x-native-select label="อำเภอ" placeholder="เลือกอำเภอ" :options="$vet_city" option-label="vet_city" option-value="vet_city" wire:model="selected_vet_city" /> -->
         </div>
         @endif
@@ -248,7 +248,7 @@
                 option-value="vet_area"
 
                 clearable=false
-            /> -->
+             -->
             <x-native-select label="ตำบล" placeholder="เลือกตำบล" :options="$vet_area" option-label="vet_area" option-value="vet_area" wire:model="selected_vet_area" /> -->
         </div>
         @endif
