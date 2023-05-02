@@ -19,17 +19,17 @@
     <div class="text-primary-blue flex flex-wrap gap-2 my-4">
         <span>
             รับคำปรึกษาและเข้าร่วมโปรแกรม Super TRIO <span class="font-bold text-xl text-black/70">
-                {{$clients->where('option_1','1')->count()}}
+                {{$all_client->where('option_1','1')->count()}}
             </span>
         </span>
         <span>
             รับสิทธิ์พิเศษเพิ่มเติม - เข้าโปรแกรม 1 เดือน <span class="font-bold text-xl text-black/70">
-                {{$clients->where('option_2','1')->count()}}
+                {{$all_client->where('option_2','1')->count()}}
             </span>
         </span>
         <span>
             รับสิทธิ์พิเศษเพิ่มเติม - เข้าโปรแกรม 3 เดือน <span class="font-bold text-xl text-black/70">
-                {{$clients->where('option_3','1')->count()}}
+                {{$all_client->where('option_3','1')->count()}}
             </span>
         </span>
 

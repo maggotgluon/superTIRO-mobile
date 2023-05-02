@@ -154,7 +154,7 @@ class ClientRegister extends Component
         ]);
 
         $client = Client::create([
-            'client_code'=>0,
+            
             'name'=>$this->firstname.' '.$this->lastname,
             'email'=>$this->email,
             'phone'=>$this->phone,
