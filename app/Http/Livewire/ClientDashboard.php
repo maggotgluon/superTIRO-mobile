@@ -73,6 +73,20 @@ class ClientDashboard extends Component
 
     public function render()
     {
+
+        switch ($this->client->active_status) {
+            case 'await':
+                $this->go(4);
+                break;
+            case 'expired':
+                $this->go(5);
+                break;
+            case 'activated':
+                $this->go(6);
+                break;            
+            default:
+                break;
+        }
         return view('livewire.client-dashboard');
     }
     

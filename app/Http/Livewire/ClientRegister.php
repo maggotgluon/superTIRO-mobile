@@ -47,7 +47,9 @@ class ClientRegister extends Component
         $this->validate_test = env('TWILIO', false);
         $this->vetall = Vet::all();
         $this->vet = Vet::all();
-        $this->vet_province = $this->vetall->unique('vet_province');
+        $this->vet_province = Vet::orderBy('vet_province','asc')->get()->unique('vet_province'); //$this->vetall->unique('vet_province');
+
+        // dd($this->vet_province);
     }
 
     public function updatedSelectedVetProvince($selected_vet_province){
@@ -169,12 +171,12 @@ class ClientRegister extends Component
         $client->client_code = 'TRIO'.Str::padLeft($client->id, 5, '0');
         $client->save();
 
-        if($this->validate_test){
+        // if($this->validate_test){
             $this->confirmation();
-        }
+        // }
 
         redirect( route('client.ticket',['phone'=>$this->phone]) );
-        $this->currentStep = 4;
+        // $this->currentStep = 4;
     }
     public function confirmation(){
 
