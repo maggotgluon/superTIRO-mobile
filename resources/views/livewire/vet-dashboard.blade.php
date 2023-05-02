@@ -91,8 +91,8 @@
             <!-- <x-button wire:click="exportCSV" label="Download"/> -->
         <div class="flex justify-center py-2 ">
             <x-button sm flat label="รอการรับสิทธิ์" wire:click="filter('pending')"/>
-            <x-button sm flat label="ระหว่างการรับสิทธิ์"  wire:click="filter('await')"/>
-            <!-- <x-button sm flat label="หมดอายุ"  wire:click="filter('expired')"/> -->
+            <!-- x-button sm flat label="ระหว่างการรับสิทธิ์"  wire:click="filter('await')"/> -->
+            <!-- x-button sm flat label="หมดอายุ"  wire:click="filter('expired')"/> -->
             <x-button sm flat label="การรับสิทธิ์สมบูรณ์"  wire:click="filter('activated')"/>
         </div>
 
