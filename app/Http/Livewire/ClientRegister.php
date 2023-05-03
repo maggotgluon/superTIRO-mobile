@@ -14,6 +14,9 @@ use GuzzleHttp\Client as smsClient;
 class ClientRegister extends Component
 {
     
+
+    public $readyToLoad = false;
+
     public $validate_test=true;
     public Client $client;
     public $vet,$vetall;
@@ -40,6 +43,10 @@ class ClientRegister extends Component
 
     public bool $blurModal = true;
 
+    public function loadAddr()
+    {
+        $this->readyToLoad = true;
+    }
     public function mount()
     {
         
@@ -69,7 +76,11 @@ class ClientRegister extends Component
 
     public function render()
     {
-        return view('livewire.client-register');
+        return view('livewire.client-register',[
+            'vet_provinces'=>$this->readyToLoad
+                ? Vet::orderBy('vet_province','asc')->get()->unique('vet_province')
+                : [],
+        ]);
     }
 
 

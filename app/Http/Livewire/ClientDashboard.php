@@ -141,7 +141,7 @@ class ClientDashboard extends Component
         
         if($this->endTime->isPast()){
             $this->go(5);
-            $this->client->active_status = 'await';
+            $this->client->active_status = 'activated';
             $this->client->save();
         }else{
             $this->leftMin=$this->timeleft/60;
