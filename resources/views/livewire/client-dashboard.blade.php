@@ -171,7 +171,12 @@
             ไปรับคำปรึกษา และเข้าร่วมโปรแกรม Super TRIO<br>
             ที่ {{$client->vet_id?App\Models\Vet::find($client->vet_id)->vet_name:'-'}}<br>
         </p>
-        
+        <p class="text-center">
+            รหัส
+            <span class="text-center text-xl mb-8 p-4 font-bold text-white bg-primary-blue block">
+                {{$client_code}}
+            </span>
+        </p>
         <p class="text-center">
             
             <span class="text-center text-xl mb-8 p-4 font-bold text-white bg-primary-blue block">
