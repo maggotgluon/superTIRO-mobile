@@ -31,7 +31,7 @@ class Vet extends Model
      */
     public function client()
     {
-        return $this->belongsTo(Client::class);
+        return $this->hasMany(Client::class);
     }
     public function info(){
         return $this->hasMany(VetInfo::class);

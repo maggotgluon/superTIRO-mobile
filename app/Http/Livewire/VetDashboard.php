@@ -23,7 +23,8 @@ class VetDashboard extends Component
             $this->logout();
         }
         $this->vet = Vet::where('user_id',Auth::user()->id)->first();
-        $this->clients = $this->vet->client??null;
+        $this->clients = $this->vet->client;
+        // dd($this->vet,$this->clients);
         $this->clients_info = collect();
         // if($this->clients){
         //     foreach ($this->clients as $client) {
