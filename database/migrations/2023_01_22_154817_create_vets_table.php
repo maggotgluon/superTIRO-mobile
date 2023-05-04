@@ -16,7 +16,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('vets', function (Blueprint $table) {
-            $table->uuid('id');
+            $table->string('id')->primary();
             $table->string('vet_name');
             $table->string('vet_province');
             $table->string('vet_city');
@@ -51,6 +51,7 @@ return new class extends Migration
         // fclose($csvFile);
     }
 
+    
     /**
      * Reverse the migrations.
      *

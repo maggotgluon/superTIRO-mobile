@@ -256,7 +256,8 @@
         <div class="mt-4 bg-primary-lite rounded-xl p-2 h-[25vh] overflow-y-scroll soft-scrollbar">
             @foreach ( $vet as $vetlist )
             <div class="mb-4">
-                <x-radio id="{{$vetlist->id}}" label="{{$vetlist->vet_name}}" value="{{$vetlist->id}}" wire:model.lazy="vet_id" />
+            
+                <x-radio id="{{$vetlist->user_id}}" label="{{$vetlist->user_id}} {{$vetlist->vet_name}}" value="{{$vetlist->id}}" wire:model.lazy="vet_id" />
             </div>
             @endforeach
         </div>

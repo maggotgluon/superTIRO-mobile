@@ -44,6 +44,6 @@ class User extends Authenticatable
     ];
     public function vet()
     {
-        return $this->belongsTo(Vet::class);
+        return $this->hasOne(Vet::class);
     }
 }
