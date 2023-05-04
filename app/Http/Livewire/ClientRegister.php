@@ -97,7 +97,6 @@ class ClientRegister extends Component
             'firstname' => ['required', 'string', 'max:255'],
             'lastname' => ['required', 'string', 'max:255'],
             'phone' => ['required', 'numeric', 'unique:'.Client::class],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.Client::class],
             'consent' => ['required','bool']
         ]);
 
@@ -167,7 +166,7 @@ class ClientRegister extends Component
         $client = Client::create([
             'client_code'=>0,
             'name'=>$this->firstname.' '.$this->lastname,
-            'email'=>$this->email,
+            'email'=>$this->email??null,
             'phone'=>$this->phone,
             'email'=>$this->email,
             'phoneIsVerified'=>$this->code??"-",
@@ -182,9 +181,9 @@ class ClientRegister extends Component
         $client->client_code = 'TRIO'.Str::padLeft($client->id, 5, '0');
         $client->save();
 
-        // if($this->validate_test){
+        if($this->validate_test){
             $this->confirmation();
-        // }
+        }
 
         redirect( route('client.ticket',['phone'=>$this->phone]) );
         // $this->currentStep = 4;
@@ -192,7 +191,7 @@ class ClientRegister extends Component
     public function confirmation(){
 
         $details = [
-            'email' => $this->email,
+            'email' => $this->email??null,
             'phone' => $this->phone,
             'pet_name' => $this->pet_name,
             'vet_name' => Vet::find($this->vet_id)->vet_name,
@@ -205,7 +204,9 @@ class ClientRegister extends Component
         //     'vet_name' => 'vet_id',
         //     'name' => 'firstname'.' '.'lastname',
         // ];
-        SendEmail::dispatch($details);
+        if($this->email){
+            SendEmail::dispatch($details);
+        }
 
         $body_sms = 'ยืนยันลงทะเบียนสำเร็จ ใช้สิทธิ์คลิก http://supertrio.app.mag.codes/client/login';
 
