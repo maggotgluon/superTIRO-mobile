@@ -65,7 +65,7 @@
                     <td class="border border-primary-blue p-2 table-row sm:table-cell">{{$client->id}}</td>
                     <td class="border border-primary-blue p-2 table-row sm:table-cell">{{Carbon\Carbon::parse($client->updated_at)->format('d/m/y')}}</td>
                     <td class="border border-primary-blue p-2 table-row sm:table-cell">
-                        <a href="{{route('admin.vetSingle',[$client->vet->user_id??''])}}">
+                        <a href="{{route('admin.vetSingle',[$client->vet->id??''])}}">
                         {{$client->vet->vet_name}}
                         </a>
                     </td>

@@ -37,8 +37,7 @@
                 <tr class="border border-primary-blue">
                     <td class="border border-primary-blue p-2 whitespace-nowrap">{{$vet->user_id}}</td>
                     <td class="border sm:border-primary-blue p-2 table w-full sm:w-auto sm:table-cell">
-                        <a href="{{route('admin.vetSingle',[$vet->user_id])}}">{{$vet->vet_name}}
-
+                        <a href="{{route('admin.vetSingle',[$vet->id])}}">{{$vet->vet_name}}
                         <span class="whitespace-nowrap flex">
                             <x-badge outline label="{{$vet->vet_province}}" />
                             <x-badge outline label="{{$vet->vet_city}}" />
