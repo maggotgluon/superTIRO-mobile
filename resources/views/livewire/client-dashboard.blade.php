@@ -177,12 +177,7 @@
                 {{$client_code}}
             </span>
         </p>
-        <p class="text-center">
-            
-            <span class="text-center text-xl mb-8 p-4 font-bold text-white bg-primary-blue block">
-                ยืนยันแล้ว
-            </span>
-        </p>
+        
         
         <!-- <div class="py-2 text-center flex justify-center mt-auto">
             <x-button lg right-icon="chevron-right" primary
