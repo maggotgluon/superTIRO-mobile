@@ -96,11 +96,11 @@
         @endif
         <div class="mt-2">
             <span class="p-4"><x-checkbox lg class="rounded-full" label="รับคำปรึกษาและเข้าร่วมโปรแกรม Super TRIO" 
-                        value="standard" wire:model="offer" /></span>
-            <span class="p-4"><x-checkbox lg class="rounded-full" label="รับสิทธิพิเศษเพิ่มเติม (สอบถามที่พนักงานของคลินิก)" 
-                        value="extra_1" wire:model="offer" /></span>
-            <span class="p-4"><x-checkbox lg class="rounded-full" label="รับสิทธิพิเศษเพิ่มเติม (สอบถามที่พนักงานของคลินิก)" 
-                        value="extr_2" wire:model="offer" /></span>
+                    id="standard"    value="standard" wire:model.lazy="offer" /></span>
+            <span class="p-4"><x-checkbox lg class="rounded-full" label="รับสิทธิ์พิเศษเพิ่มเติม - เข้าโปรแกรม 1 เดือน" 
+                    id="extra_1"    value="extra_1" wire:model.lazy="offer" /></span>
+            <span class="p-4"><x-checkbox lg class="rounded-full" label="รับสิทธิ์พิเศษเพิ่มเติม - เข้าโปรแกรม 3 เดือน" 
+                    id="extra_2"    value="extra_2" wire:model.lazy="offer" /></span>
         </div>
         <div class="py-2 text-center flex justify-center mt-auto">
             <x-button lg right-icon="chevron-right" primary  class="bg-gradient-to-br from-gradient-start to-gradient-end rounded-2xl"

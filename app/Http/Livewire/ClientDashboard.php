@@ -100,23 +100,26 @@ class ClientDashboard extends Component
         // active_status
 
         if($this->input_vet_id == $this->client->vet->stock_id){
-            
-            if(array_search('standard',$this->offer)>=0 ) {
+
+            if(array_search('standard',$this->offer) ) {
+
                 $this->client->option_1=true;
                 $this->client->save();
                 
             }
-            if(array_search('extra_1',$this->offer)>=0 ) {
+            if(array_search('extra_1',$this->offer) ) {
+
                 $this->client->option_2=true;
                 $this->client->save();
                 ;
-            }
-            if(array_search('extra_2',$this->offer)>=0 ) {
+            }artisan s
+            if(array_search('extra_2',$this->offer) ) {
+
                 $this->client->option_3=true;
                 $this->client->save();
                 
             }
-            
+            //dd(array_search('standard',$this->offer),array_search('extra_1',$this->offer),array_search('extra_2',$this->offer));            
             //update record
             $this->client->active_date = now();
             $this->client->active_status = 'activated';
