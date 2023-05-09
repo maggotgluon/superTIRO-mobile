@@ -66,7 +66,7 @@ class VetLogin extends Component
             if(Auth::user()->name == 'admin'){
                 return redirect(route('admin.dashboard'));    
             }
-            return redirect(route('vet.ticket'));
+            return redirect(route('vet.ticket',$user->id));
         }else{
             $this->reset();
         }
