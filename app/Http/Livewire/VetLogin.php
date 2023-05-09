@@ -48,17 +48,18 @@ class VetLogin extends Component
             $username = $this->adm_user;
             $login = Auth::attempt(['name'=>$username,'password'=>$password] , $this->remember_me );
         }else{
-            $username = vet::find($this->user)->user_id;
+            $username = $this->user;
+            // $username = vet::find($this->user)->user_id;
             $login = Auth::attempt(['id'=>$username,'password'=>$password] , $this->remember_me );
             // dd($username,$password,$login);
         }
 
         // $user = user::find($username);
-        // dd($login,$username,$user,$password,$this->user);
+        // dd($login,$username,user::find($username),$password,$this->user);
         //Auth::login($user);
         //return redirect(RouteServiceProvider::HOME);
         if( $login ){
-            $user = user::find($username); //??user::where('name',$username)->first();
+            $user = user::find($username)??user::where('name',$username)->first();
             // dd($login,$username,$password,Hash::make($password),$user);
             
             Auth::login($user);
@@ -66,7 +67,8 @@ class VetLogin extends Component
             if(Auth::user()->name == 'admin'){
                 return redirect(route('admin.dashboard'));    
             }
-            return redirect(route('vet.ticket',$user->id));
+            // dd($user->vet->user_id,$username);
+            return redirect(route('vet.ticket',$username));
         }else{
             $this->reset();
         }

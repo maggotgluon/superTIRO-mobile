@@ -7,14 +7,15 @@
     @if ($adm)        
         <x-input wire:model.defer="adm_user" label="Username" />
     @else
-    <x-native-select 
+        <x-input wire:model.defer="user" label="ชื่อคลินิก หรือ โรงพยาบาลสัตว์" />
+    <!-- <x-native-select 
             label="ชื่อคลินิก หรือ โรงพยาบาลสัตว์"
             placeholder="ชื่อคลินิก หรือ โรงพยาบาลสัตว์"
             :options="$vet_list"
             option-label="name"
             option-value="id"
             wire:model.defer="user"
-            />
+            /> -->
     @endif
 
     <x-input class="py-4" type="password" label="รหัสผ่าน" placeholder="รหัสผ่าน" wire:model.defer="password" />
