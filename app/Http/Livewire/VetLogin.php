@@ -21,18 +21,19 @@ class VetLogin extends Component
     public $adm,$adm_user;
 
     public function mount(){
+        
+    }
+    public function render()
+    {
         $this->user_list = User::all();
         $this->vet_all = Vet::all();
-        $this->adm=1;
+        // $this->adm=1;
 
         foreach ($this->vet_all as $index => $vet) {
             $this->vet_list[$index]['id']=$vet->id;
             $this->vet_list[$index]['name']=$vet->user_id.' '.$vet->vet_name;
             $this->vet_list[$index]['description']=$vet->vet_area.' '.$vet->vet_city.' '.$vet->vet_province;
         }
-    }
-    public function render()
-    {
         // dd($this->vet_list);
         return view('livewire.vet-login');
     }
@@ -56,16 +57,16 @@ class VetLogin extends Component
         // dd($login,$username,$user,$password,$this->user);
         //Auth::login($user);
         //return redirect(RouteServiceProvider::HOME);
-        // dd($login,$username,$password,Hash::make($password));
         if( $login ){
-            $user = user::find($username)??user::where('name',$username)->first();
-            dd($user);
+            $user = user::find($username); //??user::where('name',$username)->first();
+            // dd($login,$username,$password,Hash::make($password),$user);
+            
             Auth::login($user);
 
             if(Auth::user()->name == 'admin'){
                 return redirect(route('admin.dashboard'));    
             }
-            return redirect(RouteServiceProvider::HOME);
+            return redirect(route('vet.ticket'));
         }else{
             $this->reset();
         }

@@ -17,12 +17,13 @@ class VetDashboard extends Component
     public $vet;
     public $clients,$clients_info;
     
-    public function mount(){
+    public function mount($id=null){
         $this->user = Auth::user();
         if(!$this->user){
             $this->logout();
         }
-        $this->vet = Vet::where('user_id',Auth::user()->id)->first();
+        $this->vet = Vet::where('user_id',$id)->first();
+        // dd($id,$this->vet,$this->user);
         $this->clients = $this->vet->client;
         // dd($this->vet,$this->clients);
         $this->clients_info = collect();

@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Livewire\VetDashboard;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -112,9 +114,7 @@ Route::name('vet.')->prefix('vet')->group(function (){
         return view('vet.register');
     } )->name('register');
 
-    Route::get('/dashboard', function () {
-        dd('vet');
-    } )->name('ticket');
+    Route::get('/dashboard/{id}', VetDashboard::class )->name('ticket');
 });
 
 Route::get('/download',function(){

@@ -10,7 +10,7 @@
                     <x-dropdown.item label="Logout" wire:click="logout" />
                 </x-dropdown>
             </span>
-            <x-badge flat icon="information-circle" info label="{{$vet->id}}" />
+            <x-badge flat icon="information-circle" info label="{{$vet->user_id}}" />
         </div>
     </nav>
     <div class="grid sm:grid-cols-2 my-4 gap-4">
