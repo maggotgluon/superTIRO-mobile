@@ -52,8 +52,8 @@ class Vets extends Component
     public function render()
     {
         // $this->order 
-        $vets=Vet::with('client')->orderBy($this->order,$this->sort)->paginate(10);
-        
+        $vets=Vet::with('client')->with('stock')->orderBy($this->order,$this->sort)->paginate(10);
+        // dd($vets[0]->stock->total_stock);
         foreach($vets as $k=>$v){
             $v->stocks = $v->stock->total_stock;
             $v->stocks_adj = $v->stock->stock_adj;

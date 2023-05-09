@@ -87,7 +87,7 @@
         <p class="text-center mb-8">
             (สอบถามที่พนักงานของคลินิก)
         </p>
-        
+        {{$input_vet_id}}
         <x-input wire:model="input_vet_id" label="รหัสคลินิก หรือ โรงพยาบาลสัตว์" placeholder="รหัสคลินิก หรือ โรงพยาบาลสัตว์"/>
         @if ($status == -1)
             <div class="my-2">

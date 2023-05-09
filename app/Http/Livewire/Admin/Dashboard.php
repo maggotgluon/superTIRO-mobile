@@ -58,7 +58,7 @@ class Dashboard extends Component
     public function render()
     {
         // $this->client = Client::orderBy($this->order,$this->sort);
-        $client = Client::orderBy($this->order,$this->sort)->paginate(10);
+        $client = Client::with('vet')->orderBy($this->order,$this->sort)->paginate(10);
 
         foreach($client as $k=>$c){
             $c->vet_id = $c->vet->vet_name;

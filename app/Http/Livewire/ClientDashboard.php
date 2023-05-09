@@ -112,7 +112,7 @@ class ClientDashboard extends Component
                 $this->client->option_2=true;
                 $this->client->save();
                 ;
-            }artisan s
+            }
             if(array_search('extra_2',$this->offer) ) {
 
                 $this->client->option_3=true;

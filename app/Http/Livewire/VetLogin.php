@@ -23,6 +23,7 @@ class VetLogin extends Component
     public function mount(){
         $this->user_list = User::all();
         $this->vet_all = Vet::all();
+        $this->adm=1;
 
         foreach ($this->vet_all as $index => $vet) {
             $this->vet_list[$index]['id']=$vet->id;
@@ -55,9 +56,10 @@ class VetLogin extends Component
         // dd($login,$username,$user,$password,$this->user);
         //Auth::login($user);
         //return redirect(RouteServiceProvider::HOME);
-
+        // dd($login,$username,$password,Hash::make($password));
         if( $login ){
             $user = user::find($username)??user::where('name',$username)->first();
+            dd($user);
             Auth::login($user);
 
             if(Auth::user()->name == 'admin'){

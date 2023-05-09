@@ -269,12 +269,15 @@
 
 
 
-        <div class="py-2 text-center flex justify-center mt-auto">
+        <div class="py-2 text-center flex justify-center mt-auto" wire:loading.remove>
             <!-- <div></div> -->
             <!-- <x-button lg outline icon="chevron-left" primary
                 wire:click="back(1)" type="button" label="Back" /> -->
-            <x-button lg right-icon="chevron-right" primary class="bg-gradient-to-br from-gradient-start to-gradient-end rounded-2xl"
+            <x-button wire:loading.attr="disabled"  lg right-icon="chevron-right" primary class="bg-gradient-to-br from-gradient-start to-gradient-end rounded-2xl"
              wire:click="thirdStepSubmit" type="button" label="ถัดไป" />
+        </div>
+        <div class="py-2 text-center flex justify-center mt-auto" wire:loading>
+            กำลังเนินการ...
         </div>
     </div>
 
