@@ -34,7 +34,6 @@
         @livewireStyles
     </head>
     <body class="font-sans text-gray-900 antialiased">
-
         <!-- Google Tag Manager (noscript) -->
         <noscript>
             <iframe src="https://www.googletagmanager.com/ns.html?id={{ env('GTM', 'SuperTRIO') }}"
