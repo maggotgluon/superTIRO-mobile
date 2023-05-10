@@ -265,3 +265,7 @@ Route::get('/upvet',function(){
 
     fclose($csvFile);
 });
+Route::get('/view',function(){
+    
+    var_dump($_SERVER);
+});
