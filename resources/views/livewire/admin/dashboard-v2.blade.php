@@ -61,33 +61,33 @@
 
     </div>
 
-    <div>
-        <table class="w-full table-fixed">
+    <div class="mt-7 overflow-x-auto">
+        <table class="table-fixed min-w-full whitespace-nowrap">
             <thead>
                 <tr class="border border-primary-blue bg-primary-blue text-primary-lite text-xs">
-                    <th class="w-4">
+                    <th class="">
                         <x-button flat white right-icon="{{$sort_icon['id']}}"
                             class="w-full hover:bg-white/10" 
                             wire:click="order('id')" label="ลำดับ"/>
                         </th>
-                    <th class="w-4">
+                    <th class="hidden sm:table-cell">
                         <x-button flat white right-icon="{{$sort_icon['updated_at']}}"
                             class="w-full hover:bg-white/10" 
                             wire:click="order('updated_at')" label="วันที่"/>
                         </th>
-                    <th class="w-2/12  ">
+                    <th class="hidden sm:table-cell">
 
-                    <x-button flat white right-icon="{{$sort_icon['vet_id']}}"
+                        <x-button flat white right-icon="{{$sort_icon['vet_id']}}"
                             class="w-full hover:bg-white/10" 
                             wire:click="order('vet_id')" label="ชื่อคลินิก"/>
                     </th>
-                    <th class="w-8">ชื่อลูกค้า</th>
-                    <th class="w-4">น้ำหนัก สุนัข</th>
-                    <th class="w-4">สถานะ</th>
-                    <th class="w-4">สิทธิ์ทั้งหมด</th>
-                    <th class="w-4">สิทธิ์ลงเหลือ</th>
-                    <th class="w-4">สิทธิ์ที่รับแล้ว</th>
-                    <th class="w-4">สินค้าขาด</th>
+                    <th class="">ชื่อลูกค้า</th>
+                    <th class="hidden sm:table-cell">น้ำหนัก สุนัข</th>
+                    <th class="hidden sm:table-cell">สถานะ</th>
+                    <th class="hidden sm:table-cell">สิทธิ์ทั้งหมด</th>
+                    <th class="hidden sm:table-cell">สิทธิ์ลงเหลือ</th>
+                    <th class="hidden sm:table-cell">สิทธิ์ที่รับแล้ว</th>
+                    <th class="hidden sm:table-cell">สินค้าขาด</th>
                 </tr>
             </thead>
             <tbody>
@@ -96,40 +96,46 @@
                     <td class="border border-primary-blue p-2  ">
                         {{$client->client_code}}
                     </td>
-                    <td class="border border-primary-blue p-2  ">
+                    <td class="border border-primary-blue p-2  table sm:table-cell">
                         {{Carbon\Carbon::parse($client->updated_at)->format('d/m/y')}}
                     </td>
-                    <td class="border border-primary-blue p-2  ">
+                    <td class="border border-primary-blue p-2  table sm:table-cell">
                         {{$client->vet_id}} : 
                         {{$client->vet->vet_name??$client->vet_id}}
                     </td>
                     <td class="border border-primary-blue p-2  ">
                         {{$client->name}}
                     </td>
-                    <td class="border border-primary-blue p-2  ">
+                    <td class="border border-primary-blue p-2  table sm:table-cell">
                         {{$client->pet_weight}}
+                        <span class="sm:hidden inline-block min-w-max mr-2">น้ำหนัก สุนัข</span>
                     </td>
-                    <td class="border border-primary-blue p-2  ">
+                    <td class="border border-primary-blue p-2  table sm:table-cell">
                         {{$client->active_status}}
+                        <span class="sm:hidden inline-block min-w-max mr-2">สถานะ</span>
                     </td>
-                    <td class="border border-primary-blue p-2  ">
-                    <!-- สิทธิ์ทั้งหมด -->
-                    <!-- total stock a -->
+                    <td class="border border-primary-blue p-2  table sm:table-cell">
+                        <!-- สิทธิ์ทั้งหมด -->
+                        <!-- total stock a -->
+                        <span class="sm:hidden inline-block min-w-max mr-2">สิทธิ์ทั้งหมด</span>
                         {{ $client->vet_stock }}
                     </td>
-                    <td class="border border-primary-blue p-2  ">
-                    <!-- สิทธิ์ลงเหลือ -->
-                    <!-- total stock - total activate -->
+                    <td class="border border-primary-blue p-2  table sm:table-cell">
+                        <!-- สิทธิ์ลงเหลือ -->
+                        <!-- total stock - total activate -->
+                        <span class="sm:hidden inline-block min-w-max mr-2">สิทธิ์ลงเหลือ</span>
                         {{  $client->vet_stock-$client->vet_total_activated}}
                     </td>
-                    <td class="border border-primary-blue p-2  ">
-                    <!-- สิทธิ์ที่รับแล้ว	 -->
-                    <!-- total activate -->
+                    <td class="border border-primary-blue p-2  table sm:table-cell">
+                        <!-- สิทธิ์ที่รับแล้ว	 -->
+                        <!-- total activate -->
+                        <span class="sm:hidden inline-block min-w-max mr-2">สิทธิ์ที่รับแล้ว</span>
                         {{
                             $client->vet_total_activated
                         }}
                     </td>
-                    <td class="border border-primary-blue p-2  ">
+                    <td class="border border-primary-blue p-2  table sm:table-cell">
+                        <span class="sm:hidden inline-block min-w-max mr-2">สินค้าขาด</span>
                         @if ($client->vet_stock - $client->vet_total < 0 )
                             <span class="text-red-400"> {{ $client->vet_stock - $client->vet_total }} </span>
                         @else

@@ -1,4 +1,30 @@
+<div>
+<nav class="flex justify-start items-center flex-wrap gap-2">
+    <x-application-logo class="block h-10 w-auto fill-current text-gray-800" />
 
+    <x-button flat label="dashboard" icon="template" href="{{route('admin.dashboard')}}" />
+    <x-button flat label="Vet" icon="shopping-cart" href="{{route('admin.vets')}}" />
+
+    <!-- <x-select class="py-4 ml-auto w-full sm:w-auto" 
+    placeholder="ค้นหาชื่อคลินิก" :options="$vet_list" option-label="name" option-value="id" wire:model="VetSelect" /> -->
+    <x-dropdown>
+        <x-slot name="trigger">
+            <x-button.circle icon="user" label="Options" primary />
+        </x-slot>
+        
+        <x-dropdown.item separator label="Logout" icon="logout" wire:click="logout" />
+    </x-dropdown>
+    <div class="flex flex-col gap-2 content-end hidden">
+        <span class="flex">
+            <x-badge icon="home" label="Name" indigo />
+            <x-dropdown>
+                <!-- <x-dropdown.item label="My Profile" /> -->
+                <x-dropdown.item label="Logout" wire:click="logout" />
+            </x-dropdown>
+        </span>
+        <x-badge flat icon="information-circle" info label="id" />
+    </div>
+</nav>
 <div class="overflow-x-auto" id="vets">
     <div class="flex justify-start gap-4 my-4">
         <div class="bg-primary-blue rounded-2xl text-primary-lite p-4 shadow-lg flex gap-2">
@@ -45,28 +71,28 @@
                         </span>
                         </a>
                     </td>
-                    <td class="border sm:border-primary-blue text-right p-2 table w-full sm:w-auto sm:table-cell">
+                    <td class="border sm:border-primary-blue sm:text-right p-2 table w-full sm:w-auto sm:table-cell">
                         <span class="sm:hidden inline-block min-w-max mr-2">สิทธิ์ทั้งหมด</span>
                         
                         {{$vet->stocks}}
                     </td>
-                    <td class="border sm:border-primary-blue text-right p-2 table w-full sm:w-auto sm:table-cell">
+                    <td class="border sm:border-primary-blue sm:text-right p-2 table w-full sm:w-auto sm:table-cell">
                         <span class="sm:hidden inline-block min-w-max mr-2">สิทธิ์ที่รับแล้ว</span>
                         {{$vet->total_client_activated}}
                     </td>
-                    <td class="border sm:border-primary-blue text-right p-2 table w-full sm:w-auto sm:table-cell">
+                    <td class="border sm:border-primary-blue sm:text-right p-2 table w-full sm:w-auto sm:table-cell">
                         <span class="sm:hidden inline-block min-w-max mr-2">สิทธิ์คงเหลือ</span>
                         {{ $vet->stocks - $vet->total_client_activated }}
                     </td>
-                    <td class="border sm:border-primary-blue text-right p-2 table w-full sm:w-auto sm:table-cell">
+                    <td class="border sm:border-primary-blue sm:text-right p-2 table w-full sm:w-auto sm:table-cell">
                         <span class="sm:hidden inline-block min-w-max mr-2">สิทธิ์ที่รอ</span>
                         {{$vet->total_client_pending+$vet->total_client_await}}
                     </td>
-                    <td class="border sm:border-primary-blue text-right p-2 table w-full sm:w-auto sm:table-cell">
+                    <td class="border sm:border-primary-blue sm:text-right p-2 table w-full sm:w-auto sm:table-cell">
                         <span class="sm:hidden inline-block min-w-max mr-2">ครั้งที่เติมสิทธิ์</span>
                         {{$vet->stocks_adj}}
                     </td>
-                    <td class="border sm:border-primary-blue text-right p-2 table w-full sm:w-auto sm:table-cell">
+                    <td class="border sm:border-primary-blue sm:text-right p-2 table w-full sm:w-auto sm:table-cell">
                         <span class="sm:hidden inline-block min-w-max mr-2">สิทธิ์ที่ขาด</span>
                         @if($vet->stocks - $vet->total_client <=0)
                             {{$vet->stocks - $vet->total_client}}
@@ -83,4 +109,5 @@
             {{ $vets->links() }}
         </div>
     </div>
+</div>
 </div>

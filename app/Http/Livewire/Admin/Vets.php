@@ -14,6 +14,7 @@ class Vets extends Component
     use WithPagination;
 
     public $stock;
+    public $vet_list;
     
     public $search='',$order='id',$sort='asc';
 
@@ -30,6 +31,13 @@ class Vets extends Component
     public function mount(){
         $this->stock = stock::sum('total_stock');
         // $this->all_client = Client::all();
+        $vets = vet::with('client')->with('stock')->get();
+
+        foreach ($vets as $index => $vet) {
+            $this->vet_list[$index]['id']=$vet->id;
+            $this->vet_list[$index]['name']=$vet->vet_name;
+            $this->vet_list[$index]['description']=$vet->vet_area.' '.$vet->vet_city.' '.$vet->vet_province;
+        }
     }
     
     public function order($order){
@@ -52,7 +60,7 @@ class Vets extends Component
     public function render()
     {
         // $this->order 
-        $vets=Vet::with('client')->with('stock')->orderBy($this->order,$this->sort)->paginate(10);
+        $vets=Vet::with('client')->with('stock')->orderBy($this->order,$this->sort)->paginate(50);
         // dd($vets[0]->stock->total_stock);
         foreach($vets as $k=>$v){
             $v->stocks = $v->stock->total_stock;
@@ -66,6 +74,6 @@ class Vets extends Component
         // dd(Vet::with('vet_infos')->get());
         return view('livewire.admin.vets',[
             'vets'=>$vets,'total'=>$this->stock
-        ]);
+        ])->extends('layouts.app');;
     }
 }

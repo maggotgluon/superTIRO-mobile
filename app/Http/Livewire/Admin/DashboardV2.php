@@ -69,7 +69,7 @@ class DashboardV2 extends Component
     public function render()
     {
         
-        $client = Client::with('vet')->orderBy($this->order,$this->sort)->paginate(10);
+        $client = Client::with('vet')->orderBy($this->order,$this->sort)->paginate(50);
         foreach($client as $k=>$c){
             $c->vet_name = $c->vet->vet_name;
             $c->vet_stock_id = $c->vet->stock_id;
