@@ -36,7 +36,7 @@
     </div>
 
 
-    <div class="setup-content min-h-[70vh] flex flex-col {{ $currentStep != 1 ? 'hidden' : '' }}" id="step-1">
+    <div class="setup-content min-h-[70vh] flex flex-col {{ $currentStep != 1 ? 'hidden' : '' }}" id="step-1" wire:loading.remove>
         <!-- <h3> Step 1</h3> -->
         <!-- $status -->
         <div class="text-center mt-8  py-4">
