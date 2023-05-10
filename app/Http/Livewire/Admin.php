@@ -32,8 +32,6 @@ class Admin extends Component
     }
     public function updatedVetSelect(){
         return redirect(route('admin.vetSingle',['vet_id'=>$this->VetSelect])) ;
-        // $this->search = $this->VetSelect;
-        // dd($vetSearch);
     }
     public function render()
     {

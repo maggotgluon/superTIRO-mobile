@@ -8,16 +8,15 @@ use App\Models\stock;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class Dashboard extends Component
+class DashboardV2 extends Component
 {
     use WithPagination;
 
     public $all_client;
     public $vets;
     public $stock;
-
     public $vet_list;
-    
+
     public $search='',$order='id',$sort='asc';
 
     public $sort_icon=[
@@ -25,14 +24,9 @@ class Dashboard extends Component
         'updated_at'=>'',
         'name'=>'',
         'active_status'=>'',
+        'vet_id'=>'',
     ];
 
-    protected $queryString = [
-        'search'=> ['except' => ''],
-        'order'=> ['except' => 'id'],
-        'sort'
-    ];
-    
     public function order($order){
         $this->sort_icon=[
             'id'=>'',
@@ -53,14 +47,19 @@ class Dashboard extends Component
         $this->resetPage();
     }
 
-    public function mount(){
-        // $this->all_vet = Vet::all();
 
-        // $this->client_info = ClientInfo::all();
-        $this->all_client = Client::with('vet')->get();
+    protected $queryString = [
+        'search'=> ['except' => ''],
+        'order'=> ['except' => 'id'],
+        'sort'
+    ];
+    public function mount(){
+        $this->all_client = Client::all();
+        // $this->clients = Client::with('vet');
         $this->vets = vet::with('client')->with('stock')->get();
         $this->stock = stock::with('vet')->get();
-        
+        // dd($clients[0]->vet->vet_name, $vets[0]->client);
+        // dd($this->clients[0]);
         foreach ($this->vets as $index => $vet) {
             $this->vet_list[$index]['id']=$vet->id;
             $this->vet_list[$index]['name']=$vet->vet_name;
@@ -69,7 +68,6 @@ class Dashboard extends Component
     }
     public function render()
     {
-        // $this->client = Client::orderBy($this->order,$this->sort);
         
         $client = Client::with('vet')->orderBy($this->order,$this->sort)->paginate(10);
         foreach($client as $k=>$c){
@@ -86,10 +84,8 @@ class Dashboard extends Component
             $c->vet_regis = $this->all_client->where('vet_id','like',$c->stock_id.'%')->count();
             
         }
-        // dd(getType($client),getType($this->client));
-        return view('livewire.admin.dashboard',[
-            // 'clients'=>Client::orderBy($this->order,$this->sort)->paginate(10)]
-            'clients'=>$client]
-        );
+        return view('livewire.admin.dashboard-v2',[
+            'clients'=>$client
+        ])->extends('layouts.app');
     }
 }

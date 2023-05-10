@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Livewire\VetDashboard;
+use App\Http\Livewire\Admin\DashboardV2;
 
 
 /*
@@ -25,7 +26,7 @@ use App\Http\Livewire\VetDashboard;
 
 Route::get('/', function () {
     return view('client.register');
-    return view('welcome');
+    // return view('welcome');
 })->name('index');
 
 Route::get('/admin', function () {
@@ -84,10 +85,11 @@ Route::name('admin.')->prefix('admin')->group(function (){
     //     return view('admin.dashboard');
     // } )->name('index');
 
-    Route::get('/dashboard', function () {
-        // dd('dashboard');
-        return view('admin.dashboard');
-    } )->name('dashboard');
+    Route::get('/dashboard', DashboardV2::class )->name('dashboard');
+    // Route::get('/dashboard', function () {
+    //     // dd('dashboard');
+    //     return view('admin.dashboard');
+    // } )->name('dashboard');
     
     Route::get('/vet', function () {
         // dd('vets');
