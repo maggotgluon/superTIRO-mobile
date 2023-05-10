@@ -1,4 +1,4 @@
-<div class="text-content-dark">
+<div class="text-content-dark relative min-h-[50vh]">
     
         <!-- VET ID : $client->vet_id -->
     
