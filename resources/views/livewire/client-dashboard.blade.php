@@ -3,7 +3,7 @@
         <!-- VET ID : $client->vet_id -->
     
     <div class="text-center absolute inset-0 z-50" wire:loading>
-        <x-loading/>
+        <img class="my-4" src="{{url('/loading.gif')}}"/>
     </div>
     <div class="row setup-content  min-h-[70vh] flex flex-col {{ $currentStep != 1 ? 'hidden' : '' }}" id="step-4">
     

@@ -14,6 +14,9 @@
     
     <div class="flex justify-around relative {{$currentStep>=2? '' : 'hidden'}}">
 
+        <div class="text-center absolute inset-0 z-50" wire:loading>
+            <img class="my-4" src="{{url('/loading.gif')}}"/>
+        </div>
         <progress value={{$currentStep}} max="5" style="
             position: absolute;
             top: calc(50% - .25rem);
