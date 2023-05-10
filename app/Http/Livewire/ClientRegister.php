@@ -52,7 +52,8 @@ class ClientRegister extends Component
         // $this->confirmation();
         $this->validate_test = env('TWILIO', false);
         $this->vet = Vet::all();
-        $this->vet_province = Vet::orderBy('vet_province','asc')->get()->unique('vet_province'); //$this->vetall->unique('vet_province');
+        $this->vet_province = Vet::orderBy('vet_province','asc')->distinct('vet_province')->pluck('vet_province')->get('vet_province');
+        // ->unique('vet_province')->pluck('vet_province')
         // dd($this->vet_province);
     }
     

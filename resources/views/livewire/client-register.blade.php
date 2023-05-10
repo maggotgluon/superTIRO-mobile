@@ -12,9 +12,6 @@
     @endif
     
     
-    <div class="text-center absolute inset-0 z-50" wire:loading>
-        <x-loading/>
-    </div>
     <div class="flex justify-around relative {{$currentStep>=2? '' : 'hidden'}}">
 
         <progress value={{$currentStep}} max="5" style="
@@ -36,7 +33,7 @@
     </div>
 
 
-    <div class="setup-content min-h-[70vh] flex flex-col {{ $currentStep != 1 ? 'hidden' : '' }}" id="step-1" wire:loading.remove>
+    <div class="setup-content min-h-[70vh] flex flex-col transition-all {{ $currentStep != 1 ? 'hidden' : '' }}" id="step-1">
         <!-- <h3> Step 1</h3> -->
         <!-- $status -->
         <div class="text-center mt-8  py-4">
