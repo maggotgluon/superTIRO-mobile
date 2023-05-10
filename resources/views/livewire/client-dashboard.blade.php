@@ -5,7 +5,7 @@
     <div class="text-center absolute inset-0 z-50" wire:loading>
         <x-loading/>
     </div>
-    <div class="row setup-content  min-h-[70vh] flex flex-col {{ $currentStep != 1 ? 'hidden' : '' }}" id="step-4" wire:loading.remove>
+    <div class="row setup-content  min-h-[70vh] flex flex-col {{ $currentStep != 1 ? 'hidden' : '' }}" id="step-4">
     
     <div class="flex justify-around relative">
         <progress value="100" max="100" style="
