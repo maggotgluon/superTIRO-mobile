@@ -42,12 +42,15 @@
             (รหัสมีอายุ 15 นาที)
         </p>
 
-        <div class="py-2 text-center flex justify-center mt-auto">
+        <div class="py-2 text-center flex justify-center mt-auto" wire:loading.remove>
             <!-- <div></div> -->
             <!-- <x-button lg outline icon="chevron-left" primary
                 wire:click="back(1)" type="button" label="Back" /> -->
             <x-button lg right-icon="chevron-right" primary class="bg-gradient-to-br from-gradient-start to-gradient-end rounded-2xl"
                 wire:click="go(2)" type="button" label="กดเพื่อแสดงหลักฐาน" />
+        </div>
+        <div class="py-2 text-center flex justify-center mt-auto" wire:loading>
+            กำลังเนินการ...
         </div>
 
     </div>
@@ -73,12 +76,15 @@
                
             </p>
         </div>
-        <div class="py-2 text-center flex justify-between mt-auto">
+        <div class="py-2 text-center flex justify-between mt-auto" wire:loading.remove>
             <!-- <div></div> -->
             <x-button lg outline icon="chevron-left"
                 wire:click="go(1)" type="button" label="ยกเลิก" />
             <x-button lg right-icon="chevron-right" primary  class="bg-gradient-to-br from-gradient-start to-gradient-end rounded-2xl"
                 wire:click="go(3)" type="button" label="กดเพื่อแสดงหลักฐาน" />
+        </div>
+        <div class="py-2 text-center flex justify-center mt-auto" wire:loading>
+            กำลังเนินการ...
         </div>
     </div>
 
@@ -102,9 +108,12 @@
             <span class="p-4"><x-checkbox lg class="rounded-full" label="รับสิทธิ์พิเศษเพิ่มเติม - เข้าโปรแกรม 3 เดือน" 
                     id="extra_2"    value="extra_2" wire:model.lazy="offer" /></span>
         </div>
-        <div class="py-2 text-center flex justify-center mt-auto">
+        <div class="py-2 text-center flex justify-center mt-auto" wire:loading.remove>
             <x-button lg right-icon="chevron-right" primary  class="bg-gradient-to-br from-gradient-start to-gradient-end rounded-2xl"
                 wire:click="verifyVet" type="button" label="รับสิทธิ์" />
+        </div>
+        <div class="py-2 text-center flex justify-center mt-auto" wire:loading>
+            กำลังเนินการ...
         </div>
     </div>
 
