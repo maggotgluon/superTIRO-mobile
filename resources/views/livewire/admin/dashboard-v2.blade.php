@@ -93,7 +93,7 @@
             <tbody>
                 @foreach ($clients as $client)
                 <tr class="border border-primary-blue">
-                    <td class="border border-primary-blue p-2  ">
+                    <td class="border border-primary-blue p-2">
                         {{$client->client_code}}
                     </td>
                     <td class="border border-primary-blue p-2  table sm:table-cell">
@@ -103,16 +103,16 @@
                         {{$client->vet_id}} : 
                         {{$client->vet->vet_name??$client->vet_id}}
                     </td>
-                    <td class="border border-primary-blue p-2  ">
+                    <td class="border border-primary-blue p-2  table sm:table-cell">
                         {{$client->name}}
                     </td>
                     <td class="border border-primary-blue p-2  table sm:table-cell">
-                        {{$client->pet_weight}}
                         <span class="sm:hidden inline-block min-w-max mr-2">น้ำหนัก สุนัข</span>
+                        {{$client->pet_weight}}
                     </td>
                     <td class="border border-primary-blue p-2  table sm:table-cell">
-                        {{$client->active_status}}
                         <span class="sm:hidden inline-block min-w-max mr-2">สถานะ</span>
+                        {{$client->active_status}}
                     </td>
                     <td class="border border-primary-blue p-2  table sm:table-cell">
                         <!-- สิทธิ์ทั้งหมด -->
