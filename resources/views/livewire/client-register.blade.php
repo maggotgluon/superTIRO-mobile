@@ -215,16 +215,17 @@
 
         <div class="mt-4" wire:init="loadAddr">
             
+        @if ($vet_province!=null)
             <x-select
                 label="จังหวัด"
                 wire:model="selected_vet_province"
                 placeholder="เลือกจังหวัด"
                 :options="$vet_province"
-                option-label="vet_province"
-                option-value="vet_province"
+                
 
                 clearable=false
             />
+            @endif
         </div>
         @if ($selected_vet_province!=null)
         <div class="mt-4">
@@ -240,6 +241,7 @@
         </div>
         @endif
 
+        @if ($vet!=null)
         <div class="mt-4 bg-primary-lite rounded-xl p-2 h-[25vh] overflow-y-scroll soft-scrollbar">
             @foreach ( $vet as $vetlist )
             <div class="mb-4">
@@ -248,6 +250,7 @@
             </div>
             @endforeach
         </div>
+        @endif
         <!-- {{$vet_id}}
                 <x-input label="search" wire:model.debounce.1000ms="selected_vet_text" /> -->
 

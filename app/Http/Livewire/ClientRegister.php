@@ -51,10 +51,8 @@ class ClientRegister extends Component
     {
         // $this->confirmation();
         $this->validate_test = env('TWILIO', false);
-        $this->vet = Vet::all();
-        $this->vet_province = Vet::orderBy('vet_province','asc')->distinct('vet_province')->pluck('vet_province')->get('vet_province');
         // ->unique('vet_province')->pluck('vet_province')
-        // dd($this->vet_province);
+
     }
     
     public function updatedSelectedVetProvince($selected_vet_province){
@@ -145,6 +143,9 @@ class ClientRegister extends Component
             'pet_age_year' => 'required',
         ]);
 
+        $this->vet = Vet::all();
+        $this->vet_province = Vet::orderBy('vet_province','asc')->distinct('vet_province')->pluck('vet_province');
+        
         $this->currentStep = 3;
     }
     /**
