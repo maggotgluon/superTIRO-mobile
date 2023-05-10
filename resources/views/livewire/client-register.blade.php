@@ -74,7 +74,7 @@
             
         </div>
         <div class="py-2 text-center flex justify-center mt-auto" wire:loading>
-            กำลังเนินการ...
+            กำลังดำเนินการ...
         </div>
     </div>
 
@@ -108,7 +108,7 @@
             <x-button lg icon="chevron-left" primary class="bg-gradient-to-br from-gradient-start to-gradient-end rounded-2xl" wire:click="termStepSubmit(1)" type="button" label="กลับ" />
         </div>
         <div class="py-2 text-center flex justify-center mt-auto" wire:loading>
-            กำลังเนินการ...
+            กำลังดำเนินการ...
         </div>
     </div>
 
@@ -144,7 +144,7 @@
              wire:click="varifyOTP" type="button" label="ถัดไป" />
         </div>
         <div class="py-2 text-center flex justify-center mt-auto" wire:loading>
-            กำลังเนินการ...
+            กำลังดำเนินการ...
         </div>
     </div>
 
@@ -202,7 +202,7 @@
              wire:click="secondStepSubmit" type="button" label="ถัดไป" />
         </div>
         <div class="py-2 text-center flex justify-center mt-auto" wire:loading>
-            กำลังเนินการ...
+            กำลังดำเนินการ...
         </div>
     </div>
 
@@ -264,7 +264,7 @@
              wire:click="thirdStepSubmit" type="button" label="ถัดไป" />
         </div>
         <div class="py-2 text-center flex justify-center mt-auto" wire:loading>
-            กำลังเนินการ...
+            กำลังดำเนินการ...
         </div>
     </div>
 
