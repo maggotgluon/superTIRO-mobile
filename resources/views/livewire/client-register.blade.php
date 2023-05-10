@@ -1,4 +1,4 @@
-<div class="text-content-dark">
+<div class="text-content-dark relative">
     
     @if(!empty($successMessage))
     <div class="alert alert-success">
@@ -11,9 +11,12 @@
     </span>
     @endif
     
+    
+    <div class="text-center absolute inset-0 z-50" wire:loading>
+        <x-loading/>
+    </div>
     <div class="flex justify-around relative {{$currentStep>=2? '' : 'hidden'}}">
-    
-    
+
         <progress value={{$currentStep}} max="5" style="
             position: absolute;
             top: calc(50% - .25rem);
@@ -51,7 +54,7 @@
             <x-input wire:model.defer="email" label="อีเมล์" placeholder="อีเมล์" type="email" />
             <div class="flex flex-col justify-center py-2">
                 <!-- if ($consent == 1) -->
-                <x-toggle lg wire:model.lazy="consent" wire:click="openConsent" label="ยินยอมและรับทราบนโยบายคุ้มครองข้อมูลส่วนบุคคล" required />
+                <x-toggle lg wire:model.defer="consent" wire:click="openConsent" label="ยินยอมและรับทราบนโยบายคุ้มครองข้อมูลส่วนบุคคล" required />
                 <!-- endif -->
                 <!-- <x-button flat red label="อ่านเพิ่มเติม นโยบายคุ้มครองข้อมูลส่วนบุคคล" wire:click="openConsent"/> -->
 
@@ -67,10 +70,13 @@
             </div>
         </div>
 
-        <div class="py-2 text-center mt-auto ">
+        <div class="py-2 text-center mt-auto " wire:loading.remove>
             
             <x-button lg right-icon="chevron-right" primary class="bg-gradient-to-br from-gradient-start to-gradient-end rounded-2xl {{$consent?'':'opacity-50 pointer-events-none'}}" wire:click="firstStepSubmit" type="button" label="ถัดไป" />
             
+        </div>
+        <div class="py-2 text-center flex justify-center mt-auto" wire:loading>
+            กำลังเนินการ...
         </div>
     </div>
 
@@ -100,8 +106,11 @@
             </p>
         </div>
 
-        <div class="py-2 text-center mt-auto">
+        <div class="py-2 text-center mt-auto" wire:loading.remove>
             <x-button lg icon="chevron-left" primary class="bg-gradient-to-br from-gradient-start to-gradient-end rounded-2xl" wire:click="termStepSubmit(1)" type="button" label="กลับ" />
+        </div>
+        <div class="py-2 text-center flex justify-center mt-auto" wire:loading>
+            กำลังเนินการ...
         </div>
     </div>
 
@@ -132,9 +141,12 @@
         <!-- <input wire:model="code" type="text" class="border-gray-300 text-center focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full"/> -->
         <!-- <x-button wire:click="verifyCode" type="button" label="verifyCode" /> -->
 
-        <div class="py-2 text-center mt-auto">
+        <div class="py-2 text-center mt-auto" wire:loading.remove>
             <x-button lg right-icon="chevron-right" primary class="bg-gradient-to-br from-gradient-start to-gradient-end rounded-2xl"
              wire:click="varifyOTP" type="button" label="ถัดไป" />
+        </div>
+        <div class="py-2 text-center flex justify-center mt-auto" wire:loading>
+            กำลังเนินการ...
         </div>
     </div>
 
@@ -184,16 +196,19 @@
 
 
 
-        <div class="py-2 text-center flex justify-center mt-auto">
+        <div class="py-2 text-center flex justify-center mt-auto" wire:loading.remove>
             <!-- <div></div> -->
             <!-- <x-button lg outline icon="chevron-left" primary
                 wire:click="back(1)" type="button" label="Back" /> -->
             <x-button lg right-icon="chevron-right" primary class="bg-gradient-to-br from-gradient-start to-gradient-end rounded-2xl"
              wire:click="secondStepSubmit" type="button" label="ถัดไป" />
         </div>
+        <div class="py-2 text-center flex justify-center mt-auto" wire:loading>
+            กำลังเนินการ...
+        </div>
     </div>
 
-    <div class="row setup-content  min-h-[70vh] flex flex-col {{ $currentStep != 3 ? 'hidden' : '' }}" id="step-3">
+    <div class="row setup-content  min-h-[70vh] flex flex-col {{ $currentStep != 3 ? 'hidden' : '' }} " id="step-3">
         <div class="mt-8 pb-2">
             <h3 class="text-center">เลือกคลินิก หรือโรงพยาบาลสัตว์ </h3>
             <p class="text-center">ที่ต้องการรับคำปรึกษาและ<br>
@@ -211,7 +226,7 @@
                 label="จังหวัด"
                 wire:model="selected_vet_province"
                 placeholder="เลือกจังหวัด"
-                :options="$vet_provinces"
+                :options="$vet_province"
                 option-label="vet_province"
                 option-value="vet_province"
 

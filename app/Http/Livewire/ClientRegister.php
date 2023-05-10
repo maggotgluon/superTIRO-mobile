@@ -52,10 +52,9 @@ class ClientRegister extends Component
         
         // $this->confirmation();
         $this->validate_test = env('TWILIO', false);
-        $this->vetall = Vet::all();
+        // $this->vetall = Vet::all();
         $this->vet = Vet::all();
         $this->vet_province = Vet::orderBy('vet_province','asc')->get()->unique('vet_province'); //$this->vetall->unique('vet_province');
-
         // dd($this->vet_province);
     }
 
@@ -76,11 +75,7 @@ class ClientRegister extends Component
 
     public function render()
     {
-        return view('livewire.client-register',[
-            'vet_provinces'=>$this->readyToLoad
-                ? Vet::orderBy('vet_province','asc')->get()->unique('vet_province')
-                : [],
-        ]);
+        return view('livewire.client-register');
     }
 
 
