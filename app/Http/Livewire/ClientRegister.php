@@ -49,16 +49,15 @@ class ClientRegister extends Component
     }
     public function mount()
     {
-        
         // $this->confirmation();
         $this->validate_test = env('TWILIO', false);
-        // $this->vetall = Vet::all();
         $this->vet = Vet::all();
         $this->vet_province = Vet::orderBy('vet_province','asc')->get()->unique('vet_province'); //$this->vetall->unique('vet_province');
         // dd($this->vet_province);
     }
-
+    
     public function updatedSelectedVetProvince($selected_vet_province){
+        $this->vetall = Vet::all();
         $this->vet_city =$this->vetall->where('vet_province',$selected_vet_province)->unique('vet_city');
         $this->vet=$this->vetall->where('vet_province',$selected_vet_province);
         $this->selected_vet_city=null;

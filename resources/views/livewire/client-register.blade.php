@@ -215,11 +215,6 @@
                     เข้าร่วมโปรแกรม Super TRIO</p>
         </div>
 
-
-
-        <!-- {{$vet}} -->
-        <!-- {{$vet_province}} -->
-
         <div class="mt-4" wire:init="loadAddr">
             
             <x-select
@@ -232,21 +227,10 @@
 
                 clearable=false
             />
-            <!-- x-native-select label="จังหวัด" placeholder="เลือกจังหวัด" :options="$vet_province" option-label="vet_province" option-value="vet_province" wire:model="selected_vet_province"  -->
         </div>
         @if ($selected_vet_province!=null)
         <div class="mt-4">
 
-        <!-- x-select
-                label="อำเภอ"
-                wire:model="selected_vet_city"
-                placeholder="เลือกอำเภอ"
-                :options="$vet_city"
-                option-label="vet_city"
-                option-value="vet_city"
-
-                clearable=false
-             -->
             <x-native-select label="อำเภอ" placeholder="เลือกอำเภอ" :options="$vet_city" option-label="vet_city" option-value="vet_city" wire:model="selected_vet_city" /> 
         </div>
         @endif
@@ -254,16 +238,6 @@
         @if ($selected_vet_city!=null)
         <div class="mt-4">
 
-        <!-- x-select
-                label="ตำบล"
-                wire:model="selected_vet_area"
-                placeholder="เลือกตำบล"
-                :options="$vet_area"
-                option-label="vet_area"
-                option-value="vet_area"
-
-                clearable=false
-            /> -->
             <x-native-select label="ตำบล" placeholder="เลือกตำบล" :options="$vet_area" option-label="vet_area" option-value="vet_area" wire:model="selected_vet_area" />
         </div>
         @endif
