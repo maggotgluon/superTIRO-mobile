@@ -11,8 +11,8 @@
     </span>
     @endif
     
-    <div class="text-center absolute inset-0 z-50 {{$currentStep>=1? '' : 'hidden'}}" wire:loading>
-        <img class="my-4" src="{{url('/loading.gif')}}"/>
+    <div class="text-center absolute inset-0 z-50 {{$currentStep>1? '' : 'hidden'}}" wire:loading>
+        <img class="m-auto" src="{{url('/loading.gif')}}"/>
     </div>
     <div class="flex justify-around relative {{$currentStep>=2? '' : 'hidden'}}">
         <progress value={{$currentStep}} max="5" style="
