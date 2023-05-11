@@ -265,7 +265,10 @@ Route::get('/upvet',function(){
 
     fclose($csvFile);
 });
-Route::get('/view',function(){
-    Echo $_SERVER["HTTP_X_REQUESTED_WITH"]. '<br>';
-    Echo $_SERVER["HTTP_USER_AGENT"] ;
-});
+
+use App\Http\Livewire\Webview;
+Route::get('/view', Webview::class );
+// function(){
+//     Echo $_SERVER["HTTP_X_REQUESTED_WITH"]. '<br>';
+//     Echo $_SERVER["HTTP_USER_AGENT"] ;
+// });
