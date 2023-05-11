@@ -33,6 +33,7 @@ class DashboardV2 extends Component
             'updated_at'=>'',
             'name'=>'',
             'active_status'=>'',
+            'vet_id'=>'',
         ];
         // dd($this->order == $order);
         if($this->order == $order && $this->sort=='asc'){

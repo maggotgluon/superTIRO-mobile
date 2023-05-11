@@ -144,8 +144,8 @@
                         wire:click="order('name')" label="ชื่อลูกค้า" />
                     </th>
                     <th class="w-20 text-primary-lite">รับคำปรึกษาและเข้าร่วม โปรแกรม Super TRIO</th>
-                    <th class="w-20 text-primary-lite">รับสิทธิ์พิเศษเพิ่มเติม - เข้าร่วมโปรแกรม 1 เดือน</th>
-                    <th class="w-20 text-primary-lite">รับสิทธิ์พิเศษเพิ่มเติม - เข้าร่วมโปรแกรม 3 เดือน</th>
+                    <th class="w-20 text-primary-lite hidden sm:table-cell">รับสิทธิ์พิเศษเพิ่มเติม - เข้าร่วมโปรแกรม 1 เดือน</th>
+                    <th class="w-20 text-primary-lite hidden sm:table-cell">รับสิทธิ์พิเศษเพิ่มเติม - เข้าร่วมโปรแกรม 3 เดือน</th>
                     <th class="w-24 hidden sm:table-cell text-primary-lite">น้ำหนัก สุนัข</th>
                     <th class="w-24 hidden sm:table-cell">
                         <x-button flat white right-icon="{{$sort_icon['active_status']}}"
@@ -159,19 +159,24 @@
                 <tr class="border border-primary-blue">
                     <td class="border sm:border-primary-blue p-2 table w-full sm:w-auto sm:table-cell">{{$client->client_code}}</td>
                     <td class="border sm:border-primary-blue p-2 table w-full sm:w-auto sm:table-cell">{{Carbon\Carbon::parse($client->updated_at)->format('d/m/y')}}</td>
-                    <td class="border border-primary-blue p-2 sm:table-cell">{{$client->name}}</td>
+                    <td class="border border-primary-blue p-2 sm:table-cell">
+                        {{$client->name}}
+                    </td>
                     <td class="border sm:border-primary-blue p-2 table w-full sm:w-auto sm:table-cell text-center ">
                         @if($client->option_1)
+                            <span class="sm:hidden inline-block min-w-max mr-2">รับคำปรึกษาและเข้าร่วม โปรแกรม Super TRIO</span>
                             <x-badge.circle positive icon="check" class="w-5 h-5 m-auto" />
                         @endif
                     </td>
                     <td class="border sm:border-primary-blue p-2 table w-full sm:w-auto sm:table-cell text-center ">
                         @if($client->option_2 )
+                            <span class="sm:hidden inline-block min-w-max mr-2">รับสิทธิ์พิเศษเพิ่มเติม - เข้าร่วมโปรแกรม 1 เดือน</span>
                             <x-badge.circle positive icon="check" class="w-5 h-5 m-auto" />
                         @endif 
                     </td>
                     <td class="border sm:border-primary-blue p-2 table w-full sm:w-auto sm:table-cell text-center ">
                         @if($client->option_3 )
+                            <span class="sm:hidden inline-block min-w-max mr-2">รับสิทธิ์พิเศษเพิ่มเติม - เข้าร่วมโปรแกรม 3 เดือน</span>
                             <x-badge.circle positive icon="check" class="w-5 h-5 m-auto" />
                         @endif    
                         

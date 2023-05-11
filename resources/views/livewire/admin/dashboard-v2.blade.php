@@ -100,8 +100,9 @@
                         {{Carbon\Carbon::parse($client->updated_at)->format('d/m/y')}}
                     </td>
                     <td class="border border-primary-blue p-2  table sm:table-cell">
-                        {{$client->vet_id}} : 
+                        <a href="{{route('admin.vetSingle',[$client->vet_id])}}">
                         {{$client->vet->vet_name??$client->vet_id}}
+                        </a>
                     </td>
                     <td class="border border-primary-blue p-2  table sm:table-cell">
                         {{$client->name}}
