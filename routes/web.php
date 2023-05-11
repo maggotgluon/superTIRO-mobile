@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Livewire\VetDashboard;
 use App\Http\Livewire\Admin\DashboardV2;
+use App\Http\Livewire\Admin\Vet as vetSingle;
+use App\Http\Livewire\Admin\Vets as vetall;
 
 
 /*
@@ -80,26 +82,12 @@ Route::name('client.')->prefix('client')->group(function (){
     } )->name('ticket');
 });
 Route::name('admin.')->prefix('admin')->group(function (){
-    // Route::get('/', function () {
-    //     // dd('dashboard');
-    //     return view('admin.dashboard');
-    // } )->name('index');
 
     Route::get('/dashboard', DashboardV2::class )->name('dashboard');
-    // Route::get('/dashboard', function () {
-    //     // dd('dashboard');
-    //     return view('admin.dashboard');
-    // } )->name('dashboard');
     
-    Route::get('/vet', function () {
-        // dd('vets');
-        return view('admin.vets');
-    } )->name('vets');
+    Route::get('/vet', vetall::class)->name('vets');
 
-    Route::get('/vet/{vet_id}', function ($vet_id) {
-        // dd('vet single',$id);
-        return view('admin.vet_single',['vet_id'=>$vet_id]);
-    } )->name('vetSingle');
+    Route::get('/vet/{vet_id}', vetSingle::class)->name('vetSingle');
 
 });
 

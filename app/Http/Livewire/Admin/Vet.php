@@ -16,6 +16,7 @@ class Vet extends Component
     
     public $current_vet,$current_client,$current_client_info;
     public $vet_id='';
+    public $vet_list;
     public $sort_icon=[
         'client_code'=>'',
         'updated_at'=>'',
@@ -34,8 +35,15 @@ class Vet extends Component
     
     public function mount($vet_id){
         $this->stock_adj = 0;
-        $this->current_vet = ModelsVet::find($vet_id);
+        $vets = ModelsVet::all();
+        $this->current_vet = $vets->find($vet_id);
         $this->current_client = Client::where('vet_id',$this->vet_id)->get();
+
+        foreach ($vets as $index => $vet) {
+            $this->vet_list[$index]['id']=$vet->id;
+            $this->vet_list[$index]['name']=$vet->vet_name;
+            $this->vet_list[$index]['description']=$vet->vet_area.' '.$vet->vet_city.' '.$vet->vet_province;
+        }
     }
     public function order($order){
         $this->sort_icon=[
@@ -81,6 +89,6 @@ class Vet extends Component
             'clients'=> Client::where('vet_id',$this->vet_id)
                 ->orderBy($this->order,$this->sort)
                 ->paginate(10)
-        ]);
+        ])->extends('layouts.app');
     }
 }
