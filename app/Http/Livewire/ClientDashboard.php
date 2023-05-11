@@ -22,20 +22,20 @@ class ClientDashboard extends Component
 
     public $count=1 ;
 
-    public function increment(){
-        $this->count+=1;
-    }
-    public function decrement(){
-        $this->timeleft-=1;
-        $this->leftMin=floor($this->timeleft/60);
-        $this->leftSec=$this->timeleft - ($this->leftMin*60);
+    // public function increment(){
+    //     $this->count+=1;
+    // }
+    // public function decrement(){
+    //     $this->timeleft-=1;
+    //     $this->leftMin=floor($this->timeleft/60);
+    //     $this->leftSec=$this->timeleft - ($this->leftMin*60);
         
-        if($this->client->active_status==='activated'){
-            $this->go(6);
-        }else if($this->timeleft==0){
-            $this->go(5);
-        }
-    }
+    //     if($this->client->active_status==='activated'){
+    //         $this->go(6);
+    //     }else if($this->timeleft==0){
+    //         $this->go(5);
+    //     }
+    // }
     
     // public $firstname, $lastname, $phone,$email,$consent;
     // public $pet_name,$pet_breed,$pet_weight,$pet_age_month,$pet_age_year;
@@ -51,42 +51,43 @@ class ClientDashboard extends Component
     {
         $this->client = Client::where('phone',$this->phone)->first();
         $this->client_code = $this->client->client_code;
-        
-        switch ($this->client->active_status) {
-            case 'await':
-                $this->go(4);
-                break;
-            case 'expired':
-                $this->go(5);
-                break;
-            case 'activated':
-                $this->go(6);
-                break;            
-            default:
-                break;
+        if($this->client->active_status == 'activated'){
+            $this->go(6);
         }
+        // switch ($this->client->active_status) {
+        //     case 'await':
+        //         $this->go(4);
+        //         break;
+        //     case 'expired':
+        //         $this->go(5);
+        //         break;
+        //     case 'activated':
+        //         break;            
+        //     default:
+        //         break;
+        // }
         // dd($this->client);
-        if($this->client->active_date){
-            $this->countdown();
-        }
+        // if($this->client->active_date){
+        //     $this->countdown();
+        // }
     }
 
     public function render()
     {
 
-        switch ($this->client->active_status) {
-            case 'await':
-                $this->go(4);
-                break;
-            case 'expired':
-                $this->go(5);
-                break;
-            case 'activated':
-                $this->go(6);
-                break;            
-            default:
-                break;
-        }
+        // switch ($this->client->active_status) {
+        //     case 'await':
+        //         $this->go(4);
+        //         break;
+        //     case 'expired':
+        //         $this->go(5);
+        //         break;
+        //     case 'activated':
+        //         $this->go(6);
+        //         break;
+        //     default:
+        //         break;
+        // }
         return view('livewire.client-dashboard');
     }
     
@@ -130,28 +131,28 @@ class ClientDashboard extends Component
             // $info->client_id = 48;
 
 
-            $this->go($this->currentStep+1);
-            $this->countdown();
+            $this->go(6);
+            // $this->countdown();
         }else{
             $this->status=-1;
         }
     }
-    public function countdown(){
+    // public function countdown(){
         
-        $this->startTime = Carbon::create($this->client->active_date);
-        $this->endTime = Carbon::create($this->client->active_date)->addMinutes(15);
-        $this->timeleft=Carbon::now()->diffInSeconds($this->endTime);
+    //     $this->startTime = Carbon::create($this->client->active_date);
+    //     $this->endTime = Carbon::create($this->client->active_date)->addMinutes(15);
+    //     $this->timeleft=Carbon::now()->diffInSeconds($this->endTime);
         
-        if($this->endTime->isPast()){
-            $this->go(5);
-            $this->client->active_status = 'activated';
-            $this->client->save();
-        }else{
-            $this->leftMin=$this->timeleft/60;
-            $this->leftSec=$this->timeleft-($this->leftMin*60);
-            $this->go(4);
-        }
-    }
+    //     if($this->endTime->isPast()){
+    //         $this->go(5);
+    //         $this->client->active_status = 'activated';
+    //         $this->client->save();
+    //     }else{
+    //         $this->leftMin=$this->timeleft/60;
+    //         $this->leftSec=$this->timeleft-($this->leftMin*60);
+    //         $this->go(4);
+    //     }
+    // }
     /**
      * Write code on Method
      *
