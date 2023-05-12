@@ -113,12 +113,12 @@
             </span>
             @else
             <span class="p-2 block"><x-checkbox lg class="rounded-full" label="รับคำปรึกษาและเข้าร่วมโปรแกรม Super TRIO"
-                    id="standard"    value="standard" wire:model.lazy="offer" /></span>
+                    id="standard"    value="standard" wire:model.lazy="offer" />{{$client->option_1}}</span>
             @endif
             <span class="p-2 block"><x-checkbox lg class="rounded-full" label="รับสิทธิ์พิเศษเพิ่มเติม - เข้าโปรแกรม 1 เดือน"
-                    id="extra_1"    value="extra_1" wire:model.lazy="offer" /></span>
+                    id="extra_1"    value="extra_1" wire:model.lazy="offer" />{{$client->option_2}}</span>
             <span class="p-2 block"><x-checkbox lg class="rounded-full" label="รับสิทธิ์พิเศษเพิ่มเติม - เข้าโปรแกรม 3 เดือน"
-                    id="extra_2"    value="extra_2" wire:model.lazy="offer" /></span>
+                    id="extra_2"    value="extra_2" wire:model.lazy="offer" />{{$client->option_3}}</span>
         </div>
         <div class="py-2 text-center flex justify-center mt-auto" wire:loading.remove>
             <x-button lg right-icon="chevron-right" primary  class="bg-gradient-to-br from-gradient-start to-gradient-end rounded-2xl"
