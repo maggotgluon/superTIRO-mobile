@@ -27,11 +27,11 @@ class VetLogin extends Component
     ];
 
     public function mount(){
+        $this->vet_all = Vet::all();
     }
     public function render()
     {
         // $this->user_list = User::all();
-        $this->vet_all = Vet::all();
         // $this->adm=1;
     
         foreach ($this->vet_all as $index => $vet) {

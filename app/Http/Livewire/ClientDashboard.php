@@ -119,19 +119,21 @@ class ClientDashboard extends Component
             }
             //dd(array_search('standard',$this->offer),array_search('extra_1',$this->offer),array_search('extra_2',$this->offer));            
             //update record
-            $this->client->active_date = now();
-            $this->client->active_status = 'activated';
-            // $this->client->phoneIsVerified .= '-'.implode(",",$this->offer);
-            $this->client->save();
+            if($this->client->option_1 || $this->client->option_2 || $this->client->option_3){
+                $this->client->active_date = now();
+                $this->client->active_status = 'activated';
+                // $this->client->phoneIsVerified .= '-'.implode(",",$this->offer);
+                $this->client->save();
+                $this->go(6);
+            }
 
             // $info = new ClientInfo();
             // $info->client_id = 48;
 
 
-            $this->go(6);
             // $this->countdown();
         }else{
-            $this->status=-1;
+            $this->go(1);
         }
     }
     // public function countdown(){
