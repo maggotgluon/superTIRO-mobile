@@ -48,7 +48,7 @@ class VetDashboard extends Component
     }
     public function logout(){
         Auth::guard('web')->logout();
-        return redirect('/');
+        return redirect(route('admin'));
     }
     public function humanTime($date_time){
         // dd($date_time);

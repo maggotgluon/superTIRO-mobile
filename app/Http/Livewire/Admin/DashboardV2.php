@@ -67,6 +67,11 @@ class DashboardV2 extends Component
             $this->vet_list[$index]['description']=$vet->vet_area.' '.$vet->vet_city.' '.$vet->vet_province;
         }
     }
+
+    public function logout(){
+        auth()->guard('web')->logout();
+        return redirect('/admin');
+    }
     public function render()
     {
         
