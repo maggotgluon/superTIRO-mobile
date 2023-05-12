@@ -23,6 +23,9 @@ class Client extends Model
         'pet_weight',
         'pet_age_month',
         'pet_age_year',
+        'option_1',
+        'option_2',
+        'option_3',
 
         'vet_id'
     ];
