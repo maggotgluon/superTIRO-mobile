@@ -96,25 +96,24 @@ class ClientDashboard extends Component
         // dd($validatedData);
         // active_status
         
+        if(array_search('standard',$this->offer) ) {
+            $this->client->option_1=true;
+        }else{
+            $this->client->option_1=null;
+        }
+        if(array_search('extra_1',$this->offer) ) {
+            $this->client->option_2=true;
+        }else{
+            $this->client->option_2=null;
+        }
+        if(array_search('extra_2',$this->offer) ) {
+            $this->client->option_3=true;
+        }else{
+            $this->client->option_3=null;
+        }
 
         if($this->input_vet_id == $this->client->vet->stock_id){
 
-            if(array_search('standard',$this->offer) ) {
-                $this->client->option_1=true;
-            }else{
-                $this->client->option_1=false;
-            }
-            if(array_search('extra_1',$this->offer) ) {
-                $this->client->option_2=true;
-            }else{
-                $this->client->option_2=false;
-            }
-            if(array_search('extra_2',$this->offer) ) {
-                $this->client->option_3=true;
-            }else{
-                $this->client->option_3=false;
-            }
-            $this->client->save();
             //dd(array_search('standard',$this->offer),array_search('extra_1',$this->offer),array_search('extra_2',$this->offer));            
             //update record
 //             if($this->client->option_1 || $this->client->option_2 || $this->client->option_3){
