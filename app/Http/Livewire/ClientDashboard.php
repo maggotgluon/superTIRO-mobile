@@ -119,13 +119,13 @@ class ClientDashboard extends Component
             }
             //dd(array_search('standard',$this->offer),array_search('extra_1',$this->offer),array_search('extra_2',$this->offer));            
             //update record
-            if($this->client->option_1 || $this->client->option_2 || $this->client->option_3){
+//             if($this->client->option_1 || $this->client->option_2 || $this->client->option_3){
                 $this->client->active_date = now();
                 $this->client->active_status = 'activated';
-                // $this->client->phoneIsVerified .= '-'.implode(",",$this->offer);
+                $this->client->phoneIsVerified .= '-'.implode(",",$this->offer);
                 
                 
-           }
+//            }
             $this->client->save();
             $this->go(6);
 
