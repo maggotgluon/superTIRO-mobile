@@ -25,6 +25,7 @@ class ClientDashboard extends Component
     public $timeleft=0,$startTime,$endTime;
     public $leftMin,$leftSec;
     public $offer=[];
+    public $offer_1,$offer_2,$offer_3;
 
     public $count=1 ;
 
@@ -73,6 +74,10 @@ class ClientDashboard extends Component
         }
 
         $stock=stock::find($vets->first()->stock_id);
+// dd($this->client->option_1);
+        $this->offer_1=$this->client->option_1??false;
+        $this->offer_2=$this->client->option_2??false;
+        $this->offer_3=$this->client->option_3??false;
         // dd($all_opt1);
         // dd($stock->total_stock,$all_opt1,$all_client);
         $this->stockRemain=$stock->total_stock - $all_opt1;
@@ -84,50 +89,42 @@ class ClientDashboard extends Component
     public function render()
     {
         
-        if(array_search('standard',$this->offer) ) {
-            $this->client->option_1=true;
-        }else{
-            $this->client->option_1=null;
-        }
-        if(array_search('extra_1',$this->offer) ) {
-            $this->client->option_2=true;
-        }else{
-            $this->client->option_2=null;
-        }
-        if(array_search('extra_2',$this->offer) ) {
-            $this->client->option_3=true;
-        }else{
-            $this->client->option_3=null;
-        }
-        
         return view('livewire.client-dashboard');
     }
     
     public function verifyVet()
     {
         // dd($this->client->active_date);
+        
+        // $validatedData = $this->validate([
+        //     'offer' => ['required', 'array']
+        // ]);
 
-        $validatedData = $this->validate([
-            'offer' => ['required', 'array']
-        ]);
+        $this->client->option_1=$this->offer_1??'0';
+        $this->client->option_2=$this->offer_2??'0';
+        $this->client->option_3=$this->offer_3??'0';
+        $t=$this->client->save();
+        
+        
+        // dd($this->client);
         // dd($validatedData);
         // active_status
         
-        if(array_search('standard',$this->offer) ) {
-            $this->client->option_1=true;
-        }else{
-            $this->client->option_1=null;
-        }
-        if(array_search('extra_1',$this->offer) ) {
-            $this->client->option_2=true;
-        }else{
-            $this->client->option_2=null;
-        }
-        if(array_search('extra_2',$this->offer) ) {
-            $this->client->option_3=true;
-        }else{
-            $this->client->option_3=null;
-        }
+        // if(array_search('standard',$this->offer) ) {
+        //     $this->client->option_1=true;
+        // }else{
+        //     $this->client->option_1=null;
+        // }
+        // if(array_search('extra_1',$this->offer) ) {
+        //     $this->client->option_2=true;
+        // }else{
+        //     $this->client->option_2=null;
+        // }
+        // if(array_search('extra_2',$this->offer) ) {
+        //     $this->client->option_3=true;
+        // }else{
+        //     $this->client->option_3=null;
+        // }
 
         if($this->input_vet_id == $this->client->vet->stock_id){
 
