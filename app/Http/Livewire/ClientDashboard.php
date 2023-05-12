@@ -123,9 +123,11 @@ class ClientDashboard extends Component
                 $this->client->active_date = now();
                 $this->client->active_status = 'activated';
                 // $this->client->phoneIsVerified .= '-'.implode(",",$this->offer);
-                $this->client->save();
-                $this->go(6);
-            }
+                
+                
+           }
+            $this->client->save();
+            $this->go(6);
 
             // $info = new ClientInfo();
             // $info->client_id = 48;
