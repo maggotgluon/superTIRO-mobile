@@ -83,6 +83,23 @@ class ClientDashboard extends Component
 
     public function render()
     {
+        
+        if(array_search('standard',$this->offer) ) {
+            $this->client->option_1=true;
+        }else{
+            $this->client->option_1=null;
+        }
+        if(array_search('extra_1',$this->offer) ) {
+            $this->client->option_2=true;
+        }else{
+            $this->client->option_2=null;
+        }
+        if(array_search('extra_2',$this->offer) ) {
+            $this->client->option_3=true;
+        }else{
+            $this->client->option_3=null;
+        }
+        
         return view('livewire.client-dashboard');
     }
     
