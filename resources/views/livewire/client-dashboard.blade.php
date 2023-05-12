@@ -1,7 +1,7 @@
 <div class="text-content-dark relative min-h-[50vh]">
 
 <br>
-{{$vet}}
+<!-- {{$vet}} -->
         <!-- VET ID : $client->vet_id -->
 
     <div class="text-center absolute inset-0 z-50" wire:loading.delay.longer>

@@ -1,4 +1,8 @@
-<div>
+<div class="py-6 min-h-[50vh] relative">
+
+    <div class="text-center absolute inset-0 z-50" wire:loading.delay.longer>
+        <img class="m-auto" src="{{url('/loading.gif')}}"/>
+    </div>
     <nav class="flex justify-between">
         <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
 
