@@ -19,6 +19,7 @@ class Vet extends Model
         'user_id',
         'stock_id',
     ];
+    
     /**
      * Get the user associated with the user.
      */

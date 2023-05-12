@@ -8,6 +8,8 @@ use App\Models\stock;
 use Livewire\Component;
 use Livewire\WithPagination;
 
+use Illuminate\Database\Eloquent\Builder;
+
 class DashboardV2 extends Component
 {
     use WithPagination;
@@ -17,7 +19,7 @@ class DashboardV2 extends Component
     public $stock;
     public $vet_list;
 
-    public $search='',$order='id',$sort='asc';
+    public $search='',$order='updated_at',$sort='asc';
 
     public $sort_icon=[
         'id'=>'',
@@ -60,12 +62,6 @@ class DashboardV2 extends Component
         $this->vets = vet::with('client')->with('stock')->get();
         $this->stock = stock::with('vet')->get();
         // dd($clients[0]->vet->vet_name, $vets[0]->client);
-        // dd($this->clients[0]);
-        foreach ($this->vets as $index => $vet) {
-            $this->vet_list[$index]['id']=$vet->id;
-            $this->vet_list[$index]['name']=$vet->vet_name;
-            $this->vet_list[$index]['description']=$vet->vet_area.' '.$vet->vet_city.' '.$vet->vet_province;
-        }
     }
 
     public function logout(){
@@ -75,8 +71,13 @@ class DashboardV2 extends Component
     public function render()
     {
         
-        $client = Client::with('vet')->orderBy($this->order,$this->sort)->paginate(50);
-        foreach($client as $k=>$c){
+        $client = Client::with('vet')->withCount([
+            'vet as opt_1' =>function(){
+                1;
+            },
+        ])->orderBy($this->order,$this->sort)->paginate(50);
+        
+        foreach($client->get() as $k=>$c){
             $c->vet_name = $c->vet->vet_name;
             $c->vet_stock_id = $c->vet->stock_id;
             $c->vet_stock = $this->stock->find($c->vet->stock_id)->total_stock;
@@ -90,6 +91,7 @@ class DashboardV2 extends Component
             $c->vet_regis = $this->all_client->where('vet_id','like',$c->stock_id.'%')->count();
             
         }
+        // dd($client->paginate(50));
         return view('livewire.admin.dashboard-v2',[
             'clients'=>$client
         ])->extends('layouts.app');
