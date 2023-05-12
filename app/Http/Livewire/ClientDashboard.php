@@ -94,57 +94,30 @@ class ClientDashboard extends Component
     
     public function verifyVet()
     {
-        // dd($this->client->active_date);
-        
-        // $validatedData = $this->validate([
-        //     'offer' => ['required', 'array']
-        // ]);
+        if($this->offer_1||$this->offer_2||$this->offer_3){
+            $this->client->option_1=$this->offer_1??false;
+            $this->client->option_2=$this->offer_2??false;
+            $this->client->option_3=$this->offer_3??false;
+            $t=$this->client->save();
+        }else{
+            $this->status=-2;
+            return;
+        }
 
-        $this->client->option_1=$this->offer_1??'0';
-        $this->client->option_2=$this->offer_2??'0';
-        $this->client->option_3=$this->offer_3??'0';
-        $t=$this->client->save();
         
         
-        // dd($this->client);
-        // dd($validatedData);
-        // active_status
-        
-        // if(array_search('standard',$this->offer) ) {
-        //     $this->client->option_1=true;
-        // }else{
-        //     $this->client->option_1=null;
-        // }
-        // if(array_search('extra_1',$this->offer) ) {
-        //     $this->client->option_2=true;
-        // }else{
-        //     $this->client->option_2=null;
-        // }
-        // if(array_search('extra_2',$this->offer) ) {
-        //     $this->client->option_3=true;
-        // }else{
-        //     $this->client->option_3=null;
-        // }
 
         if($this->input_vet_id == $this->client->vet->stock_id){
-
-            //dd(array_search('standard',$this->offer),array_search('extra_1',$this->offer),array_search('extra_2',$this->offer));            
             //update record
-//             if($this->client->option_1 || $this->client->option_2 || $this->client->option_3){
-                $this->client->active_date = now();
-                $this->client->active_status = 'activated';
-                $this->client->phoneIsVerified .= '-'.implode(",",$this->offer);
+            dd('val');
+            $this->client->active_date = now();
+            $this->client->active_status = 'activated';
+            $this->client->phoneIsVerified .= '-'.implode(",",$this->offer);
                 
                 
-//            }
             $this->client->save();
             $this->go(6);
 
-            // $info = new ClientInfo();
-            // $info->client_id = 48;
-
-
-            // $this->countdown();
         }else{
             $this->status=-1;
 

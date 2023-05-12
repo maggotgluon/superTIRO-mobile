@@ -97,14 +97,20 @@
         <p class="text-center mb-8">
             (สอบถามที่พนักงานของคลินิก)
         </p>
-        {{$input_vet_id}}
-        <x-input wire:model="input_vet_id" label="รหัสคลินิก หรือ โรงพยาบาลสัตว์" placeholder="รหัสคลินิก หรือ โรงพยาบาลสัตว์"/>
+        
         @if ($status == -1)
             <div class="my-2">
                 <x-badge negative label="รหัสคลินิก หรือ โรงพยาบาลสัตว์ ไม่ถูกต้อง" />
             </div>
         @endif
+        <x-input wire:model="input_vet_id" label="รหัสคลินิก หรือ โรงพยาบาลสัตว์" placeholder="รหัสคลินิก หรือ โรงพยาบาลสัตว์"/>
         <div class="mt-2">
+
+        @if ($status == -2)
+            <div class="my-2">
+                <x-badge negative label="จำเป็นต้องเลือกอย่างน้อย 1 ตัวเลือก" />
+            </div>
+        @endif
             @if($stockRemain<=0)
             <span class="p-2 block pointer-events-none opacity-50">
                 <x-checkbox lg class="rounded-full" 
