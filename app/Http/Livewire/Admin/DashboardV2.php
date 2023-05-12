@@ -77,7 +77,7 @@ class DashboardV2 extends Component
             },
         ])->orderBy($this->order,$this->sort)->paginate(50);
         
-        foreach($client->get() as $k=>$c){
+        foreach($client as $k=>$c){
             $c->vet_name = $c->vet->vet_name;
             $c->vet_stock_id = $c->vet->stock_id;
             $c->vet_stock = $this->stock->find($c->vet->stock_id)->total_stock;
