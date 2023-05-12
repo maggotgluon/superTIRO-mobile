@@ -1,8 +1,10 @@
 <div class="text-content-dark relative min-h-[50vh]">
 
+<br>
+{{$vet}}
         <!-- VET ID : $client->vet_id -->
 
-    <div class="text-center absolute inset-0 z-50" wire:loading>
+    <div class="text-center absolute inset-0 z-50" wire:loading.delay.longer>
         <img class="m-auto" src="{{url('/loading.gif')}}"/>
     </div>
     <div class="row setup-content  min-h-[70vh] flex flex-col {{ $currentStep != 1 ? 'hidden' : '' }}" id="step-4">
@@ -104,11 +106,18 @@
             </div>
         @endif
         <div class="mt-2">
-            <span class="p-4"><x-checkbox lg class="rounded-full" label="รับคำปรึกษาและเข้าร่วมโปรแกรม Super TRIO"
+            @if($stockRemain<=0)
+            <span class="p-2 block pointer-events-none opacity-50">
+                <x-checkbox lg class="rounded-full" 
+                    label="รับคำปรึกษาและเข้าร่วมโปรแกรม Super TRIO" description="ไม่สามารถเลือกได้" />
+            </span>
+            @else
+            <span class="p-2 block"><x-checkbox lg class="rounded-full" label="รับคำปรึกษาและเข้าร่วมโปรแกรม Super TRIO"
                     id="standard"    value="standard" wire:model.lazy="offer" /></span>
-            <span class="p-4"><x-checkbox lg class="rounded-full" label="รับสิทธิ์พิเศษเพิ่มเติม - เข้าโปรแกรม 1 เดือน"
+            @endif
+            <span class="p-2 block"><x-checkbox lg class="rounded-full" label="รับสิทธิ์พิเศษเพิ่มเติม - เข้าโปรแกรม 1 เดือน"
                     id="extra_1"    value="extra_1" wire:model.lazy="offer" /></span>
-            <span class="p-4"><x-checkbox lg class="rounded-full" label="รับสิทธิ์พิเศษเพิ่มเติม - เข้าโปรแกรม 3 เดือน"
+            <span class="p-2 block"><x-checkbox lg class="rounded-full" label="รับสิทธิ์พิเศษเพิ่มเติม - เข้าโปรแกรม 3 เดือน"
                     id="extra_2"    value="extra_2" wire:model.lazy="offer" /></span>
         </div>
         <div class="py-2 text-center flex justify-center mt-auto" wire:loading.remove>
