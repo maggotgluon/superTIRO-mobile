@@ -133,7 +133,7 @@ class ClientDashboard extends Component
 
             // $this->countdown();
         }else{
-            $this->status=-1
+            $this->status=-1;
 
         }
     }
