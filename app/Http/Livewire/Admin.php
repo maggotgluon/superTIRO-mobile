@@ -17,8 +17,9 @@ class Admin extends Component
     // ];
 
     public function mount(){
-        $vet_all = Vet::all();
-        foreach ($vet_all as $index => $vet) {
+        // $vet_all = Vet::lazy();
+        // dd($vet_all);
+        foreach (Vet::lazy() as $index => $vet) {
             $this->vet_list[$index]['id']=$vet->id;
             $this->vet_list[$index]['name']=$vet->vet_name;
             $this->vet_list[$index]['description']=$vet->vet_area.' '.$vet->vet_city.' '.$vet->vet_province;
