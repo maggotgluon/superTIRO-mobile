@@ -41,18 +41,33 @@
             </iframe>
         </noscript>
         <!-- End Google Tag Manager (noscript) -->
-
-        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
-            <div>
-                <a href="/">
-                    <x-application-logo class="h-20 fill-current text-gray-500" />
-                </a>
+        @if(strpos($_SERVER['HTTP_USER_AGENT'], 'wv') !== false)
+            Please Use web browser to fully use app.
+        @elseif( strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false)
+            <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
+                <div>
+                    <a href="/">
+                        <x-application-logo class="h-20 fill-current text-gray-500" />
+                    </a>
+                </div>
+    
+                <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
+                    {{ $slot }}
+                </div>
             </div>
-
-            <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
-                {{ $slot }}
+        @else
+            <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-600">
+                <div>
+                    <a href="/">
+                        <x-application-logo class="h-20 fill-current text-gray-500" />
+                    </a>
+                </div>
+    
+                <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
+                    {{ $slot }}
+                </div>
             </div>
-        </div>
+        @endif
         @livewireScripts
     </body>
 </html>
