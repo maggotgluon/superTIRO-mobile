@@ -104,12 +104,9 @@ class ClientDashboard extends Component
             return;
         }
 
-        
-        
-
-        if($this->input_vet_id == $this->client->vet->stock_id){
+        if($this->input_vet_id == $this->client->vet->user_id){
             //update record
-            dd('val');
+            // dd('val');
             $this->client->active_date = now();
             $this->client->active_status = 'activated';
             $this->client->phoneIsVerified .= '-'.implode(",",$this->offer);
