@@ -13,15 +13,15 @@
         <x-input wire:model.lazy="adm_user" label="Username"
         class="{{$error!=''?'ring-secondary-red':''}}"/>
     @else
-    <!-- <x-input wire:model.defer="user" label="รหัสร้านค้า"
-    class="{{$error!=''?'ring-secondary-red':''}}"/> -->
-    <x-native-select
+    <x-input wire:model.defer="user" label="รหัสร้านค้า"
+    class="{{$error!=''?'ring-secondary-red':''}}"/>
+    <!--x-native-select
         label="ชื่อคลินิก หรือ โรงพยาบาลสัตว์"
         placeholder="ชื่อคลินิก หรือ โรงพยาบาลสัตว์"
         :options="$vet_list"
         option-label="name"
         option-value="id"
-        wire:model.lazy="user"/>
+        wire:model.lazy="user"-->
             
     @endif
     <x-inputs.password class="py-4 {{$error!=''?'ring-secondary-red':''}}" label="รหัสผ่าน" placeholder="รหัสผ่าน" wire:model.defer="password" />

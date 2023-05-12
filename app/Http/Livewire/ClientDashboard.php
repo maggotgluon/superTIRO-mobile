@@ -83,6 +83,23 @@ class ClientDashboard extends Component
 
     public function render()
     {
+        
+        if(array_search('standard',$this->offer) ) {
+            $this->client->option_1=true;
+        }else{
+            $this->client->option_1=null;
+        }
+        if(array_search('extra_1',$this->offer) ) {
+            $this->client->option_2=true;
+        }else{
+            $this->client->option_2=null;
+        }
+        if(array_search('extra_2',$this->offer) ) {
+            $this->client->option_3=true;
+        }else{
+            $this->client->option_3=null;
+        }
+        
         return view('livewire.client-dashboard');
     }
     
@@ -96,36 +113,35 @@ class ClientDashboard extends Component
         // dd($validatedData);
         // active_status
         
+        if(array_search('standard',$this->offer) ) {
+            $this->client->option_1=true;
+        }else{
+            $this->client->option_1=null;
+        }
+        if(array_search('extra_1',$this->offer) ) {
+            $this->client->option_2=true;
+        }else{
+            $this->client->option_2=null;
+        }
+        if(array_search('extra_2',$this->offer) ) {
+            $this->client->option_3=true;
+        }else{
+            $this->client->option_3=null;
+        }
 
         if($this->input_vet_id == $this->client->vet->stock_id){
 
-            if(array_search('standard',$this->offer) ) {
-
-                $this->client->option_1=true;
-                $this->client->save();
-                
-            }
-            if(array_search('extra_1',$this->offer) ) {
-
-                $this->client->option_2=true;
-                $this->client->save();
-                ;
-            }
-            if(array_search('extra_2',$this->offer) ) {
-
-                $this->client->option_3=true;
-                $this->client->save();
-                
-            }
             //dd(array_search('standard',$this->offer),array_search('extra_1',$this->offer),array_search('extra_2',$this->offer));            
             //update record
-            if($this->client->option_1 || $this->client->option_2 || $this->client->option_3){
+//             if($this->client->option_1 || $this->client->option_2 || $this->client->option_3){
                 $this->client->active_date = now();
                 $this->client->active_status = 'activated';
-                // $this->client->phoneIsVerified .= '-'.implode(",",$this->offer);
-                $this->client->save();
-                $this->go(6);
-            }
+                $this->client->phoneIsVerified .= '-'.implode(",",$this->offer);
+                
+                
+//            }
+            $this->client->save();
+            $this->go(6);
 
             // $info = new ClientInfo();
             // $info->client_id = 48;
@@ -133,7 +149,8 @@ class ClientDashboard extends Component
 
             // $this->countdown();
         }else{
-            $this->go(1);
+            $this->status=-1;
+
         }
     }
     // public function countdown(){
