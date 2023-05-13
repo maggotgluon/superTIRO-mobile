@@ -14,16 +14,16 @@
         <x-input wire:model.lazy="adm_user" label="Username"
         class="{{$error!=''?'ring-secondary-red':''}}"/>
     @else
-    <!-- x-input wire:model.defer="user" label="รหัสร้านค้า"
-    class="{{$error!=''?'ring-secondary-red':''}}" -->
-    <x-select
+    < x-input wire:model.defer="user" label="รหัสร้านค้า"
+    class="{{$error!=''?'ring-secondary-red':''}}" />
+    <!-- x-select
         label="ชื่อคลินิก หรือ โรงพยาบาลสัตว์"
         placeholder="ชื่อคลินิก หรือ โรงพยาบาลสัตว์"
         :async-data="route('vets')"
         option-label="name"
         option-value="id"
-        wire:model.lazy="user" />
-        <!-- :options="$vet_list" -->
+        wire:model.lazy="user" 
+         :options="$vet_list" -->
             
     @endif
     <x-inputs.password class="py-4 {{$error!=''?'ring-secondary-red':''}}" label="รหัสผ่าน" placeholder="รหัสผ่าน" wire:model.defer="password" />
