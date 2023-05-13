@@ -12,5 +12,6 @@ if(inapp.isInApp){
         window.location.replace('http://127.0.0.1:8000/view');
     }
 }else{
+    alert(inapp.browser);
     console.log(inapp.browser);
 }
