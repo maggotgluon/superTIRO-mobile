@@ -91,7 +91,7 @@
                 </div>
             </div>
         @else
-            <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-300">
+            <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
                 <div>
                     <a href="/">
                         <x-application-logo class="h-20 fill-current text-gray-500" />
