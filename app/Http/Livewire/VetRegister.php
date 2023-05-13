@@ -69,7 +69,7 @@ class VetRegister extends Component
             'vet_province' => $this->vet_province,
             'vet_city' => $this->vet_city,
             'vet_area' => $this->vet_area,
-            'user_id' => $user->id
+            'user_id' => $user->id,
             'user_id' => $user->id
         ]);
         dd($this->vet_id,$user,$Vet);
