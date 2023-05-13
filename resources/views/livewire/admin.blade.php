@@ -4,11 +4,11 @@
     <x-button flat label="dashboard" icon="template" href="{{route('admin.dashboard')}}" />
     <x-button flat label="Vet" icon="shopping-cart" href="{{route('admin.vets')}}" />
     
-    <x-select class="py-4 ml-auto" 
+    <!-- <x-select class="py-4 ml-auto" 
     placeholder="ค้นหาชื่อคลินิก" :options="$vet_list" option-label="name"
-    option-value="id" wire:model="VetSelect" />
+    option-value="id" wire:model="VetSelect" /> -->
     
-    <x-dropdown>
+    <x-dropdown class="ml-auto">
         <x-slot name="trigger">
             <x-button.circle icon="user" label="Options" primary />
         </x-slot>
