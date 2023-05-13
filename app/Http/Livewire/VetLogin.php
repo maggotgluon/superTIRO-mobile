@@ -11,6 +11,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class VetLogin extends Component
@@ -27,18 +28,18 @@ class VetLogin extends Component
     ];
 
     public function mount(){
-        $this->vet_all = Vet::all();
-    }
-    public function render()
-    {
-        // $this->user_list = User::all();
-        // $this->adm=1;
+        
+        $this->vet_all = DB::table('vets')->get();
     
         foreach ($this->vet_all as $index => $vet) {
+            // dd($vet->user_id);
             $this->vet_list[$index]['id']=$vet->user_id;
             $this->vet_list[$index]['name']=$vet->user_id.' '.$vet->vet_name;
             $this->vet_list[$index]['description']=$vet->vet_area.' '.$vet->vet_city.' '.$vet->vet_province;
         }
+    }
+    public function render()
+    {
         // dd($this->vet_list);
         return view('livewire.vet-login');
     }
@@ -77,7 +78,7 @@ class VetLogin extends Component
             // dd($user->vet->user_id,$username);
             return redirect(route('vet.ticket',$username));
         }else{
-            $this->reset();
+            // $this->reset();
             $this->error = 'error';
         }
         // dd( $this->user ,Auth::attempt(['id'=>$this->user,'password'=>$this->password] , $this->remember_me));
