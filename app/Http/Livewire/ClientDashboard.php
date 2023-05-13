@@ -98,7 +98,7 @@ class ClientDashboard extends Component
             $this->client->option_1=$this->offer_1??false;
             $this->client->option_2=$this->offer_2??false;
             $this->client->option_3=$this->offer_3??false;
-            $t=$this->client->save();
+            // $t=$this->client->save();
         }else{
             $this->status=-2;
             return;

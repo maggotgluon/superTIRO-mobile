@@ -36,14 +36,14 @@ class Vet extends Component
     public function mount($vet_id){
         $this->stock_adj = 0;
         $vets = ModelsVet::all();
-        $this->current_vet = $vets->find($vet_id);
+        $this->current_vet = ModelsVet::find($vet_id);
         $this->current_client = Client::where('vet_id',$this->vet_id)->get();
-
-        foreach ($vets as $index => $vet) {
-            $this->vet_list[$index]['id']=$vet->id;
-            $this->vet_list[$index]['name']=$vet->vet_name;
-            $this->vet_list[$index]['description']=$vet->vet_area.' '.$vet->vet_city.' '.$vet->vet_province;
-        }
+        // dd($this->current_vet,$vet_id);
+        // foreach ($vets as $index => $vet) {
+        //     $this->vet_list[$index]['id']=$vet->id;
+        //     $this->vet_list[$index]['name']=$vet->vet_name;
+        //     $this->vet_list[$index]['description']=$vet->vet_area.' '.$vet->vet_city.' '.$vet->vet_province;
+        // }
     }
     public function order($order){
         $this->sort_icon=[
