@@ -42,15 +42,14 @@
         </noscript>
         <!-- End Google Tag Manager (noscript) -->
         
-        @if(strpos($_SERVER['HTTP_USER_AGENT'], 'wv') !== false)
+        <!-- if(strpos($_SERVER['HTTP_USER_AGENT'], 'wv') !== false)
         <div class="min-h-screen flex flex-col sm:justify-center items-center gap-4">
             <x-icon name="question-mark-circle" class="w-32 h-32" />
             <x-badge primary label="Please Use web browser to fully use app." />
             <x-badge info label="ระบบไม่รองรับการเปิดผ่าน Web View กรุณาเปิดผ่าน Browser ของท่าน" />
             <x-button.circle positive href="{{url()->current()}}" icon="external-link" target="_blank"/>
-            <!-- dots-vertical -->
         </div>
-        @elseif( strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false)
+        elseif( strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) -->
             <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
                 <div>
                     <a href="/">
@@ -62,7 +61,7 @@
                     {{ $slot }}
                 </div>
             </div>
-        @else
+        <!-- else
             <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-300">
                 <div>
                     <a href="/">
@@ -74,7 +73,7 @@
                     {{ $slot }}
                 </div>
             </div>
-        @endif
+        endif -->
         @livewireScripts
     </body>
 </html>
