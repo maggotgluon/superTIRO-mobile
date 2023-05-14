@@ -87,7 +87,7 @@ class ClientRegister extends Component
         $validatedData = $this->validate([
             'firstname' => ['required', 'string', 'max:255'],
             'lastname' => ['required', 'string', 'max:255'],
-            'email' => ['email', 'max:255'],
+            // 'email' => ['email', 'max:255'],
             'phone' => ['required', 'numeric', 'unique:'.Client::class],
             'consent' => ['required','bool']
         ]);
