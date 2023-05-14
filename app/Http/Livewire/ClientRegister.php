@@ -59,14 +59,18 @@ class ClientRegister extends Component
         $this->vet=$this->vetall->where('vet_province',$selected_vet_province);
         $this->selected_vet_city=null;
         $this->selected_vet_area=null;
+        // $this->selected_vet_text=null;
     }
     public function updatedSelectedVetCity($selected_vet_city){
         $this->vet_area =$this->vetall->where('vet_city',$selected_vet_city)->unique('vet_area');
         $this->vet=$this->vetall->where('vet_city',$selected_vet_city);
         $this->selected_vet_area=null;
+        // $this->selected_vet_text=null;
     }
     public function updatedSelectedVetText($selected_vet_text){
-        $this->vet=$this->vetall->where('vet_name',"%{$selected_vet_text}%");
+        // if($this->selected_vet_text!=null){
+            $this->vet=$this->vetall->where('vet_name',"%{$selected_vet_text}%");
+        // }
     }
 
     public function render()
@@ -158,12 +162,11 @@ class ClientRegister extends Component
             'vet_id' => 'required'
         ]);
 
-        $client = Client::create([
-            'client_code'=>0,
-            'name'=>$this->firstname.' '.$this->lastname,
-            'email'=>$this->email??null,
+        $client = Client::updateOrCreate([
             'phone'=>$this->phone,
-            'email'=>$this->email,
+        ],[
+            'email'=>$this->email??null,
+            'name'=>$this->firstname.' '.$this->lastname,
             'phoneIsVerified'=>$this->code??"-",
             'pet_name'=>$this->pet_name,
             'pet_breed'=>$this->pet_breed,
@@ -171,7 +174,8 @@ class ClientRegister extends Component
             'pet_age_month'=>$this->pet_age_month,
             'pet_age_year'=>$this->pet_age_year,
             'vet_id'=>$this->vet_id,
-            'active_status'=>'pending'
+            'active_status'=>'pending',
+            'client_code'=>0,
         ]);
         $client->client_code = 'TRIO'.Str::padLeft($client->id, 5, '0');
         $client->save();
