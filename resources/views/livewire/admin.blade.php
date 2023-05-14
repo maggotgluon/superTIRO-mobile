@@ -7,7 +7,6 @@
     <x-select class="py-4 ml-auto" 
     placeholder="ค้นหาชื่อคลินิก" 
     min-items-for-search=1
-    always-fetch=true
     :async-data="route('vets')" option-label="name"
     option-value="id" wire:model="VetSelect" 
         />
