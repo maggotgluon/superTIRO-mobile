@@ -10,6 +10,7 @@ use App\Models\VetInfo;
 use Livewire\Component;
 use Livewire\WithPagination;
 
+use Illuminate\Database\Eloquent\Builder;
 class Vet extends Component
 {
     use WithPagination;
@@ -24,6 +25,7 @@ class Vet extends Component
         'active_status'=>''
     ];
     public $stock_adj;
+    public $data=[];
 
     public $search='',$order='client_code',$sort='asc';
     
@@ -36,7 +38,49 @@ class Vet extends Component
     public function mount($vet_id){
         $this->stock_adj = 0;
         $vets = ModelsVet::all();
-        $this->current_vet = ModelsVet::find($vet_id);
+        $this->current_vet = $vets->find($vet_id);
+        $stock = stock::find($this->current_vet->stock_id);
+
+
+        $vets = ModelsVet::withCount([
+            'client as client_all',
+            'client as opt_1_act' =>function(Builder $query){
+                $query->where('option_1', 1)->where('active_status','activated');
+            },
+            'client as opt_1' =>function(Builder $query){
+                $query->where('option_1', 1);
+            },
+            'client as opt_2' =>function(Builder $query){
+                $query->where('option_2', 1);
+            },
+            'client as opt_3' =>function(Builder $query){
+                $query->where('option_3', 1);
+            },
+            'client as c_activated' =>function(Builder $query){
+                $query->where('active_status','activated');
+            }
+        ])->where('stock_id', $this->current_vet->stock_id)->get();
+        // dd($vets);
+        $all_opt1=0;
+        $all_opt2=0;
+        $all_opt3=0;
+        $all_client=0;
+        $all_activated=0;
+        foreach ($vets as $key => $v) {
+            $all_opt1 += $v->opt_1;
+            $all_opt2 += $v->opt_2;
+            $all_opt3 += $v->opt_3;
+            $all_client += $v->client_all;
+            $all_activated += $v->c_activated;
+        }
+        $this->data['all_client']=$all_client;
+        $this->data['all_activated']=$all_activated;
+        $this->data['all_opt1']=$all_opt1;
+        $this->data['all_opt2']=$all_opt2;
+        $this->data['all_opt3']=$all_opt3;
+        // dd($all_client,$all_activated,$all_opt1,$this->data);
+
+
         $this->current_client = Client::where('vet_id',$this->vet_id)->get();
         // dd($this->current_vet,$vet_id);
         // foreach ($vets as $index => $vet) {
@@ -83,12 +127,13 @@ class Vet extends Component
 
     public function render()
     {
-        
-        // dd(Client::where('vet_id',$this->vet_id)->paginate(10));
+        $c=Client::where('vet_id',$this->vet_id)
+            ->orderBy($this->order,$this->sort)
+            ->paginate(10);
+        // dd(Client::where('vet_id',$this->current_vet->user_id)->get());
+
         return view('livewire.admin.vet',[
-            'clients'=> Client::where('vet_id',$this->vet_id)
-                ->orderBy($this->order,$this->sort)
-                ->paginate(10)
+            'clients'=> $c
         ])->extends('layouts.app');
     }
 }

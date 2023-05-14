@@ -79,7 +79,13 @@ class ClientRegister extends Component
     }
 
 
-
+    private $rule=[
+        'firstname' => ['required', 'string', 'max:255'],
+        'lastname' => ['required', 'string', 'max:255'],
+        // 'email' => ['email', 'max:255'],
+        'phone' => ['required', 'numeric','digits:10','min:10','regex:/^([0-9\s\(\)]*)$/', 'unique:'.Client::class],
+        'consent' => ['required','bool']
+    ];
     /**
      * Write code on Method
      *
@@ -92,7 +98,7 @@ class ClientRegister extends Component
             'firstname' => ['required', 'string', 'max:255'],
             'lastname' => ['required', 'string', 'max:255'],
             // 'email' => ['email', 'max:255'],
-            'phone' => ['required', 'numeric', 'unique:'.Client::class],
+            'phone' => ['required', 'numeric','digits:10','min:10','regex:/^([0-9\s\(\)]*)$/', 'unique:'.Client::class],
             'consent' => ['required','bool']
         ]);
 

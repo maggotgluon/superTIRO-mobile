@@ -67,23 +67,30 @@ class Vets extends Component
             $v->stocks = $v->stock->total_stock;
             $v->stocks_adj = $v->stock->stock_adj;
             $v->total_client = $v->client->count();
-
-            $vet = $this->all_vets;
+            
+            $vet = $this->all_vets->where('stock_id',$v->stock_id);
             $v->total_client_activated = 0;
             $v->total_client_pending = 0;
             $v->total_client_await = 0;
             $v->vet_total = 0;
-            foreach ($vet as $key => $value) {
-                // dd($value);
-                $v->total_client_activated+=$value->client->where('active_status','activated')->count();
-                $v->total_client_pending+=$value->client->where('active_status','pending')->count();
-                $v->total_client_await+=$value->client->where('active_status','await')->count();
-                $v->vet_total+=$value->client->count();
+            foreach ($vet as $key => $vs) {
+                // dd($vet);
+                // foreach ($variable as $key => $value) {
+                //     # code...
+                // }
+
+                
+                $v->total_client_opt1+=$vs->client->where('active_status','activated')->where('option_1',1)->count();
+
+                $v->total_client_activated+=$vs->client->where('active_status','activated')->count();
+                $v->total_client_pending+=$vs->client->where('active_status','pending')->count();
+                $v->total_client_await+=$vs->client->where('active_status','await')->count();
+                $v->vet_total+=$vs->client->count();
             }
 
-            $v->total_client_activated = $v->client->where('active_status','activated')->count();
-            $v->total_client_pending = $v->client->where('active_status','pending')->count();
-            $v->total_client_pending = $v->client->where('active_status','await')->count();
+            // $v->total_client_activated = $v->client->where('active_status','activated')->count();
+            // $v->total_client_pending = $v->client->where('active_status','pending')->count();
+            // $v->total_client_pending = $v->client->where('active_status','await')->count();
         }
         // dd($vets);
 

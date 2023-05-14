@@ -71,11 +71,7 @@ class DashboardV2 extends Component
     public function render()
     {
         
-        $client = Client::with('vet')->withCount([
-            'vet as opt_1' =>function(){
-                1;
-            },
-        ])->orderBy($this->order,$this->sort)->paginate(50);
+        $client = Client::with(['vet'])->orderBy($this->order,$this->sort)->paginate(50);
         
         foreach($client as $k=>$c){
             // dd($c->vet->vet_name);
@@ -86,7 +82,7 @@ class DashboardV2 extends Component
             $c->vet_total_activated = 0;
             $c->vet_total = 0;
             foreach ($vet as $key => $value) {
-                $c->vet_total_activated+=$value->client->where('active_status','activated')->count();
+                $c->vet_total_activated+=$value->client->where('active_status','activated')->where('option_1','1')->count();
                 $c->vet_total+=$value->client->count();
             }
             $c->vet_regis = $this->all_client->where('vet_id','like',$c->stock_id.'%')->count();

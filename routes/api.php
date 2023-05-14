@@ -21,7 +21,7 @@ Route::get('/vets',function(){
 
     foreach (DB::table('vets')->get() as $index => $vet) {
         $vet_list[$index]['id']=$vet->id;
-        $vet_list[$index]['name']=$vet->user_id.' '.$vet->vet_name;
+        $vet_list[$index]['name']=$vet->vet_name;
         $vet_list[$index]['description']=$vet->vet_area.' '.$vet->vet_city.' '.$vet->vet_province;
     }
     return $vet_list;

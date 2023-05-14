@@ -20,38 +20,38 @@
                 <div class=" rounded-2xl bg-primary-blue text-primary-lite/70 p-4 shadow-lg ">
                     Total :
                     <span class="text-2xl font-bold block">
-                        {{$current_client->count()}}
+                        {{$data['all_client']}}
                     </span>
                 </div>
                 <div class=" rounded-2xl text-black/70 p-4 shadow-lg ">
                     Complete :
                     <span class="text-2xl font-bold block">
-                        {{$current_client->where('active_status','activated')->count()}}
+                        {{$data['all_activated']}}
                     </span>
                 </div>
                 <div class=" rounded-2xl text-black/70 p-4 shadow-lg ">
                     Waiting :
                     <span class="text-2xl font-bold block">
-                        {{$current_client->where('active_status','pending')->count()+$current_client->where('active_status','await')->count()}}
+                    {{$data['all_client']-$data['all_activated']}}
                     </span>
                 </div>
             </div>
                 <p class="mt-4">
                     รับคำปรึกษาและเข้าร่วมโปรแกรม Super TRIO 
                     <span class="font-bold text-xl text-black/70">
-                        {{$current_client->where('option_1',1)->count()}}
+                        {{$data['all_opt1']}}
                     </span>
                 </p>
                 <p class="mt-2">
                     รับสิทธิ์พิเศษเพิ่มเติม - เข้าโปรแกรม 1 เดือน 
                     <span class="font-bold text-xl text-black/70">
-                        {{$current_client->where('option_2',1)->count()}}
+                    {{$data['all_opt2']}}
                     </span>
                 </p>
                 <p class="mt-2">
                     รับสิทธิ์พิเศษเพิ่มเติม - เข้าโปรแกรม 3 เดือน 
                     <span class="font-bold text-xl text-black/70">
-                        {{$current_client->where('option_3',1)->count()}}
+                    {{$data['all_opt3']}}
                     </span>
                 </p>
         </div>
@@ -74,14 +74,14 @@
                 <div class=" rounded-2xl text-black/70 p-4 shadow-lg ">
                     สินค้าคงเหลือ :
                     <span class="text-2xl font-bold block">
-                        {{$current_vet->stock->total_stock - $current_client->where('active_status','activated')->count()}}
+                        {{$current_vet->stock->total_stock - $data['all_opt1']}}
                     </span>
                 </div>
                 <div class=" rounded-2xl bg-red-300 text-black/70 p-4 shadow-lg ">
                     สินค้าขาด :
                     <span class="text-2xl font-bold block">
-                        @if($current_vet->stock->total_stock - $current_client->count() < 0)
-                            {{$current_vet->stock->total_stock - $current_client->count()}}
+                        @if($current_vet->stock->total_stock - $data['all_opt1'] < 0)
+                            {{$current_vet->stock->total_stock - $data['all_opt1']}}
                         @else
                             -
                         @endif
