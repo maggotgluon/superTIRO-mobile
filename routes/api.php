@@ -17,12 +17,20 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::get('/vets',function(){
+Route::get('/vets',function(Request $request){
+    
+    return DB::table('vets')->select('id','vet_name','vet_province')
+        ->orderBy('vet_name')
+        ->when(
+            $request->search,
+            fn (Builder $query) => $query
+                ->where('vet_name', 'like', "%{$request->search}%")
+        )->get();
 
-    foreach (DB::table('vets')->get() as $index => $vet) {
-        $vet_list[$index]['id']=$vet->id;
-        $vet_list[$index]['name']=$vet->vet_name;
-        $vet_list[$index]['description']=$vet->vet_area.' '.$vet->vet_city.' '.$vet->vet_province;
-    }
-    return $vet_list;
+    // foreach (DB::table('vets')->get() as $index => $vet) {
+    //     $vet_list[$index]['id']=$vet->id;
+    //     $vet_list[$index]['name']=$vet->vet_name;
+    //     $vet_list[$index]['description']=$vet->vet_area.' '.$vet->vet_city.' '.$vet->vet_province;
+    // }
+    // return $vet_list;
 })->name('vets');

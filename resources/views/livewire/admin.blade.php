@@ -7,8 +7,8 @@
     <x-select class="py-4 ml-auto" 
     placeholder="ค้นหาชื่อคลินิก" 
     min-items-for-search=1
-    :async-data="route('vets')" option-label="name"
-    option-value="id" wire:model="VetSelect" 
+    :async-data="route('vets')" option-label="vet_name"
+    option-value="id" wire:model.defer="VetSelect" 
         />
     
     <x-dropdown class="ml-auto">
