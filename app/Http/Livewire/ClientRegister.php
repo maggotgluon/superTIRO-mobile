@@ -34,9 +34,7 @@ class ClientRegister extends Component
 
 
     protected $messages = [
-        'email.required' => 'จำเป็นต้องระบุ อีเมลล์',
         'email.email' => 'กรุณากรอก อีเมล์ ที่ถูกต้อง',
-        'email.unique' => 'อีเมล์ นี้ลงทะเบียนรับสิทธิ์แล้ว',
         'phone.required' => 'จำเป็นต้องระบุ หมายเลขโทรศัพท์',
         'phone.unique' => 'หมายเลขโทรศัพท์ นี้ลงทะเบียนรับสิทธิ์แล้ว',
     ];
@@ -89,6 +87,7 @@ class ClientRegister extends Component
         $validatedData = $this->validate([
             'firstname' => ['required', 'string', 'max:255'],
             'lastname' => ['required', 'string', 'max:255'],
+            'email' => ['email', 'max:255'],
             'phone' => ['required', 'numeric', 'unique:'.Client::class],
             'consent' => ['required','bool']
         ]);
@@ -200,13 +199,13 @@ class ClientRegister extends Component
         //     'vet_name' => 'vet_id',
         //     'name' => 'firstname'.' '.'lastname',
         // ];
-        if($this->email){
-            SendEmail::dispatch($details);
-        }
-
-        $body_sms = 'ยืนยันลงทะเบียนสำเร็จ ใช้สิทธิ์คลิก http://supertrio.app.mag.codes/client/login';
-
+        
         try {
+            if($this->email){
+                SendEmail::dispatch($details);
+            }
+    
+            $body_sms = 'ยืนยันลงทะเบียนสำเร็จ ใช้สิทธิ์คลิก http://supertrio.app.mag.codes/client/login';
             $client = new \GuzzleHttp\Client();
 
             $response = $client->request('POST', 'https://api-v2.thaibulksms.com/sms', [
@@ -241,7 +240,7 @@ class ClientRegister extends Component
             // ->with('success','Sms has been successfully sent.');
  
         } catch (\Exception $e) {
-            dd($e->getMessage());
+            // dd($e->getMessage());
             return back()
             ->with('error', $e->getMessage());
         }
@@ -339,6 +338,7 @@ class ClientRegister extends Component
         
         $client = new smsClient;
 
+        try {
         $response = $client->request('POST', 'https://otp.thaibulksms.com/v2/otp/request', [
             'form_params' => [
               'key' => getenv('BULKSMS_KEY'),
@@ -354,6 +354,10 @@ class ClientRegister extends Component
         $this->token = json_decode($response->getBody()->getContents())->token;
         // $this->refno = json_decode($response->getBody()->getContents())->refno;
         // dd($response,$response->getBody(),$this->token );
+        } catch (\Exception $e) {
+            $this->error = $e->getMessage();
+            return false;
+        }
           
     }
     public function verifyCodeTH(){
