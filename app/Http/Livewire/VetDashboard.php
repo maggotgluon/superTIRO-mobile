@@ -11,11 +11,16 @@ use Livewire\Component;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 
+use Illuminate\Database\Eloquent\Builder;
+
 class VetDashboard extends Component
 {
     public User $user;
     public $vet;
     public $clients,$clients_info;
+
+    public $opt_1,$opt_2,$opt_3;
+    public $opt_all,$opt_activated;
     
     public function mount($id=null){
         $this->user = Auth::user();
@@ -25,6 +30,37 @@ class VetDashboard extends Component
         $this->vet = Vet::where('user_id',$id)->first();
         // dd($id,$this->vet,$this->user);
         $this->clients = $this->vet->client;
+        $all_vet = Vet::withCount([
+            'client as client_all',
+            'client as opt_1_act' =>function(Builder $query){
+                $query->where('option_1', 1)->where('active_status','activated');
+            },
+            'client as opt_1' =>function(Builder $query){
+                $query->where('option_1', 1);
+            },
+            'client as opt_2' =>function(Builder $query){
+                $query->where('option_2', 1);
+            },
+            'client as opt_3' =>function(Builder $query){
+                $query->where('option_3', 1);
+            },
+            'client as c_activated' =>function(Builder $query){
+                $query->where('active_status','activated');
+            }])->where('stock_id',$this->vet->stock_id) ->get();
+        $this->opt_1=0;
+        $this->opt_2=0;
+        $this->opt_3=0;
+        $this->opt_all=0;
+        $this->opt_activated=0;
+        foreach ($all_vet as $the_vet) {
+            $this->opt_all+=$the_vet->client_all;
+            $this->opt_activated+=$the_vet->c_activated;
+
+            $this->opt_1+=$the_vet->opt_1;
+            $this->opt_2+=$the_vet->opt_2;
+            $this->opt_3+=$the_vet->opt_3;
+        }
+        // dd($this->opt_1);
         // dd($this->vet,$this->clients);
         $this->clients_info = collect();
         // if($this->clients){

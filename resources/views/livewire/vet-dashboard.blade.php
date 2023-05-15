@@ -22,34 +22,34 @@
             <div class="flex gap-2">
                 <div class=" rounded-2xl bg-primary-blue text-primary-lite/70 p-4 shadow-lg ">
                     Total :
-                    <span class="text-2xl font-bold block">{{$clients->count()}}</span>
+                    <span class="text-2xl font-bold block">{{$opt_all}}</span>
                 </div>
                 <div class=" rounded-2xl text-black/70 p-4 shadow-lg ">
                     Complete :
-                    <span class="text-2xl font-bold block">{{$clients->where('active_status','activated')->count()}}</span>
+                    <span class="text-2xl font-bold block">{{$opt_activated}}</span>
                 </div>
                 <div class=" rounded-2xl text-black/70 p-4 shadow-lg ">
                     Waiting :
-                    <span class="text-2xl font-bold block">{{$clients->where('active_status','<>','activated')->count()}}</span>
+                    <span class="text-2xl font-bold block">{{$opt_all - $opt_activated}}</span>
                 </div>
             </div>
             <div>
                 <p class="mt-4">
                     รับคำปรึกษาและเข้าร่วมโปรแกรม Super TRIO 
                     <span class="font-bold text-xl text-black/70">
-                        {{$clients->where('option_1',1)->count()}}
+                        {{$opt_1}}
                     </span>
                 </p>
                 <p class="mt-2">
                     รับสิทธิ์พิเศษเพิ่มเติม - เข้าโปรแกรม 1 เดือน 
                     <span class="font-bold text-xl text-black/70">
-                    {{$clients->where('option_2',1)->count()}}
+                    {{$opt_2}}
                     </span>
                 </p>
                 <p class="mt-2">
                     รับสิทธิ์พิเศษเพิ่มเติม - เข้าโปรแกรม 3 เดือน 
                     <span class="font-bold text-xl text-black/70">
-                    {{$clients->where('option_3',1)->count()}}
+                    {{$opt_3}}
                     </span>
                 </p>
             </div>
@@ -70,14 +70,14 @@
             <div class="rounded-2xl text-black/70 p-4 shadow-lg ">
                 สินค้าคงเหลือ :
                 <span class="text-2xl font-bold block">
-                    {{$vet->stock->total_stock - $clients->where('active_status','activated')->count()}}
+                    {{$vet->stock->total_stock - $opt_1}}
                 </span>
             </div>
             <div class="rounded-2xl bg-red-300 text-black/70 p-4 shadow-lg ">
                 สินค้าขาด :
                 <span class="text-2xl font-bold block">
-                    @if($vet->stock->total_stock - $clients->count() <=0 )
-                        {{$vet->stock->total_stock - $clients->count()}}
+                    @if($vet->stock->total_stock - $opt_1 <=0 )
+                        {{$vet->stock->total_stock - $opt_1}}
                     @else
                         -
                     @endif
