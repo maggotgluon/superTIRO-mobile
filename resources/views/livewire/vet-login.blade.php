@@ -14,7 +14,7 @@
         <x-input wire:model.lazy="adm_user" label="Username"
         class="{{$error!=''?'ring-secondary-red':''}}"/>
     @else
-    < x-input wire:model.defer="user" label="รหัสร้านค้า"
+    <x-input wire:model.defer="user" label="รหัสร้านค้า"
     class="{{$error!=''?'ring-secondary-red':''}}" />
     <!-- x-select
         label="ชื่อคลินิก หรือ โรงพยาบาลสัตว์"

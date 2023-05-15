@@ -19,7 +19,7 @@ class DashboardV2 extends Component
     public $stock;
     public $vet_list;
 
-    public $search='',$order='updated_at',$sort='asc';
+    public $search='',$order='updated_at',$sort='desc';
 
     public $sort_icon=[
         'id'=>'',

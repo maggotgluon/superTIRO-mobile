@@ -101,7 +101,7 @@
                         <!-- สิทธิ์ลงเหลือ -->
                         <!-- total stock - total activate -->
                         <span class="sm:hidden inline-block min-w-max mr-2">สิทธิ์ลงเหลือ</span>
-                        {{  $client->vet_stock-$client->vet_total_activated}}
+                        {{  $client->vet_stock - $client->vet_total_activated}}
                     </td>
                     <td class="border border-primary-blue p-2  table sm:table-cell">
                         <!-- สิทธิ์ที่รับแล้ว	 -->
@@ -113,8 +113,8 @@
                     </td>
                     <td class="border border-primary-blue p-2  table sm:table-cell">
                         <span class="sm:hidden inline-block min-w-max mr-2">สินค้าขาด</span>
-                        @if ($client->vet_stock - $client->vet_total < 0 )
-                            <span class="text-red-400"> {{ $client->vet_stock - $client->vet_total }} </span>
+                        @if ($client->vet_stock - $client->vet_total - ($client->vet_stock - $client->vet_total_activated) < 0 )
+                            <span class="text-red-400"> {{ $client->vet_stock - $client->vet_total - ($client->vet_stock - $client->vet_total_activated) }} </span>
                         @else
                             0
                         @endif

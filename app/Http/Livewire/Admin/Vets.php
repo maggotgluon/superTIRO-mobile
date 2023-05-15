@@ -17,7 +17,7 @@ class Vets extends Component
     public $vet_list;
     public $all_vets;
     
-    public $search='',$order='id',$sort='asc';
+    public $search='',$order='id',$sort='desc';
 
     public $sort_icon=[
         'id'=>'',

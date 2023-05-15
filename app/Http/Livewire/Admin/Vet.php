@@ -27,7 +27,7 @@ class Vet extends Component
     public $stock_adj;
     public $data=[];
 
-    public $search='',$order='client_code',$sort='asc';
+    public $search='',$order='client_code',$sort='desc';
     
     protected $queryString = [
         'search'=> ['except' => ''],
@@ -78,6 +78,7 @@ class Vet extends Component
         $this->data['all_opt1']=$all_opt1;
         $this->data['all_opt2']=$all_opt2;
         $this->data['all_opt3']=$all_opt3;
+        $this->data['all_pending']=$all_client-$all_activated;
         // dd($all_client,$all_activated,$all_opt1,$this->data);
 
 

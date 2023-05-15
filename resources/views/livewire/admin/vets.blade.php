@@ -70,8 +70,8 @@
                     </td>
                     <td class="border sm:border-primary-blue sm:text-right p-2 table w-full sm:w-auto sm:table-cell">
                         <span class="sm:hidden inline-block min-w-max mr-2">สิทธิ์ที่ขาด</span>
-                        @if($vet->stocks - $vet->total_client < 0)
-                            {{$vet->stocks - $vet->total_client}}
+                        @if($vet->stocks - $vet->total_client - $vet->total_client_pending - $vet->total_client_await < 0)
+                            {{$vet->stocks - $vet->total_client - $vet->total_client_pending - $vet->total_client_await }}
                         @else
                             0
                         @endif
