@@ -80,8 +80,8 @@
                 <div class=" rounded-2xl bg-red-300 text-black/70 p-4 shadow-lg ">
                     สินค้าขาด :
                     <span class="text-2xl font-bold block">
-                        @if($current_vet->stock->total_stock - $data['all_opt1'] < 0)
-                            {{$current_vet->stock->total_stock - $data['all_opt1']}}
+                        @if($current_vet->stock->total_stock - $data['client_all'] < 0)
+                            {{$current_vet->stock->total_stock - $data['client_all']}}
                         @else
                             -
                         @endif

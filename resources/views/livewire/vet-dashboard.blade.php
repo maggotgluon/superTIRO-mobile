@@ -76,8 +76,8 @@
             <div class="rounded-2xl bg-red-300 text-black/70 p-4 shadow-lg ">
                 สินค้าขาด :
                 <span class="text-2xl font-bold block">
-                    @if($vet->stock->total_stock - $opt_1 <=0 )
-                        {{$vet->stock->total_stock - $opt_1}}
+                    @if($vet->stock->total_stock - $client_all < 0 )
+                        {{$vet->stock->total_stock - $client_all}}
                     @else
                         -
                     @endif
