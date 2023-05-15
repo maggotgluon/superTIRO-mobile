@@ -85,6 +85,7 @@ class DashboardV2 extends Component
                 $c->vet_total_activated+=$value->client->where('active_status','activated')->where('option_1','1')->count();
                 $c->vet_total+=$value->client->count();
             }
+            $c->pending = $c->vet_total-$c->vet_total_activated;
             $c->vet_regis = $this->all_client->where('vet_id','like',$c->stock_id.'%')->count();
             
         }

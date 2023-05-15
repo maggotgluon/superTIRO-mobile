@@ -113,8 +113,8 @@
                     </td>
                     <td class="border border-primary-blue p-2  table sm:table-cell">
                         <span class="sm:hidden inline-block min-w-max mr-2">สินค้าขาด</span>
-                        @if ($client->vet_stock - $client->vet_total - ($client->vet_stock - $client->vet_total_activated) < 0 )
-                            <span class="text-red-400"> {{ $client->vet_stock - $client->vet_total - ($client->vet_stock - $client->vet_total_activated) }} </span>
+                        @if ($client->vet_stock - $client->vet_total - $client->pending < 0 )
+                            <span class="text-red-400"> {{ $client->vet_stock - $client->vet_total - $client->pending }} </span>
                         @else
                             0
                         @endif

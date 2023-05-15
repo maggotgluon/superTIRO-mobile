@@ -74,11 +74,6 @@ class Vets extends Component
             $v->total_client_await = 0;
             $v->vet_total = 0;
             foreach ($vet as $key => $vs) {
-                // dd($vet);
-                // foreach ($variable as $key => $value) {
-                //     # code...
-                // }
-
                 
                 $v->total_client_opt1+=$vs->client->where('active_status','activated')->where('option_1',1)->count();
 
