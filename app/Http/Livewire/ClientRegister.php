@@ -265,7 +265,7 @@ class ClientRegister extends Component
     {
         redirect( route('client.ticket',['phone'=>$this->phone]) );
 
-        $this->currentStep = 1;
+        // $this->currentStep = 1;
     }
 
     /**

@@ -48,7 +48,6 @@
             <x-input wire:model.defer="firstname" label="ชื่อ" placeholder="ชื่อ" required />
             <x-input wire:model.defer="lastname" label="นามสกุล" placeholder="นามสกุล" required />
             <x-input wire:model.defer="phone" 
-            maxlength="10" minlength="10"
             label="หมายเลขโทรศัพท์" placeholder="หมายเลขโทรศัพท์" pattern="[0-9]*" inputmode="tel" required/>
             <!-- <x-button wire:click="sendCode" type="button" label="Send Code" /> -->
             <x-input wire:model.defer="email" label="อีเมล์" placeholder="อีเมล์" type="email" />
