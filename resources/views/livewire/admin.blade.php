@@ -4,7 +4,7 @@
     <x-button flat label="dashboard" icon="template" href="{{route('admin.dashboard')}}" />
     <x-button flat label="Vet" icon="shopping-cart" href="{{route('admin.vets')}}" />
     
-    <x-select class="py-4 ml-auto w-auto" min-items-for-search="1"
+    <x-select class="py-4 ml-auto w-auto" 
     placeholder="ค้นหาชื่อคลินิก" wire:model.defer="VetSelect" >
         @foreach ($vet_list as $vet)
             <x-select.option value="{{$vet['id']}}" >
