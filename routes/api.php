@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use App\Models\Vet;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -18,7 +19,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::get('/vets',function(Request $request){
-    
+    return Vet::all();
     return DB::table('vets')->select('id','vet_name','vet_province')
         ->orderBy('vet_name')
         ->when(
@@ -32,5 +33,5 @@ Route::get('/vets',function(Request $request){
     //     $vet_list[$index]['name']=$vet->vet_name;
     //     $vet_list[$index]['description']=$vet->vet_area.' '.$vet->vet_city.' '.$vet->vet_province;
     // }
-    // return $vet_list;
+    // return $vet_list;php
 })->name('vets');
