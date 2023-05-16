@@ -61,7 +61,7 @@
                     <th class="hidden sm:table-cell">น้ำหนัก สุนัข</th>
                     <th class="hidden sm:table-cell">สถานะ</th>
                     <th class="hidden sm:table-cell">สิทธิ์ทั้งหมด</th>
-                    <th class="hidden sm:table-cell">สิทธิ์ลงเหลือ</th>
+                    <th class="hidden sm:table-cell">สิทธิ์คงเหลือ</th>
                     <th class="hidden sm:table-cell">สิทธิ์ที่รับแล้ว</th>
                     <th class="hidden sm:table-cell">สินค้าขาด</th>
                 </tr>
@@ -100,7 +100,7 @@
                     <td class="border border-primary-blue p-2  table sm:table-cell">
                         <!-- สิทธิ์ลงเหลือ -->
                         <!-- total stock - total activate -->
-                        <span class="sm:hidden inline-block min-w-max mr-2">สิทธิ์ลงเหลือ</span>
+                        <span class="sm:hidden inline-block min-w-max mr-2">สิทธิ์คงเหลือ</span>
                         {{  $client->vet_stock - $client->vet_total_activated}}
                     </td>
                     <td class="border border-primary-blue p-2  table sm:table-cell">
@@ -113,8 +113,9 @@
                     </td>
                     <td class="border border-primary-blue p-2  table sm:table-cell">
                         <span class="sm:hidden inline-block min-w-max mr-2">สินค้าขาด</span>
-                        @if ($client->vet_stock - $client->vet_total - $client->pending < 0 )
-                            <span class="text-red-400"> {{ $client->vet_stock - $client->vet_total - $client->pending }} </span>
+                        
+                        @if ($client->vet_stock - $client->vet_total_activated - $client->vet_total_pending < 0 )
+                            <span class="text-red-400"> {{ $client->vet_stock - $client->vet_total_activated - $client->vet_total_pending }} </span>
                         @else
                             0
                         @endif

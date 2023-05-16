@@ -4,11 +4,17 @@
     <x-button flat label="dashboard" icon="template" href="{{route('admin.dashboard')}}" />
     <x-button flat label="Vet" icon="shopping-cart" href="{{route('admin.vets')}}" />
     
-    <x-select class="py-4 ml-auto" 
-    placeholder="ค้นหาชื่อคลินิก" 
-    :async-data="route('vets')" option-label="vet_name"
-    option-value="id" wire:model.defer="VetSelect" 
-        />
+    <x-select class="py-4 ml-auto w-auto" min-items-for-search="1"
+    placeholder="ค้นหาชื่อคลินิก" wire:model.defer="VetSelect" >
+        @foreach ($vet_list as $vet)
+            <x-select.option value="{{$vet['id']}}" >
+                <x-button label="{{$vet['name']}}" 
+                    class="w-full justify-start"
+                    href="{{route('admin.vetSingle',['vet_id'=>$vet['id'] ]) }}"/>
+            </x-select.option>
+        @endforeach
+    </x-select>
+        
     
     <x-dropdown class="ml-auto">
         <x-slot name="trigger">

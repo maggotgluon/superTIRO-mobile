@@ -80,12 +80,14 @@ class DashboardV2 extends Component
             $c->vet_stock = $c->vet?$this->stock->find($c->vet->stock_id)->total_stock:0;
             $vet = $this->vets->where('stock_id',$c->vet_stock_id);
             $c->vet_total_activated = 0;
+            $c->vet_total_pending = 0;
             $c->vet_total = 0;
             foreach ($vet as $key => $value) {
                 $c->vet_total_activated+=$value->client->where('active_status','activated')->where('option_1','1')->count();
+                $c->vet_total_pending+=$value->client->where('active_status','<>','activated')->count();
                 $c->vet_total+=$value->client->count();
             }
-            $c->pending = $c->vet_total-$c->vet_total_activated;
+            // $c->pending = $c->vet_total - $c->vet_total_activated;
             $c->vet_regis = $this->all_client->where('vet_id','like',$c->stock_id.'%')->count();
             
         }

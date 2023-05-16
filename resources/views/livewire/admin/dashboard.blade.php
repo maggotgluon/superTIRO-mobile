@@ -81,7 +81,7 @@
                     <th class="w-4">น้ำหนัก สุนัข</th>
                     <th class="w-4">สถานะ</th>
                     <th class="w-4 hidden sm:table-cell">สิทธิ์ทั้งหมด</th>
-                    <th class="w-4 hidden sm:table-cell">สิทธิ์ลงเหลือ</th>
+                    <th class="w-4 hidden sm:table-cell">สิทธิ์คงเหลือ</th>
                     <th class="w-4 hidden sm:table-cell">สิทธิ์ที่รับแล้ว</th>
                     <th class="w-4">สินค้าขาด</th>
                 </tr>
