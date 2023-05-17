@@ -27,12 +27,12 @@ class Vet extends Component
     public $stock_adj;
     public $data=[];
 
-    public $search='',$order='client_code',$sort='desc';
+    public $search='',$order='updated_at',$sort='desc';
     
     protected $queryString = [
         'search'=> ['except' => ''],
-        'order'=> ['except' => 'client_code'],
-        'sort'
+        'order'=> ['except' => 'updated_at'],
+        'sort'=> ['except' => 'desc']
     ];
     
     public function mount($vet_id){

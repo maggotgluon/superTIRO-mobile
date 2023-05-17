@@ -27,7 +27,7 @@ class Vets extends Component
     protected $queryString = [
         'search'=> ['except' => ''],
         'order'=> ['except' => 'id'],
-        'sort'
+        'sort'=> ['except' => 'desc']
     ];
     public function mount(){
         $this->stock = stock::sum('total_stock');

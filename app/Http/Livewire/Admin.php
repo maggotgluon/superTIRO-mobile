@@ -11,12 +11,12 @@ use Illuminate\Support\Facades\DB;
 class Admin extends Component
 {
     public $vet_list,$VetSelect;
-    public $search = '' ,$page = 'dashboard';
+    // public $search = '' ,$page = 'dashboard';
  
-    protected $queryString = [
-        'search'=> ['except' => ''] ,
-        'page'=> ['except' => 'dashboard',''] ,
-    ];
+    // protected $queryString = [
+    //     'search'=> ['except' => ''] ,
+    //     'page'=> ['except' => 'dashboard',''] ,
+    // ];
 
     public function mount(){
         // $vet_all = Vet::lazy();
@@ -44,6 +44,9 @@ class Admin extends Component
     }
     public function render()
     {
+        // if($this->VetSelect){
+        //     redirect(route('admin.vetSingle',['vet_id'=>$this->VetSelect])) ;
+        // }
         return view('livewire.admin');
     }
 }

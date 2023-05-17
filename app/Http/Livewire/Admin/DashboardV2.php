@@ -53,8 +53,8 @@ class DashboardV2 extends Component
 
     protected $queryString = [
         'search'=> ['except' => ''],
-        'order'=> ['except' => 'id'],
-        'sort'
+        'order'=> ['except' => 'updated_at'],
+        'sort'=> ['except' => 'desc']
     ];
     public function mount(){
         $this->all_client = Client::all();
