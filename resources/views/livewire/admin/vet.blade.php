@@ -14,7 +14,7 @@
         </span>
     </div>
     <hr class="border-2 border-primary-blue my-4" />
-    <div class="grid sm:grid-cols-2 my-4 gap-4">
+    <div class="grid md:grid-cols-2 my-4 gap-4">
         <div>
             <div class="flex gap-2">
                 <div class=" rounded-2xl bg-primary-blue text-primary-lite/70 p-4 shadow-lg ">
@@ -108,7 +108,7 @@
                         class="w-full hover:bg-white/10" 
                         wire:click="order('client_code')" label="ลำดับ"/>
                     </th>
-                    <th class="w-24 hidden sm:table-cell">
+                    <th class="w-24 hidden md:table-cell">
                         <x-button flat white right-icon="{{$sort_icon['updated_at']}}"
                         class="w-full hover:bg-white/10" 
                         wire:click="order('updated_at')" label="วันที่" />
@@ -119,10 +119,10 @@
                         wire:click="order('name')" label="ชื่อลูกค้า" />
                     </th>
                     <th class="w-20 text-primary-lite">รับคำปรึกษาและเข้าร่วม โปรแกรม Super TRIO</th>
-                    <th class="w-20 text-primary-lite hidden sm:table-cell">รับสิทธิ์พิเศษเพิ่มเติม - เข้าร่วมโปรแกรม 1 เดือน</th>
-                    <th class="w-20 text-primary-lite hidden sm:table-cell">รับสิทธิ์พิเศษเพิ่มเติม - เข้าร่วมโปรแกรม 3 เดือน</th>
-                    <th class="w-24 hidden sm:table-cell text-primary-lite">น้ำหนัก สุนัข</th>
-                    <th class="w-24 hidden sm:table-cell">
+                    <th class="w-20 text-primary-lite hidden md:table-cell">รับสิทธิ์พิเศษเพิ่มเติม - เข้าร่วมโปรแกรม 1 เดือน</th>
+                    <th class="w-20 text-primary-lite hidden md:table-cell">รับสิทธิ์พิเศษเพิ่มเติม - เข้าร่วมโปรแกรม 3 เดือน</th>
+                    <th class="w-24 hidden md:table-cell text-primary-lite">น้ำหนัก สุนัข</th>
+                    <th class="w-24 hidden md:table-cell">
                         <x-button flat white right-icon="{{$sort_icon['active_status']}}"
                         class="w-full hover:bg-white/10" 
                         wire:click="order('active_status')" label="สถานะ" />
@@ -132,32 +132,34 @@
             <tbody>
                 @foreach ($clients as $client)
                 <tr class="border border-primary-blue">
-                    <td class="border sm:border-primary-blue p-2 table w-full sm:w-auto sm:table-cell">{{$client->client_code}}</td>
-                    <td class="border sm:border-primary-blue p-2 table w-full sm:w-auto sm:table-cell">{{Carbon\Carbon::parse($client->updated_at)->format('d/m/y')}}</td>
-                    <td class="border border-primary-blue p-2 sm:table-cell">
+                    <td class="md:border mx-2 border-primary-blue p-2 table w-full md:w-auto md:table-cell">{{$client->client_code}}</td>
+                    <td class="md:border mx-2 border-primary-blue p-2 table w-full md:w-auto md:table-cell">{{Carbon\Carbon::parse($client->updated_at)->format('d/m/y')}}</td>
+                    <td class="border border-primary-blue p-2 md:table-cell">
                         {{$client->name}}
                     </td>
-                    <td class="border sm:border-primary-blue p-2 table w-full sm:w-auto sm:table-cell text-center ">
+                    <td class="md:border mx-2 whitespace-nowrap border-primary-blue p-2 table w-full md:w-auto md:table-cell md:text-center ">
                         @if($client->option_1)
-                            <span class="sm:hidden inline-block min-w-max mr-2">รับคำปรึกษาและเข้าร่วม โปรแกรม Super TRIO</span>
-                            <x-badge.circle positive icon="check" class="w-5 h-5 m-auto" />
+                        <x-badge.circle positive icon="check" class="w-5 h-5 m-auto p-2 inline-block" />
+                        <span class="md:hidden inline-block min-w-max mx-2 my-1">เข้าร่วม โปรแกรม Super TRIO</span>
                         @endif
                     </td>
-                    <td class="border sm:border-primary-blue p-2 table w-full sm:w-auto sm:table-cell text-center ">
+                    <td class="md:border mx-2 whitespace-nowrap border-primary-blue p-2 table w-full md:w-auto md:table-cell md:text-center ">
                         @if($client->option_2 )
-                            <span class="sm:hidden inline-block min-w-max mr-2">รับสิทธิ์พิเศษเพิ่มเติม - เข้าร่วมโปรแกรม 1 เดือน</span>
-                            <x-badge.circle positive icon="check" class="w-5 h-5 m-auto" />
+                        <x-badge.circle positive icon="check" class="w-5 h-5 m-auto p-2 inline-block" />
+                        <span class="md:hidden inline-block min-w-max mx-2 my-1">เข้าร่วมโปรแกรม 1 เดือน</span>
                         @endif 
                     </td>
-                    <td class="border sm:border-primary-blue p-2 table w-full sm:w-auto sm:table-cell text-center ">
+                    <td class="md:border mx-2 whitespace-nowrap border-primary-blue p-2 table w-full md:w-auto md:table-cell md:text-center ">
                         @if($client->option_3 )
-                            <span class="sm:hidden inline-block min-w-max mr-2">รับสิทธิ์พิเศษเพิ่มเติม - เข้าร่วมโปรแกรม 3 เดือน</span>
-                            <x-badge.circle positive icon="check" class="w-5 h-5 m-auto" />
+                        <x-badge.circle positive icon="check" class="w-5 h-5 m-auto p-2 inline-block" />
+                        <span class="md:hidden inline-block min-w-max mx-2 my-1">เข้าร่วมโปรแกรม 3 เดือน</span>
                         @endif    
                         
                     </td>
-                    <td class="border sm:border-primary-blue p-2 text-center table w-full sm:w-auto sm:table-cell">{{$client->pet_weight}}</td>
-                    <td class="border sm:border-primary-blue p-2 text-center table w-full sm:w-auto sm:table-cell">{{$client->active_status??'-'}}</td>
+                    <td class="md:border mx-2 border-primary-blue p-2 md:text-center table w-full md:w-auto md:table-cell">
+                        <span class="md:hidden inline-block min-w-max mx-2 mt-1">น้ำหนัก สุนัข : </span> {{$client->pet_weight}}</td>
+                    <td class="md:border mx-2 border-primary-blue p-2 md:text-center table w-full md:w-auto md:table-cell">
+                        <span class="md:hidden inline-block min-w-max mx-2">สถานะ : </span> {{$client->active_status??'-'}}</td>
                 </tr>
                 @endforeach
             </tbody>
