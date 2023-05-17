@@ -5,7 +5,8 @@
     <x-button flat label="Vet" icon="shopping-cart" href="{{route('admin.vets')}}" />
     <x-select class="py-4 ml-auto w-auto" 
     :options="$vet_list"
-    searchable=false
+    searchable="false"
+    min-items-for-search=10000
     option-label="name"
     option-value="id"
     placeholder="ค้นหาชื่อคลินิก" wire:model="VetSelect" 
