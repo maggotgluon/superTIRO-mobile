@@ -99,6 +99,7 @@
     </div>
     <div>
         <!-- {{$order}} | {{$sort}} -->
+        <div class="mt-7 overflow-x-auto">
         @if ($clients)
         <table class="w-full table-auto	">
             <thead>
@@ -132,39 +133,39 @@
             <tbody>
                 @foreach ($clients as $client)
                 <tr class="border border-primary-blue">
-                    <td class="md:border mx-2 border-primary-blue p-2 table w-full md:w-auto md:table-cell">{{$client->client_code}}</td>
-                    <td class="md:border mx-2 border-primary-blue p-2 table w-full md:w-auto md:table-cell">{{Carbon\Carbon::parse($client->updated_at)->format('d/m/y')}}</td>
-                    <td class="border border-primary-blue p-2 md:table-cell">
+                    <td class="align-top md:border mx-2 border-primary-blue p-2 table w-full md:w-auto md:table-cell">{{$client->client_code}}</td>
+                    <td class="align-top md:border mx-2 border-primary-blue p-2 table w-full md:w-auto md:table-cell">{{Carbon\Carbon::parse($client->updated_at)->format('d/m/y')}}</td>
+                    <td class="align-top border whitespace-nowrap border-primary-blue p-2 md:table-cell">
                         {{$client->name}}
                     </td>
-                    <td class="md:border mx-2 whitespace-nowrap border-primary-blue p-2 table w-full md:w-auto md:table-cell md:text-center ">
+                    <td class="align-top md:border mx-2 whitespace-nowrap border-primary-blue p-2 table w-full md:w-auto md:table-cell md:text-center ">
                         @if($client->option_1)
                         <x-badge.circle positive icon="check" class="w-5 h-5 m-auto p-2 inline-block" />
                         <span class="md:hidden inline-block min-w-max mx-2 my-1">เข้าร่วม โปรแกรม Super TRIO</span>
                         @endif
                     </td>
-                    <td class="md:border mx-2 whitespace-nowrap border-primary-blue p-2 table w-full md:w-auto md:table-cell md:text-center ">
+                    <td class="align-top md:border mx-2 whitespace-nowrap border-primary-blue p-2 table w-full md:w-auto md:table-cell md:text-center ">
                         @if($client->option_2 )
                         <x-badge.circle positive icon="check" class="w-5 h-5 m-auto p-2 inline-block" />
                         <span class="md:hidden inline-block min-w-max mx-2 my-1">เข้าร่วมโปรแกรม 1 เดือน</span>
                         @endif 
                     </td>
-                    <td class="md:border mx-2 whitespace-nowrap border-primary-blue p-2 table w-full md:w-auto md:table-cell md:text-center ">
+                    <td class="align-top md:border mx-2 whitespace-nowrap border-primary-blue p-2 table w-full md:w-auto md:table-cell md:text-center ">
                         @if($client->option_3 )
                         <x-badge.circle positive icon="check" class="w-5 h-5 m-auto p-2 inline-block" />
                         <span class="md:hidden inline-block min-w-max mx-2 my-1">เข้าร่วมโปรแกรม 3 เดือน</span>
                         @endif    
                         
                     </td>
-                    <td class="md:border mx-2 border-primary-blue p-2 md:text-center table w-full md:w-auto md:table-cell">
+                    <td class="align-top md:border mx-2 whitespace-nowrap border-primary-blue p-2 md:text-center table w-full md:w-auto md:table-cell">
                         <span class="md:hidden inline-block min-w-max mx-2 mt-1">น้ำหนัก สุนัข : </span> {{$client->pet_weight}}</td>
-                    <td class="md:border mx-2 border-primary-blue p-2 md:text-center table w-full md:w-auto md:table-cell">
+                    <td class="align-top md:border mx-2 whitespace-nowrap border-primary-blue p-2 md:text-center table w-full md:w-auto md:table-cell">
                         <span class="md:hidden inline-block min-w-max mx-2">สถานะ : </span> {{$client->active_status??'-'}}</td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
-
+        </div>
         <div class="my-4">
             {{ $clients->links() }}
         </div>

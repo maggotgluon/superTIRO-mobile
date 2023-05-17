@@ -69,41 +69,41 @@
             <tbody>
                 @foreach ($clients as $client)
                 <tr class="border border-primary-blue p-2">
-                    <td class="border border-primary-blue p-2">
+                    <td class="align-top border border-primary-blue p-2">
                         {{$client->client_code}}
                     </td>
-                    <td class="sm:border border-primary-blue p-2 ml-2 table sm:table-cell">
+                    <td class="align-top sm:border border-primary-blue p-2 ml-2 table sm:table-cell">
                         {{Carbon\Carbon::parse($client->updated_at)->format('d/m/y')}}
                     </td>
-                    <td class="sm:border border-primary-blue p-2 ml-2 table sm:table-cell">
+                    <td class="align-top sm:border border-primary-blue p-2 ml-2 table sm:table-cell">
                         <a href="{{route('admin.vetSingle',[$client->vet_id])}}">
                         {{$client->vet->vet_name??$client->vet_id}}
                         </a>
                     </td>
-                    <td class="sm:border border-primary-blue p-2 ml-2 table sm:table-cell">
+                    <td class="align-top sm:border border-primary-blue p-2 ml-2 table sm:table-cell">
                         {{$client->name}}
                     </td>
-                    <td class="sm:border border-primary-blue p-2 ml-2 table sm:table-cell">
+                    <td class="align-top sm:border border-primary-blue p-2 ml-2 table sm:table-cell">
                         <span class="sm:hidden inline-block min-w-max mr-2">น้ำหนัก สุนัข</span>
                         {{$client->pet_weight}}
                     </td>
-                    <td class="sm:border border-primary-blue p-2 ml-2 table sm:table-cell">
+                    <td class="align-top sm:border border-primary-blue p-2 ml-2 table sm:table-cell">
                         <span class="sm:hidden inline-block min-w-max mr-2">สถานะ</span>
                         {{$client->active_status}}
                     </td>
-                    <td class="sm:border border-primary-blue p-2 ml-2 table sm:table-cell">
+                    <td class="align-top sm:border border-primary-blue p-2 ml-2 table sm:table-cell">
                         <!-- สิทธิ์ทั้งหมด -->
                         <!-- total stock a -->
                         <span class="sm:hidden inline-block min-w-max mr-2">สิทธิ์ทั้งหมด</span>
                         {{ $client->vet_stock }}
                     </td>
-                    <td class="sm:border border-primary-blue p-2 ml-2 table sm:table-cell">
+                    <td class="align-top sm:border border-primary-blue p-2 ml-2 table sm:table-cell">
                         <!-- สิทธิ์ลงเหลือ -->
                         <!-- total stock - total activate -->
                         <span class="sm:hidden inline-block min-w-max mr-2">สิทธิ์คงเหลือ</span>
                         {{  $client->vet_stock - $client->vet_total_activated}}
                     </td>
-                    <td class="sm:border border-primary-blue p-2 ml-2 table sm:table-cell">
+                    <td class="align-top sm:border border-primary-blue p-2 ml-2 table sm:table-cell">
                         <!-- สิทธิ์ที่รับแล้ว	 -->
                         <!-- total activate -->
                         <span class="sm:hidden inline-block min-w-max mr-2">สิทธิ์ที่รับแล้ว</span>
@@ -111,7 +111,7 @@
                             $client->vet_total_activated
                         }}
                     </td>
-                    <td class="sm:border border-primary-blue p-2 ml-2 table sm:table-cell">
+                    <td class="align-top sm:border border-primary-blue p-2 ml-2 table sm:table-cell">
                         <span class="sm:hidden inline-block min-w-max mr-2">สินค้าขาด</span>
                         
                         @if ($client->vet_stock - $client->vet_total_activated - $client->vet_total_pending < 0 )

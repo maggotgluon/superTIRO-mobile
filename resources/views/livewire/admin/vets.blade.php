@@ -37,8 +37,8 @@
             <tbody>
                 @foreach ($vets as $vet)
                 <tr class="border border-primary-blue">
-                    <td class="border border-primary-blue p-2 whitespace-nowrap">{{$vet->user_id}}</td>
-                    <td class="md:border border-primary-blue p-2 ml-2 table w-full md:w-auto md:table-cell">
+                    <td class="align-top border border-primary-blue p-2 whitespace-nowrap">{{$vet->user_id}}</td>
+                    <td class="align-top md:border border-primary-blue p-2 ml-2 table w-full md:w-auto md:table-cell">
                         <a href="{{route('admin.vetSingle',[$vet->id])}}">{{$vet->vet_name}}
                         <span class="whitespace-nowrap flex">
                             <x-badge outline label="{{$vet->vet_province}}" />
@@ -47,28 +47,28 @@
                         </span>
                         </a>
                     </td>
-                    <td class="md:border border-primary-blue md:text-right p-2 ml-2 table w-full md:w-auto md:table-cell">
+                    <td class="align-top md:border border-primary-blue md:text-right p-2 ml-2 table w-full md:w-auto md:table-cell">
                         <span class="md:hidden inline-block min-w-max mr-2">สิทธิ์ทั้งหมด</span>
                         
                         {{$vet->stocks}}
                     </td>
-                    <td class="md:border border-primary-blue md:text-right p-2 ml-2 table w-full md:w-auto md:table-cell">
+                    <td class="align-top md:border border-primary-blue md:text-right p-2 ml-2 table w-full md:w-auto md:table-cell">
                         <span class="md:hidden inline-block min-w-max mr-2">สิทธิ์ที่รับแล้ว</span>
                         {{$vet->total_client_opt1}}
                     </td>
-                    <td class="md:border border-primary-blue md:text-right p-2 ml-2 table w-full md:w-auto md:table-cell">
+                    <td class="align-top md:border border-primary-blue md:text-right p-2 ml-2 table w-full md:w-auto md:table-cell">
                         <span class="md:hidden inline-block min-w-max mr-2">สิทธิ์คงเหลือ</span>
                         {{ $vet->stocks - $vet->total_client_opt1 }}
                     </td>
-                    <td class="md:border border-primary-blue md:text-right p-2 ml-2 table w-full md:w-auto md:table-cell">
+                    <td class="align-top md:border border-primary-blue md:text-right p-2 ml-2 table w-full md:w-auto md:table-cell">
                         <span class="md:hidden inline-block min-w-max mr-2">สิทธิ์ที่รอ</span>
                         {{$vet->total_client_pending+$vet->total_client_await}}
                     </td>
-                    <td class="md:border border-primary-blue md:text-right p-2 ml-2 table w-full md:w-auto md:table-cell">
+                    <td class="align-top md:border border-primary-blue md:text-right p-2 ml-2 table w-full md:w-auto md:table-cell">
                         <span class="md:hidden inline-block min-w-max mr-2">ครั้งที่เติมสิทธิ์</span>
                         {{$vet->stocks_adj}}
                     </td>
-                    <td class="md:border border-primary-blue md:text-right p-2 ml-2 table w-full md:w-auto md:table-cell">
+                    <td class="align-top md:border border-primary-blue md:text-right p-2 ml-2 table w-full md:w-auto md:table-cell">
                         <span class="md:hidden inline-block min-w-max mr-2">สิทธิ์ที่ขาด</span>
                         @if($vet->stocks - $vet->total_client_opt1 - ($vet->vet_total - $vet->total_client_activated) < 0)
                             {{$vet->stocks - $vet->total_client_opt1 - ($vet->vet_total - $vet->total_client_activated) }}
