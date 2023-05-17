@@ -37,7 +37,8 @@
             <tbody>
                 @foreach ($vets as $vet)
                 <tr class="border border-primary-blue">
-                    <td class="align-top border border-primary-blue p-2 whitespace-nowrap">{{$vet->user_id}}</td>
+                    <td class="align-top border border-primary-blue p-2 whitespace-nowrap">
+                        <a href="{{route('admin.vetSingle',[$vet->id])}}">{{$vet->user_id}}</a></td>
                     <td class="align-top md:border border-primary-blue p-2 ml-2 table w-full md:w-auto md:table-cell">
                         <a href="{{route('admin.vetSingle',[$vet->id])}}">{{$vet->vet_name}}
                         <span class="whitespace-nowrap flex">
