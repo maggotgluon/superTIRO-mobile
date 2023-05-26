@@ -1,17 +1,22 @@
 <div>
-    <livewire:admin />
+    
     <div class="overflow-x-auto">
         <h2 class="text-lg text-primary-blue font-bold">
             {{$current_vet->vet_name}}
         </h2>
-        <div class="flex justify-between">
+        <div class="flex gap-4">
             <p>
                 {{$current_vet->vet_area}} {{$current_vet->vet_city}} {{$current_vet->vet_province}}<br>
                 <!-- <span>tel </span> / <span> site </span> -->
             </p>
-            <span class="rounded-2xl bg-primary-blue text-primary-lite/70 p-4 shadow-lg ">
+            <span class="rounded-2xl bg-primary-blue text-primary-lite/70 p-4 shadow-lg ml-auto ">
                 รหัส : {{$current_vet->id}}
             </span>
+            <x-dropdown>
+                <x-dropdown.item>
+                    <x-button icon="logout" label="Logout" />
+                </x-dropdown.item>
+            </x-dropdown>
         </div>
         <hr class="border-2 border-primary-blue my-4" />
         <div class="grid sm:grid-cols-2 my-4 gap-4">
@@ -92,10 +97,6 @@
                     </div>
                 </div>
 
-                <div class="text-right rounded-2xl text-black/70 p-4 shadow-lg ">
-                    <x-inputs.number wire:model="stock_adj" label="จำนวนสินค้าที่เติม : " />
-                    <x-button primary class="my-4" label="บันทึก" wire:click="add_stock_adj" />
-                </div>
             </div>
 
         </div>
@@ -109,49 +110,49 @@
                             <th class="w-24">
                                 <div class="grid">
                                 <x-button flat white right-icon="{{$sort_icon['client_code']}}" class="w-full hover:bg-white/10" wire:click="order('client_code')" label="ลำดับ" />
-                                <x-badge primary label="No" />
+                                <x-badge teal label="No" />
                             </div>
                             </th>
                             <th class="w-24 hidden sm:table-cell">
                                 <div class="grid">
                                 <x-button flat white right-icon="{{$sort_icon['updated_at']}}" class="w-full hover:bg-white/10" wire:click="order('updated_at')" label="วันที่" />
-                                <x-badge primary label="Date" />
+                                <x-badge teal label="Date" />
                             </div>
                             </th>
                             <th class="">
                                 <div class="grid">
                                 <x-button flat white right-icon="{{$sort_icon['name']}}" class="w-full hover:bg-white/10" wire:click="order('name')" label="ชื่อลูกค้า" />
-                                <x-badge primary label="Pet owner's Name" />
+                                <x-badge teal label="Pet owner's Name" />
                             </div>
                             </th>
-                            <th class="w-20 text-primary-lite">
+                            <th class="w-24 text-primary-lite">
                                 <div class="grid">
                                 <x-button flat white class="pointer-events-none w-full block hover:bg-white/10" label="รับคำปรึกษาและเข้าร่วม โปรแกรม Super TRIO" />
-                                <x-badge primary label="(Get free consultation and a tablet)" />
+                                <x-badge teal label="(Get free consultation and a tablet)" />
                             </div>
                             </th>
-                            <th class="w-20 text-primary-lite hidden sm:table-cell">
+                            <th class="w-24 text-primary-lite hidden sm:table-cell">
                                 <div class="grid">
                                 <x-button flat white class="pointer-events-none w-full block hover:bg-white/10" label="รับสิทธิ์พิเศษเพิ่มเติม - เข้าร่วมโปรแกรม 1 เดือน" />
-                                <x-badge primary label="(Extra tablet sold)" />
+                                <x-badge teal label="(Extra tablet sold)" />
                             </div>
                             </th>
-                            <th class="w-20 text-primary-lite hidden sm:table-cell">
+                            <th class="w-24 text-primary-lite hidden sm:table-cell">
                                 <div class="grid">
                                 <x-button flat white class="pointer-events-none w-full block hover:bg-white/10" label="รับสิทธิ์พิเศษเพิ่มเติม - เข้าร่วมโปรแกรม 3 เดือน" />
-                                <x-badge primary label="(Extra box sold)" />
+                                <x-badge teal label="(Extra box sold)" />
                             </div>
                             </th>
                             <th class="w-24 hidden sm:table-cell text-primary-lite">
                                 <div class="grid">
                                 <x-button flat white class="pointer-events-none w-full block hover:bg-white/10" label="น้ำหนัก สุนัข" />
-                                <x-badge primary label="Pet's weight" />
+                                <x-badge teal label="Pet's weight" />
                             </div>
                             </th>
                             <th class="w-24 hidden sm:table-cell">
                                 <div class="grid">
                                 <x-button flat white right-icon="{{$sort_icon['active_status']}}" class="w-full hover:bg-white/10" wire:click="order('active_status')" label="สถานะ" />
-                                <x-badge primary label="Status" />
+                                <x-badge teal label="Status" />
                             </div>
                             </th>
                         </tr>
@@ -163,7 +164,7 @@
                             <td class="align-top sm:border mx-2 border-primary-blue p-2 table w-full sm:w-auto sm:table-cell">{{Carbon\Carbon::parse($client->updated_at)->format('d/m/y')}}</td>
                             <td class="align-top border whitespace-nowrap border-primary-blue p-2 sm:table-cell">
                                 {{$client->name}}
-                                <x-badge primary label="{{$client->phone}}" />
+                                <x-badge teal label="{{$client->phone}}" />
                             </td>
                             <td class="align-top sm:border mx-2 whitespace-nowrap border-primary-blue p-2 table w-full sm:w-auto sm:table-cell sm:text-center ">
                                 @if($client->option_1)

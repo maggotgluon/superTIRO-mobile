@@ -4,7 +4,8 @@
     <x-button flat label="dashboard" icon="template" href="{{route('admin.dashboard')}}" />
     <x-button flat label="Vet" icon="shopping-cart" href="{{route('admin.vets')}}" />
     
-    
+    <x-button flat label="Download Client Data" icon="download" class="ml-auto"
+    href="{{route('dl')}}"/>
 
     
     <x-dropdown class="ml-auto">

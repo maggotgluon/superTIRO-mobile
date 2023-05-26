@@ -76,7 +76,7 @@ class VetLogin extends Component
                 return redirect(route('admin.dashboard'));    
             }
             // dd($user->vet->user_id,$username);
-            return redirect(route('vet.ticket',$username));
+            return redirect(route('vet.ticketV2',$username));
         }else{
             // $this->reset();
             $this->error = 'error';

@@ -10,10 +10,11 @@ use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Livewire\VetDashboard;
+use App\Http\Livewire\VetDashboardV2;
 use App\Http\Livewire\Admin\DashboardV2;
 use App\Http\Livewire\Admin\Vet as vetSingle;
 use App\Http\Livewire\Admin\Vets as vetall;
-
+use Carbon\Carbon;
 
 /*
 |--------------------------------------------------------------------------
@@ -104,12 +105,15 @@ Route::name('vet.')->prefix('vet')->group(function (){
         return view('vet.register');
     } )->name('register');
 
-    Route::get('/dashboard/{id}', VetDashboard::class )->name('ticket');
+    // Route::get('/dashboard/{id}', VetDashboard::class )->name('ticket');
+
+    Route::get('/dashboard/{vet_id}', VetDashboardV2::class )->name('ticketV2');
 });
 
 Route::get('/download',function(){
-
-    $fileName = 'client.csv';
+    $now = Carbon::now()->toDateTimeString();
+    // dd($now);
+    $fileName = 'client '.$now.'.csv';
     $Clients = Client::all();
     
     $headers = array(
@@ -120,7 +124,7 @@ Route::get('/download',function(){
         "Expires"             => "0"
     );
 
-    $columns = array('code', 'name', 'email', 'phone', 'status', 'activate date', 'vet name' ,'Pet name', 'Pet bread', 'Pet Weight', 'Pet Age','basic offer','extra offer');
+    $columns = array('code', 'name', 'email', 'phone', 'status', 'activate date', 'vet name' ,'Pet name', 'Pet bread', 'Pet Weight', 'Pet Age','option 1','option 2','option 3');
 
     $callback = function() use($Clients, $columns) {
         $file = fopen('php://output', 'w');
@@ -135,19 +139,22 @@ Route::get('/download',function(){
             $row['activate_date']  = $Client->active_date??"-";
             $row['vet']  = Vet::find($Client->vet_id)->vet_name??$Client->vet_id;
             
-            $option = explode("-", $Client->phoneIsVerified);
-            // dd(str_contains($option[1],'standard'),str_contains($option[1],'extra'));
-            if( is_array($option) ){
-                $row['offerBasic'] = count($option)>1?str_contains($option[1],'standard'):"";
-                $row['offerExtra'] = count($option)>1?str_contains($option[1],'extra'):"";
-            }
+            $row['option 1']  = $Client->option_1??0;
+            $row['option 2']  = $Client->option_2??0;
+            $row['option 3']  = $Client->option_3??0;
+            // $option = explode("-", $Client->phoneIsVerified);
+            // // dd(str_contains($option[1],'standard'),str_contains($option[1],'extra'));
+            // if( is_array($option) ){
+            //     $row['offerBasic'] = count($option)>1?str_contains($option[1],'standard'):"";
+            //     $row['offerExtra'] = count($option)>1?str_contains($option[1],'extra'):"";
+            // }
 
             $row['petName']  = $Client->pet_name;
             $row['petBreed']  = $Client->pet_breed;
             $row['petWeight']  = $Client->pet_weight;
             $row['petAge']  = $Client->pet_age_month.' Year '.$Client->pet_age_month.' Month';
 
-            fputcsv($file, array($row['code'], $row['name'], $row['email'], $row['phone'], $row['status'], $row['activate_date'], $row['vet'], $row['petName'],$row['petBreed'],$row['petWeight'],$row['petAge'],$row['offerBasic'],$row['offerExtra']));
+            fputcsv($file, array($row['code'], $row['name'], $row['email'], $row['phone'], $row['status'], $row['activate_date'], $row['vet'], $row['petName'],$row['petBreed'],$row['petWeight'],$row['petAge'],$row['option 1'],$row['option 2'],$row['option 3']));
         }
 
         fclose($file);
