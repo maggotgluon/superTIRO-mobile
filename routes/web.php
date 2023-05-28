@@ -124,7 +124,7 @@ Route::get('/download',function(){
         "Expires"             => "0"
     );
 
-    $columns = array('code', 'name', 'email', 'phone', 'status', 'activate date', 'vet name' ,'Pet name', 'Pet bread', 'Pet Weight', 'Pet Age','option 1','option 2','option 3');
+    $columns = array('code', 'name', 'email', 'phone', 'status', 'activate date','vet id', 'vet name' ,'Pet name', 'Pet bread', 'Pet Weight', 'Pet Age','option 1','option 2','option 3','create at','update at');
 
     $callback = function() use($Clients, $columns) {
         $file = fopen('php://output', 'w');
@@ -137,7 +137,10 @@ Route::get('/download',function(){
             $row['phone']  = $Client->phone;
             $row['status']  = $Client->active_status;
             $row['activate_date']  = $Client->active_date??"-";
+            $row['created_at']  = $Client->created_at??"-";
+            $row['updated_at']  = $Client->updated_at??"-";
             $row['vet']  = Vet::find($Client->vet_id)->vet_name??$Client->vet_id;
+            $row['vet_id']  = $Client->vet_id;
             
             $row['option 1']  = $Client->option_1??0;
             $row['option 2']  = $Client->option_2??0;
@@ -154,7 +157,7 @@ Route::get('/download',function(){
             $row['petWeight']  = $Client->pet_weight;
             $row['petAge']  = $Client->pet_age_month.' Year '.$Client->pet_age_month.' Month';
 
-            fputcsv($file, array($row['code'], $row['name'], $row['email'], $row['phone'], $row['status'], $row['activate_date'], $row['vet'], $row['petName'],$row['petBreed'],$row['petWeight'],$row['petAge'],$row['option 1'],$row['option 2'],$row['option 3']));
+            fputcsv($file, array($row['code'], $row['name'], $row['email'], $row['phone'], $row['status'], $row['activate_date'], $row['vet_id'], $row['vet'], $row['petName'],$row['petBreed'],$row['petWeight'],$row['petAge'],$row['option 1'],$row['option 2'],$row['option 3'],$row['created_at'],$row['updated_at']));
         }
 
         fclose($file);

@@ -14,7 +14,7 @@
             </span>
             <x-dropdown>
                 <x-dropdown.item>
-                    <x-button icon="logout" label="Logout" />
+                    <x-button icon="logout" label="Logout" class="w-full" wire:click="logout"/>
                 </x-dropdown.item>
             </x-dropdown>
         </div>

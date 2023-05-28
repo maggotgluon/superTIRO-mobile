@@ -127,6 +127,10 @@ class VetDashboardV2 extends Component
 
     }
 
+    public function logout(){
+        Auth::guard('web')->logout();
+        return redirect('/admin');
+    }
     public function render()
     {
         // dd($this->vet_id);
