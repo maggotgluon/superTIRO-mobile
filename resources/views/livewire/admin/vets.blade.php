@@ -12,7 +12,7 @@
 
         </div>
         <div class="w-full overflow-x-auto">
-            <table class="table-fixed border-collapse border border-primary-blue whitespace-nowrap">
+            <table class="table-fixed border-collapse border border-primary-blue whitespace-nowrap min-w-full ">
                 <thead>
                     <tr class="border border-primary-blue bg-primary-blue text-primary-lite text-xs">
                         <th class="w-4 sm:w-1/12">

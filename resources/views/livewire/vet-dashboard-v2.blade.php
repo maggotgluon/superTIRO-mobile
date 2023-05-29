@@ -104,7 +104,7 @@
             <!-- {{$order}} | {{$sort}} -->
             <div class="mt-7 overflow-x-auto">
                 @if ($clients)
-                <table class="w-full table-fixed">
+                <table class="min-w-full table-fixed">
                     <thead>
                         <tr class="border border-primary-blue bg-primary-blue  text-xs">
                             <th class="w-24">
