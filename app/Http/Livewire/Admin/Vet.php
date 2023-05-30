@@ -130,7 +130,7 @@ class Vet extends Component
     {
         $c=Client::where('vet_id',$this->vet_id)
             ->orderBy($this->order,$this->sort)
-            ->paginate(10);
+            ->paginate(50);
         // dd(Client::where('vet_id',$this->current_vet->user_id)->get());
 
         return view('livewire.admin.vet',[

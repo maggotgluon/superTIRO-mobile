@@ -266,6 +266,8 @@ Route::get('/upvet',function(){
 
 use App\Http\Livewire\Webview;
 Route::get('/view', Webview::class );
+use App\Http\Livewire\demo\Page;
+Route::get('/demo', Page::class );
 // function(){
 //     Echo $_SERVER["HTTP_X_REQUESTED_WITH"]. '<br>';
 //     Echo $_SERVER["HTTP_USER_AGENT"] ;
