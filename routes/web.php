@@ -266,10 +266,6 @@ Route::get('/upvet',function(){
 
 use App\Http\Livewire\Webview;
 Route::get('/view', Webview::class );
-<<<<<<< HEAD
-
-=======
->>>>>>> parent of 1fbdbb1... update
 // function(){
 //     Echo $_SERVER["HTTP_X_REQUESTED_WITH"]. '<br>';
 //     Echo $_SERVER["HTTP_USER_AGENT"] ;
