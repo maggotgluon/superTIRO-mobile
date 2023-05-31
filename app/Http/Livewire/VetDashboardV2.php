@@ -9,6 +9,7 @@ use App\Models\stock;
 use App\Models\Vet as ModelsVet;
 use Livewire\WithPagination;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth;
 
 class VetDashboardV2 extends Component
 {
