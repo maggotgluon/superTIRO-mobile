@@ -122,8 +122,30 @@
             @endif
             <span class="p-2 block"><x-checkbox lg class="rounded-full" label="รับสิทธิ์พิเศษเพิ่มเติม - เข้าโปรแกรม 1 เดือน"
                     id="extra_1"    wire:model.lazy="offer_2" /></span>
-            <span class="p-2 block"><x-checkbox lg class="rounded-full" label="รับสิทธิ์พิเศษเพิ่มเติม - เข้าโปรแกรม 3 เดือน"
+            <span class="p-2 block"><x-checkbox lg class="rounded-full" value=3 label="รับสิทธิ์พิเศษเพิ่มเติม - เข้าโปรแกรม {{ $offer_3?$offer_3:'3' }} เดือน"
                     id="extra_2"    wire:model.lazy="offer_3" /></span>
+            @if ($offer_3)
+                <span class="p-2 block">
+                    <x-native-select label="ระยะเวลา" placeholder="เลือกระยะเวลา" 
+                        :options="[
+                            ['name' => '3 เดือน',  'id' => 3],
+                            ['name' => '6 เดือน',  'id' => 6],
+                            ['name' => '9 เดือน',  'id' => 9],
+                            ['name' => '12 เดือน',  'id' => 12],
+                            ['name' => '15 เดือน',  'id' => 15],
+                            ['name' => '18 เดือน',  'id' => 18],
+                            ['name' => '21 เดือน',  'id' => 21],
+                            ['name' => '24 เดือน',  'id' => 24],
+                            ['name' => '27 เดือน',  'id' => 27],
+                            ['name' => '30 เดือน',  'id' => 30],
+                            ]" 
+
+                        option-label="name"
+                        option-value="id"
+                        wire:model="offer_3" />
+                </span>
+            @endif
+            
         </div>
         <div class="py-2 text-center flex justify-center mt-auto" wire:loading.remove>
             <x-button lg right-icon="chevron-right" primary  class="bg-gradient-to-br from-gradient-start to-gradient-end rounded-2xl"

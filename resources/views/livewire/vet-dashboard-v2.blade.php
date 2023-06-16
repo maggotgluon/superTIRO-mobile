@@ -137,7 +137,7 @@
                                 <x-badge teal label="(Extra tablet sold)" />
                             </div>
                             </th>
-                            <th class="w-24 text-primary-lite hidden sm:table-cell">
+                            <th class="w-24 text-primary-lite hidden sm:table-cell"  colspan="2">
                                 <div class="grid">
                                 <x-button flat white class="pointer-events-none w-full block hover:bg-white/10" label="รับสิทธิ์พิเศษเพิ่มเติม - เข้าร่วมโปรแกรม 3 เดือน" />
                                 <x-badge teal label="(Extra box sold)" />
@@ -182,6 +182,13 @@
                                 @if($client->option_3 )
                                 <x-badge.circle positive icon="check" class="w-5 h-5 m-auto p-2 inline-block" />
                                 <span class="sm:hidden inline-block min-w-max mx-2 my-1">เข้าร่วมโปรแกรม 3 เดือน</span>
+                                @endif
+
+                            </td>
+
+                            <td class="align-top sm:border mx-2 whitespace-nowrap border-primary-blue p-2 table w-full sm:w-auto sm:table-cell sm:text-center ">
+                                @if($client->option_3 )
+                                <span class="sm:hidden inline-block min-w-max mx-2 my-1">เข้าร่วมโปรแกรม </span>{{ $client->option_3 }} เดือน
                                 @endif
 
                             </td>
