@@ -56,7 +56,7 @@ class VetDashboardV2 extends Component
                 $query->where('option_2', 1);
             },
             'client as opt_3' =>function(Builder $query){
-                $query->where('option_3', 1);
+                $query->where('option_3','>=', 1);
             },
             'client as c_activated' =>function(Builder $query){
                 $query->where('active_status','activated');

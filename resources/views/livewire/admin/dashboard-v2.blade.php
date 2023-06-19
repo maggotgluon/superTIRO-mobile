@@ -37,7 +37,7 @@
                 <span>รับสิทธิ์พิเศษเพิ่มเติม - เข้าโปรแกรม 3 เดือน <br>
                     <x-badge label="(Extra box sold)"/></span>
                 <span class="font-bold text-xl text-black/70">
-                    {{$all_client->where('option_3','1')->count()}}
+                    {{$all_client->where('option_3','>=','1')->count()}}
                 </span>
             </div>
 
