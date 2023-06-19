@@ -11,6 +11,9 @@ use Livewire\Component;
 use Livewire\WithPagination;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Routing\Route as RoutingRoute;
+use Illuminate\Support\Facades\Route;
+
 class Vet extends Component
 {
     use WithPagination;
@@ -111,7 +114,8 @@ class Vet extends Component
     }
     public function add_stock_adj(){ 
         $stock_adj = $this->stock_adj;
-
+        // return redirect()->route('admin.vetSingle',[$this->current_vet->id]);
+        // dd(Route::current());
         if($stock_adj){
             $current = $this->current_vet->stock->total_stock;
             $adj = $this->current_vet->stock->stock_adj+1;
@@ -120,9 +124,11 @@ class Vet extends Component
                 ['id'=>$this->vet_id],
                 ['total_stock'=>$current+$this->stock_adj,'stock_adj'=>$adj],
             );
+            return redirect()->route('admin.vetSingle',[$this->current_vet->id]);
         }else{
             return null;
         }
+        
 
     }
 
