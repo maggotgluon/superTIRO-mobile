@@ -114,22 +114,17 @@ class Vet extends Component
     }
     public function add_stock_adj(){ 
         $stock_adj = $this->stock_adj;
-        // return redirect()->route('admin.vetSingle',[$this->current_vet->id]);
-        // dd(Route::current());
         if($stock_adj){
             $current = $this->current_vet->stock->total_stock;
             $adj = $this->current_vet->stock->stock_adj+1;
-            // dd($current,$this->stock_adj,$adj);
             stock::updateOrCreate(
-                ['id'=>$this->vet_id],
+                ['id'=>$this->current_vet->stock_id],
                 ['total_stock'=>$current+$this->stock_adj,'stock_adj'=>$adj],
             );
             return redirect()->route('admin.vetSingle',[$this->current_vet->id]);
         }else{
             return null;
         }
-        
-
     }
 
     public function render()
