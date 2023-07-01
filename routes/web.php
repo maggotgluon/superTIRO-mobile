@@ -28,7 +28,8 @@ use Carbon\Carbon;
 */
 
 Route::get('/', function () {
-    return view('client.register');
+    return view('under');
+    // return view('client.register');
     // return view('welcome');
 })->name('index');
 
@@ -51,15 +52,18 @@ require __DIR__.'/auth.php';
 
 Route::name('client.')->prefix('client')->group(function (){
     Route::get('/', function () {
-        return view('client.register');
+        return view('under');
+        // return view('client.register');
     } )->name('index');
 
     Route::get('/login', function () {
-        return view('client.login');
+        return view('under');
+        // return view('client.login');
     } )->name('login');
 
     Route::get('/register', function () {
-        return view('client.register');
+        return view('under');
+        // return view('client.register');
     } )->name('register');
     
     Route::get('/email/{id?}', function ($id=null) {
@@ -79,7 +83,9 @@ Route::name('client.')->prefix('client')->group(function (){
     
 
     Route::get('/ticket/{phone}', function ($phone) {
-        return view('client.dashboard',['phone'=>$phone]);
+
+        return view('under');
+        // return view('client.dashboard',['phone'=>$phone]);
     } )->name('ticket');
 });
 Route::name('admin.')->prefix('admin')->group(function (){

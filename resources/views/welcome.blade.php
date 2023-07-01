@@ -20,7 +20,7 @@
                         <x-button label="Client Register" href="{{ route('client.register') }}" />
 
                         <x-button label="Vet Login" href="{{ route('vet.login') }}" />
-                        <x-button label="Vet Register" href="{{ route('vet.register') }}" />
+                        {{-- <x-button label="Vet Register" href="{{ route('vet.register') }}" /> --}}
                     @endauth
 
                 </div>
