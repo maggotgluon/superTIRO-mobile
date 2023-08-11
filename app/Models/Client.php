@@ -39,4 +39,7 @@ class Client extends Model
     public function info(){
         return $this->hasMany(ClientInfo::class);
     }
+    public function rmkt(){
+        return $this->hasMany(rmkt_client::class);
+    }
 }

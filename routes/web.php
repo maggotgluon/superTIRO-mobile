@@ -14,6 +14,8 @@ use App\Http\Livewire\VetDashboardV2;
 use App\Http\Livewire\Admin\DashboardV2;
 use App\Http\Livewire\Admin\Vet as vetSingle;
 use App\Http\Livewire\Admin\Vets as vetall;
+
+use App\Http\Livewire\Rmkt\Index as rmkt;
 use Carbon\Carbon;
 
 /*
@@ -28,8 +30,8 @@ use Carbon\Carbon;
 */
 
 Route::get('/', function () {
-    return view('under');
-    // return view('client.register');
+    // return view('under');
+    return view('client.register');
     // return view('welcome');
 })->name('index');
 
@@ -87,6 +89,13 @@ Route::name('client.')->prefix('client')->group(function (){
         return view('under');
         // return view('client.dashboard',['phone'=>$phone]);
     } )->name('ticket');
+});
+Route::name('rmkt.')->prefix('rmkt')->group(function (){
+    // case no scan
+    Route::get('/', rmkt::class )->name('index');
+    //link from rmkt include client id or phone
+    Route::get('/id/{phone}',rmkt::class )->name('landing');
+
 });
 Route::name('admin.')->prefix('admin')->group(function (){
 
