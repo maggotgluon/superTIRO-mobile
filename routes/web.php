@@ -30,8 +30,8 @@ use Carbon\Carbon;
 */
 
 Route::get('/', function () {
-    // return view('under');
-    return view('client.register');
+    return view('under');
+    // return view('client.register');
     // return view('welcome');
 })->name('index');
 
