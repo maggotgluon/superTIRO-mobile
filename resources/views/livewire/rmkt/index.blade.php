@@ -54,16 +54,22 @@
             {{-- rmkt special link --}}
     <div class="setup-content min-h-[70vh] flex flex-col transition-all {{$step==2? '' : 'hidden'}}" id="step-2">
         {{-- confirm data and privage --}}
-        ถึงเวลาปกป้อง 
-        {{$client_data->pet_name??''}}
-        จากปรสิตแล้ว
-
+        <div class="mt-8 pb-2">
+        ถึงเวลาปกป้อง <br>
+        <h3 class="text-xl pb-2 font-bold"> {{$client_data->pet_name??''}} </h3>
+        จากปรสิตแล้ว<br>
+        </div>
+        <span class="text-sm">
         *กรุณากดรับสิทธิ์ เพื่อถึงรพ.สัตว์ที่ท่านต้องการรับบริการ
-        <div class="py-2 text-center mt-auto" wire:loading.remove>
+        </span>
+        
+        <div class="py-2 text-center mt-auto grid gap-2" wire:loading.remove>
             <x-button lg right-icon="chevron-right" primary class="bg-gradient-to-br from-gradient-start to-gradient-end rounded-2xl"
             {{-- wire:click="varifyOTP" --}}
             wire:click="next(3)" type="button" label="รับสิทธิ์" />
-            <x-button lg right-icon="chevron-right" primary class="bg-gradient-to-br from-gradient-start to-gradient-end rounded-2xl"
+            <x-button lg 
+            {{-- right-icon="chevron-right"  --}}
+            primary class="bg-gradient-to-br from-warning-600 to-negative-600 rounded-2xl"
             {{-- wire:click="varifyOTP" --}}
             wire:click="next(6)" type="button" label="เก็บสิทธิ์ไว้ก่อน" />
         </div>
@@ -89,13 +95,18 @@
             </ul>
         
         </div>
-        <div class="flex justify-between py-2 text-center mt-auto">
+        <div class="flex justify-between py-2 text-center mt-auto" wire:loading.remove>
             <x-button lg right-icon="chevron-right" primary class="bg-gradient-to-br from-gradient-start to-gradient-end rounded-2xl"
             {{-- wire:click="varifyOTP" --}}
             wire:click="savermktdata" type="button" label="ยืนยัน" />
-            <x-button lg right-icon="chevron-right" primary class="bg-gradient-to-br from-gradient-start to-gradient-end rounded-2xl"
+            <x-button lg 
+            {{-- right-icon="chevron-right"  --}}
+            primary class="bg-gradient-to-br  from-warning-600 to-negative-600 rounded-2xl"
             {{-- wire:click="varifyOTP" --}}
             wire:click="next(4)" type="button" label="เปลี่ยนสถานที่รับสิทธิ์" />
+        </div>
+        <div class="py-2 text-center flex justify-center mt-auto" wire:loading>
+            กำลังดำเนินการ...
         </div>
         {{-- edit or confirm --}}
     </div>
@@ -104,7 +115,9 @@
             
     <div class="setup-content min-h-[70vh] flex flex-col transition-all {{$step==4? '' : 'hidden'}}" id="step-4">
         
-
+        <div class="mt-8 pb-2">
+            <h3 class="text-center text-xl pb-2 font-bold">กรุณาเลือกสถานพยาบาลที่เข้ารับบริการ</h3>
+        </div>
         <div class="mt-4" wire:init="loadAddr">
             @if ($vet_province!=null)
             <x-select
@@ -140,9 +153,20 @@
         {{-- {{$vet_id??'-'}} --}}
 
         {{-- edit page --}}
-        <x-button lg right-icon="chevron-right" primary class="bg-gradient-to-br from-gradient-start to-gradient-end rounded-2xl"
+        <div class="flex justify-between py-2 text-center mt-auto" wire:loading.remove>
+            <x-button lg 
+            {{-- right-icon="chevron-right"  --}}
+            primary class="bg-gradient-to-br  from-warning-600 to-negative-600 rounded-2xl"
+            {{-- wire:click="varifyOTP" --}}
+            wire:click="next(3)" type="button" label="ยกเลิก" />
+
+            <x-button lg right-icon="chevron-right" primary class="bg-gradient-to-br from-gradient-start to-gradient-end rounded-2xl"
         {{-- wire:click="varifyOTP" --}}
         wire:click="updateVet" type="button" label="ยืนยัน" />
+        </div>
+        <div class="py-2 text-center flex justify-center mt-auto" wire:loading>
+            กำลังดำเนินการ...
+        </div>
     </div>
             @break
         @case(5)
@@ -192,7 +216,11 @@
             
     <div class="setup-content min-h-[70vh] flex flex-col transition-all {{$step==6? '' : 'hidden'}}" id="step-6">
         {{-- opt out --}}
-        ท่านสามารถ กด Link เพื่อรับสิทธิ์ จาก Email และ SMS ได้อีกครั้ง
+        <div class="my-auto pb-2 text-center">
+        ท่านสามารถ กด Link เพื่อรับสิทธิ์ <br>
+        จาก Email และ SMS<br> 
+        ได้อีกครั้ง
+        </div>
     </div>
             @break
 
