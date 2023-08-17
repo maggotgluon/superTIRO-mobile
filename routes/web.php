@@ -30,7 +30,10 @@ use Carbon\Carbon;
 */
 
 Route::get('/', function () {
-    // return view('under');
+    $date = Carbon::create('21 Aug 2023');
+    if(now()>=$date){
+        return view('under');
+    }
     return view('client.register');
     // return view('welcome');
 })->name('index');
@@ -54,17 +57,27 @@ require __DIR__.'/auth.php';
 
 Route::name('client.')->prefix('client')->group(function (){
     Route::get('/', function () {
-        // return view('under');
+        $date = Carbon::create('21 Aug 2023');
+        if(now()>=$date){
+            return view('under');
+        }
         return view('client.register');
     } )->name('index');
 
     Route::get('/login', function () {
-        // return view('under');
+        $date = Carbon::create('21 Aug 2023');
+        if(now()>=$date){
+            return view('under');
+        }
         return view('client.login');
     } )->name('login');
 
     Route::get('/register', function () {
-        // return view('under');
+        
+        $date = Carbon::create('21 Aug 2023');
+        if(now()>=$date){
+            return view('under');
+        }
         return view('client.register');
     } )->name('register');
     
@@ -86,7 +99,10 @@ Route::name('client.')->prefix('client')->group(function (){
 
     Route::get('/ticket/{phone}', function ($phone) {
 
-        // return view('under');
+        $date = Carbon::create('21 Aug 2023');
+        if(now()>=$date){
+            return view('under');
+        }
         return view('client.dashboard',['phone'=>$phone]);
     } )->name('ticket');
 });
