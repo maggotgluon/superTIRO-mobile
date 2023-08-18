@@ -27,7 +27,9 @@ class Client extends Model
         'option_2',
         'option_3',
 
-        'vet_id'
+        'vet_id',
+        'active_date',
+        'active_status'
     ];
     /**
      * Get the vet associated with the user.

@@ -6,11 +6,12 @@ use App\Models\Client;
 use App\Models\rmkt_client;
 use App\Models\Vet;
 use Livewire\Component;
+use Illuminate\Support\Str;
 
 class Index extends Component
 {
     public $step, $phone,$currentVet;
-    public $otp_code;
+    public $otp_code,$vet_code;
     public $offer_1,$offer_2,$offer_3;
     public $client_data;
     public $vet,$vetall;
@@ -30,6 +31,37 @@ class Index extends Component
         // $this->phone=000;
         // dd($this->loadclientdata());
     }
+    public function requestOTP(){
+        // validate phone field and database
+        // dd(  );
+        $validatedData = $this->validate([
+            'phone' => ['required', 'numeric',
+            // 'digits:10','min:10',
+            'regex:/^([0-9\s\(\)]*)$/'],
+        ]);
+        // todo:request otp
+
+        // next to 1
+        if(Client::where('phone',$this->phone)->count()){
+            $this->next(1);
+        }else{
+            return redirect(route('index'));
+        }
+    }
+    public function validateOTP(){
+        // validate otp field
+        $validatedData = $this->validate([
+            'otp_code' => ['required', 'numeric',
+            // 'digits:10','min:10',
+            'regex:/^([0-9\s\(\)]*)$/'],
+        ]);
+        // validate otp api
+        // next to 2
+        // validate 
+        $this->loadclientdata();
+        $this->next(2);
+    }
+
     public function loadclientdata(){
         $this->client_data = Client::firstWhere('phone',$this->phone);
         $this->vet_id = $this->client_data->vet_id;
@@ -47,9 +79,64 @@ class Index extends Component
             'client_id'=>$this->client_data->id,
             'active_status'=>null
         ],[
-            'vet_id'=>$this->vet_id
+            'vet_id'=>$this->vet_id,
+            'active_status'=>'pending'
         ]);
-        $this->next(5);
+        $this->next(8);
+    }
+    public function verifyVetCode(){
+        $verify=$this->vet_code==$this->vet_id;
+        
+        if($verify){
+            //create client with re remark
+            // dd($this->client_data);
+            
+                //code...
+                $rmkt=rmkt_client::updateOrCreate([
+                    'client_id'=>$this->client_data->id,
+                    'active_status'=>'pending'
+                ],[
+                    'vet_id'=>$this->vet_id,
+                    'option_1'=>$this->offer_1??null,
+                    'option_2'=>$this->offer_2??null,
+                    'option_3'=>$this->offer_3??null,
+                    'active_date'=>now(),
+                    'active_status'=>'activated'
+                ]);
+            try {
+                $client_data=Client::create([
+                    'phone'=>'rmkt-'.$this->client_data->phone,
+                    'phoneIsVerified'=>'rmkt-'.$this->client_data->client_code,
+                
+                    'client_code'=>0,
+                    'name'=>$this->client_data->name,
+                    'email'=>null,
+                    
+                    'pet_name'=>$this->client_data->pet_name,
+                    'pet_breed'=>$this->client_data->pet_breed,
+                    'pet_weight'=>$this->client_data->pet_weight,
+                    'pet_age_month'=>$this->client_data->pet_age_month,
+                    'pet_age_year'=>$this->client_data->pet_age_year,
+                    'vet_id'=>$this->vet_id,
+                    'option_1'=>$this->offer_1??null,
+                    'option_2'=>$this->offer_2??null,
+                    'option_3'=>$this->offer_3??null,
+                    'active_date'=>now(),
+                    'active_status'=>'activated'
+                ]);
+    
+                $client_data->client_code = 'TRIO'.Str::padLeft($client_data->id, 5, '0').'[rmkt]';
+                $client_data->save();
+            } catch (\Throwable $th) {
+                throw $th;
+            }
+            
+            // dd($client_data,$this->client_data);
+            $this->client_data=$client_data;
+            $this->next(7);
+        }else{
+            dd('code wrong',$this->vet_code,$this->vet_id);
+        }
     }
     public function loadAddr(){
         $this->readyToLoad = true;

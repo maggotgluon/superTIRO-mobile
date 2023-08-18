@@ -18,7 +18,7 @@ return new class extends Migration
             $table->uuid('client_code')->unique();
 
             $table->string('name');
-            $table->string('email')->unique();
+            $table->string('email')->nullable();
             $table->string('phone')->unique();
             $table->string('phoneIsVerified');
             // optional field
