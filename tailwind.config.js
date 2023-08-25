@@ -28,7 +28,7 @@ module.exports = {
                 'gradient-end':'#367379',
             },
             fontFamily: {
-                sans: ['prompt','Nunito', ...defaultTheme.fontFamily.sans],
+                sans: ['Prompt','Nunito', ...defaultTheme.fontFamily.sans],
             },
         },
     },

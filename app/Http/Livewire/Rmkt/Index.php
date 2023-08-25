@@ -21,7 +21,7 @@ class Index extends Component
     public function mount($phone=null){
         $this->phone = $phone;
         if($phone == null){
-            $this->step = 0;
+            $this->step = -1;
         }else{
             $this->loadclientdata();
             $this->next(2);
@@ -172,5 +172,8 @@ class Index extends Component
     public function next($loc=null){
         $this->step=$loc??$this->step+1;
         // dd($this->step);
+    }
+    public function goHome(){
+        return redirect(route('index'));
     }
 }

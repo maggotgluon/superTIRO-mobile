@@ -2,26 +2,60 @@
     <div class="text-center absolute inset-0 z-50 " wire:loading>
         <img class="m-auto" src="{{ url('/loading.gif') }}" />
     </div>
+    
     {{-- no special link --}}
     @switch($step)
+
+        @case(-1)
+            <div class="setup-content min-h-[70vh] flex flex-col transition-all" id="step-0">
+                {{-- phone number input --}}
+                <div class="mt-8 pb-2">
+                    <p class="mb-4 text-center">
+                    เข้าสู่ระบบสิทธิพิเศษ<br>
+                    เข้าโปรแกรม Super TRIO<br>
+                    โปรแกรมปกป้องสุนัขจากปรสิตร้ายที่อันตรายถึงชีวิต
+                    </p>
+                </div>
+                <div class="py-2 text-center mt-auto " wire:loading.remove>
+                    <x-button lg right-icon="chevron-right" primary
+                        class="rounded-2xl" wire:click="goHome"
+                        type="button" label="ลงทะเบียนลูกค้าใหม่" />
+
+                    <x-button lg right-icon="chevron-right" primary
+                        class="bg-gradient-to-br from-gradient-start to-gradient-end rounded-2xl" 
+                        wire:click="next"
+                        type="button" label="เข้าสู่ระบบ" />
+                        {{-- ตรวจสอบสิทธิ์ --}}
+
+                </div>
+                <div class="py-2 text-center flex justify-center mt-auto" wire:loading>
+                    กำลังดำเนินการ...
+                </div>
+            </div>
+        @break
         @case(0)
             <div class="setup-content min-h-[70vh] flex flex-col transition-all {{ $step == 0 ? '' : 'hidden' }}" id="step-0">
                 {{-- phone number input --}}
                 <div class="mt-8 pb-2">
-                    กรุณากรอกหมายเลขโทรศัพท์ ที่ท่านเคยลงทะเบียนรับสิทธิ์
+                    <p class="mb-4">
+                    กรุณากรอกหมายเลขโทรศัพท์ ที่ท่านเคยลง ทะเบียนรับสิทธิ์
                     เข้าโปรแกรม Super TRIO
-                    โปรแกรมปกป้องสุนัขจากปรสิตร้ายที่อันตรายถึงชีวิต
-
+                    โปรแกรมปกป้องสุนัขจากปรสิตร้ายที่ อันตรายถึงชีวิต
+                    </p>
 
                     <x-input label="หมายเลขโทรศัพท์" maxlength="10" minlength="10"
                         placeholder="หมายเลขโทรศัพท์" pattern="[0-9]*" inputmode="tel" required wire:model.defer="phone" />
                 </div>
-                <img class="my-4" src="{{url('/app-banner.png')}}"/>
+                <img class="my-4 px-8" src="{{url('/app-banner.png')}}"/>
                 <div class="py-2 text-center mt-auto " wire:loading.remove>
+                    <x-button lg right-icon="chevron-right" primary
+                        class="rounded-2xl" wire:click="requestOTP"
+                        type="button" label="ลงทะเบียนลูกค้าใหม่" />
 
                     <x-button lg right-icon="chevron-right" primary
                         class="bg-gradient-to-br from-gradient-start to-gradient-end rounded-2xl" wire:click="requestOTP"
-                        type="button" label="ถัดไป" />
+                        type="button" label="เข้าสู่ระบบ" />
+                        {{-- ตรวจสอบสิทธิ์ --}}
 
                 </div>
                 <div class="py-2 text-center flex justify-center mt-auto" wire:loading>
@@ -70,7 +104,7 @@
                 <span class="text-sm">
                     *กรุณากดรับสิทธิพิเศษ เมื่อถึงคลินิกหรือโรงพยาบาลสัตว์ที่ต้องการเข้าร่วมโปรแกรม
                 </span>
-                <img class="my-4" src="{{url('/app-banner.png')}}"/>
+                <img class="my-4 px-8" src="{{url('/app-banner.png')}}"/>
                 <div class="py-2 text-center mt-auto grid gap-2" wire:loading.remove>
                     <x-button lg right-icon="chevron-right" primary
                         class="bg-gradient-to-br from-gradient-start to-gradient-end rounded-2xl" {{-- wire:click="varifyOTP" --}}
@@ -93,7 +127,7 @@
                     <h3 class="text-center text-xl pb-2 font-bold">กรุณาตรวจสอบข้อมูลเพื่อยืนยันรับสิทธิ์</h3>
 
                     <ul>
-                        <li>ชื่อชื่อสุนัข : {{ $client_data->pet_name ?? '' }}</li>
+                        <li>ชื่อสุนัข : {{ $client_data->pet_name ?? '' }}</li>
                         <li>น้ำหนัก : {{ $client_data->pet_weight ?? '' }}</li>
                         <li>อายุ : {{ $client_data->pet_age_year ?? '' }} ปี {{ $client_data->pet_age_month ?? '' }} เดือน</li>
                         <li>คลินิกหรือโรงพยาบาลสัตว์. : {{ $currentVet->vet_name ?? $client_data->vet->vet_name }}</li>
@@ -219,10 +253,10 @@
                     placeholder="รหัสคลินิก หรือ โรงพยาบาลสัตว์" />
 
                 <span class="p-2 block"><x-checkbox lg class="rounded-full"
-                        label="รับสิทธิ์พิเศษเพิ่มเติม - เข้าโปรแกรม 1 เดือน" id="extra_1"
+                        label="รับสิทธิ์เข้าโปรแกรม 1 เดือน" id="extra_1"
                         wire:model.lazy="offer_2" /></span>
                 <span class="p-2 block"><x-checkbox lg class="rounded-full" value=3
-                        label="รับสิทธิ์พิเศษเพิ่มเติม - เข้าโปรแกรม {{ $offer_3 ? $offer_3 : '3' }} เดือน" id="extra_2"
+                        label="รับสิทธิ์เข้าโปรแกรม {{ $offer_3 ? $offer_3 : '3' }} เดือน" id="extra_2"
                         wire:model.lazy="offer_3" /></span>
 
                     @if($offer_3)
@@ -250,7 +284,7 @@
 
                     <x-button lg right-icon="chevron-right" primary
                         class="bg-gradient-to-br from-gradient-start to-gradient-end rounded-2xl" {{-- wire:click="varifyOTP" --}}
-                        wire:click="verifyVetCode" type="button" label="ยืนยัน" />
+                        wire:click="verifyVetCode" type="button" label="รับสิทธิ์" />
                 </div>
                 <div class="py-2 text-center flex justify-center mt-auto" wire:loading>
                     กำลังดำเนินการ...
@@ -265,9 +299,9 @@
                 <div class="my-auto pb-2 text-center">
                     ท่านสามารถ กด Link เพื่อรับสิทธิ์ <br>
                     จาก Email และ SMS<br>
-                    ได้อีกครั้งภายหลัง เมื่อต้องการใช้สิทธิ ที่คลินิกหรือโรงพยาบาลสัตว์
+                    ได้อีกครั้งภายหลัง เมื่อต้องการใช้สิทธิ <br>ที่คลินิกหรือโรงพยาบาลสัตว์
                 </div>
-                <img class="my-4" src="{{url('/app-banner.png')}}"/>
+                <img class="my-4 px-8" src="{{url('/app-banner.png')}}"/>
             </div>
         @break
 

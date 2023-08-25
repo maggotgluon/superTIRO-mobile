@@ -23,8 +23,9 @@
         <title>{{ config('app.name', 'SuperTRIO') }}</title>
 
         <!-- Fonts -->
+        <link rel="preconnect" href="https://fonts.bunny.net">
+        <link rel="stylesheet" href="https://fonts.bunny.net/css?family=prompt:wght@400,600,700&display=swap"  />
         <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
-
         <!-- Scripts -->
         @wireUiScripts
 
