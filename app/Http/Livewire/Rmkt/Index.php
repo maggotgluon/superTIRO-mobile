@@ -33,7 +33,13 @@ class Index extends Component
     }
     public function requestOTP(){
         // validate phone field and database
-        // dd(  );
+        $validatePhone = Client::where('phone',$this->phone)->count();
+        if($validatePhone==0){
+            $this->next(-2);
+            // $this->goHome();
+        }
+
+        // dd($validatePhone);
         $validatedData = $this->validate([
             'phone' => ['required', 'numeric',
             // 'digits:10','min:10',
@@ -45,7 +51,8 @@ class Index extends Component
         if(Client::where('phone',$this->phone)->count()){
             $this->next(1);
         }else{
-            return redirect(route('index'));
+            $this->next(-2);
+            // return redirect(route('index'));
         }
     }
     public function validateOTP(){

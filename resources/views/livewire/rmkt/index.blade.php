@@ -6,6 +6,31 @@
     {{-- no special link --}}
     @switch($step)
 
+    @case(-2)
+        <div class="setup-content min-h-[70vh] flex flex-col transition-all" id="step-0">
+            {{-- phone number input --}}
+            <div class="mt-8 pb-2">
+                <p class="mb-4 text-center">
+                    ไม่พบข้อมูลลงทะเบียน
+                </p>
+            </div>
+            <div class="py-2 text-center mt-auto " wire:loading.remove>
+                <x-button lg right-icon="chevron-right" primary
+                    class="rounded-2xl" wire:click="next(0)"
+                    type="button" label="ลองใหม่อีกครั้ง" />
+
+                <x-button lg right-icon="chevron-right" primary
+                    class="bg-gradient-to-br from-gradient-start to-gradient-end rounded-2xl" 
+                    wire:click="goHome"
+                    type="button" label="ลงทะเบียนลูกค้าใหม่" />
+                    {{-- ตรวจสอบสิทธิ์ --}}
+
+            </div>
+            <div class="py-2 text-center flex justify-center mt-auto" wire:loading>
+                กำลังดำเนินการ...
+            </div>
+        </div>
+    @break
         @case(-1)
             <div class="setup-content min-h-[70vh] flex flex-col transition-all" id="step-0">
                 {{-- phone number input --}}
@@ -42,19 +67,17 @@
                     เข้าโปรแกรม Super TRIO
                     โปรแกรมปกป้องสุนัขจากปรสิตร้ายที่ อันตรายถึงชีวิต
                     </p>
-
+                    {{-- <p>ไม่พบข้อมูลลงทะเบียน</p> --}}
                     <x-input label="หมายเลขโทรศัพท์" maxlength="10" minlength="10"
                         placeholder="หมายเลขโทรศัพท์" pattern="[0-9]*" inputmode="tel" required wire:model.defer="phone" />
                 </div>
                 <img class="my-4 px-8" src="{{url('/app-banner.png')}}"/>
                 <div class="py-2 text-center mt-auto " wire:loading.remove>
-                    <x-button lg right-icon="chevron-right" primary
-                        class="rounded-2xl" wire:click="requestOTP"
-                        type="button" label="ลงทะเบียนลูกค้าใหม่" />
 
                     <x-button lg right-icon="chevron-right" primary
-                        class="bg-gradient-to-br from-gradient-start to-gradient-end rounded-2xl" wire:click="requestOTP"
-                        type="button" label="เข้าสู่ระบบ" />
+                        class="bg-gradient-to-br from-gradient-start to-gradient-end rounded-2xl" 
+                        wire:click="requestOTP"
+                        type="button" label="ตรวจสอบสิทธิ์" />
                         {{-- ตรวจสอบสิทธิ์ --}}
 
                 </div>
