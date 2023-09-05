@@ -278,7 +278,8 @@
                 </p>
                 @if($errorStatus==1)
                 <x-badge negative label="รหัสคลินิก หรือ โรงพยาบาลสัตว์ผิด กรุณาติดต่อเจ้าหน้าที่" />
-
+                {{-- <x-badge negative label="{{$vet_id}}" /> --}}
+                
                 @endif
                 <x-input wire:model="vet_code" label="รหัสคลินิก หรือ โรงพยาบาลสัตว์"
                     placeholder="รหัสคลินิก หรือ โรงพยาบาลสัตว์" />

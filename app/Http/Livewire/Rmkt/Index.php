@@ -91,8 +91,13 @@ class Index extends Component
     }
     public function verifyVetCode(){
         $verify=$this->vet_code==$this->vet_id;
-        
-        if($verify){
+        $check = $this->offer_2||$this->offer_3;
+        if($verify && $check){
+            if($this->client_data->active_status=='activated'){
+                $this->errorStatus=2;
+                $this->next(7);
+                return;
+            }
             //create client with re remark
             // dd($this->client_data);
             
@@ -140,9 +145,16 @@ class Index extends Component
             $this->client_data=$client_data;
             $this->next(7);
         }else{
-            $this->errorStatus=1;
-            $this->vet_code=null;
+            if(!$verify){
+                $this->errorStatus=1;
+                $this->vet_code=null;
+            }
+            if($check){
+                $this->errorStatus=1;
+                $this->vet_code=null;
+            }
             
+
         }
     }
     public function loadAddr(){
