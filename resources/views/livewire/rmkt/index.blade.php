@@ -40,16 +40,19 @@
                     เข้าโปรแกรม Super TRIO<br>
                     โปรแกรมปกป้องสุนัขจากปรสิตร้ายที่อันตรายถึงชีวิต
                     </p>
+                    <img class="my-8 px-8" src="{{url('/app-banner.png')}}"/>
                 </div>
                 <div class="py-2 text-center mt-auto " wire:loading.remove>
-                    <x-button lg right-icon="chevron-right" primary
-                        class="rounded-2xl" wire:click="goHome"
-                        type="button" label="ลงทะเบียนลูกค้าใหม่" />
 
                     <x-button lg right-icon="chevron-right" primary
-                        class="bg-gradient-to-br from-gradient-start to-gradient-end rounded-2xl" 
+                        class="bg-gradient-to-br from-gradient-start to-gradient-end rounded-2xl m-2" 
                         wire:click="next"
-                        type="button" label="เข้าสู่ระบบ" />
+                        type="button" label="เคยลงทะเบียน" />
+
+                    <x-button lg right-icon="chevron-right" primary
+                        class="rounded-2xl m-2" wire:click="goHome"
+                        type="button" label="ยังไม่เคยลงทะเบียน" />
+
                         {{-- ตรวจสอบสิทธิ์ --}}
 
                 </div>
@@ -64,7 +67,7 @@
                 <div class="mt-8 pb-2">
                     <p class="mb-4">
                     กรุณากรอกหมายเลขโทรศัพท์ ที่ท่านเคยลง ทะเบียนรับสิทธิ์
-                    เข้าโปรแกรม Super TRIO
+                    เข้าโปรแกรม Super TRIO<br>
                     โปรแกรมปกป้องสุนัขจากปรสิตร้ายที่ อันตรายถึงชีวิต
                     </p>
                     {{-- <p>ไม่พบข้อมูลลงทะเบียน</p> --}}
@@ -158,12 +161,12 @@
 
                 </div>
                 <div class="flex justify-between py-2 text-center mt-auto" wire:loading.remove>
-                    <x-button lg right-icon="chevron-right" primary
-                        class="bg-gradient-to-br from-gradient-start to-gradient-end rounded-2xl" {{-- wire:click="varifyOTP" --}}
-                        wire:click="savermktdata" type="button" label="ยืนยัน" />
                     <x-button lg {{-- right-icon="chevron-right"  --}} primary
                         class="bg-gradient-to-br  from-warning-600 to-negative-600 rounded-2xl" {{-- wire:click="varifyOTP" --}}
                         wire:click="next(4)" type="button" label="เปลี่ยนสถานที่รับสิทธิ์" />
+                    <x-button lg right-icon="chevron-right" primary
+                        class="bg-gradient-to-br from-gradient-start to-gradient-end rounded-2xl" {{-- wire:click="varifyOTP" --}}
+                        wire:click="savermktdata" type="button" label="ยืนยัน" />
                 </div>
                 <div class="py-2 text-center flex justify-center mt-auto" wire:loading>
                     กำลังดำเนินการ...

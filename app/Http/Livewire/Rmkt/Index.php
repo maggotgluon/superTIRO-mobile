@@ -33,12 +33,6 @@ class Index extends Component
     }
     public function requestOTP(){
         // validate phone field and database
-        $validatePhone = Client::where('phone',$this->phone)->count();
-        if($validatePhone==0){
-            $this->next(-2);
-            // $this->goHome();
-        }
-
         // dd($validatePhone);
         $validatedData = $this->validate([
             'phone' => ['required', 'numeric',
@@ -49,6 +43,7 @@ class Index extends Component
 
         // next to 1
         if(Client::where('phone',$this->phone)->count()){
+            // if status pending or not activated go to old loop
             $this->next(1);
         }else{
             $this->next(-2);
@@ -66,7 +61,7 @@ class Index extends Component
         // next to 2
         // validate 
         $this->loadclientdata();
-        $this->next(2);
+        $this->next(3);
     }
 
     public function loadclientdata(){
