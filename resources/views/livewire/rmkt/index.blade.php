@@ -270,11 +270,16 @@
             <div class="setup-content min-h-[70vh] flex flex-col transition-all {{ $step == 5 ? '' : 'hidden' }}"
                 id="step-5">
                 {{-- confirm page --}}
+                
                 <h3 class="text-center text-xl my-4 pt-4 font-bold text-primary-blue"> กรุณากรอกรหัสคลินิก <br>หรือ
                     โรงพยาบาลสัตว์ </h3>
                 <p class="text-center mb-8">
                     (สอบถามที่พนักงานของคลินิก)
                 </p>
+                @if($errorStatus==1)
+                <x-badge negative label="รหัสคลินิก หรือ โรงพยาบาลสัตว์ผิด กรุณาติดต่อเจ้าหน้าที่" />
+
+                @endif
                 <x-input wire:model="vet_code" label="รหัสคลินิก หรือ โรงพยาบาลสัตว์"
                     placeholder="รหัสคลินิก หรือ โรงพยาบาลสัตว์" />
 

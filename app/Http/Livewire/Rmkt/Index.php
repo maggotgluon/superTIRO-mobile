@@ -13,6 +13,7 @@ class Index extends Component
     public $step, $phone,$currentVet;
     public $otp_code,$vet_code;
     public $offer_1,$offer_2,$offer_3;
+    public $errorStatus;
     public $client_data;
     public $vet,$vetall;
     public $vet_province,$vet_city,$vet_area,$vet_id;
@@ -40,9 +41,11 @@ class Index extends Component
             'regex:/^([0-9\s\(\)]*)$/'],
         ]);
         // todo:request otp
-
         // next to 1
-        if(Client::where('phone',$this->phone)->count()){
+        $client=Client::firstWhere('phone',$this->phone);
+        if($client){
+            // dd($client);
+            // dd(rmkt_client::all(),rmkt_client::firstWhere('client_id',$client->client_code));
             // if status pending or not activated go to old loop
             $this->next(1);
         }else{
@@ -137,7 +140,9 @@ class Index extends Component
             $this->client_data=$client_data;
             $this->next(7);
         }else{
-            dd('code wrong',$this->vet_code,$this->vet_id);
+            $this->errorStatus=1;
+            $this->vet_code=null;
+            
         }
     }
     public function loadAddr(){
