@@ -95,7 +95,7 @@ class Index extends Component
         if($verify && $check){
             if($this->client_data->active_status=='activated'){
                 $this->errorStatus=2;
-                $this->next(7);
+                // $this->next(7);
                 return;
             }
             //create client with re remark
