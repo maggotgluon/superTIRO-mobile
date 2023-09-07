@@ -135,7 +135,7 @@ class Index extends Component
                     'active_status'=>'activated'
                 ]);
     
-                $client_data->client_code = 'TRIO'.Str::padLeft($client_data->id, 5, '0').'[rmkt]';
+                $client_data->client_code = 'TRIO'.Str::padLeft($client_data->id, 5, '0');
                 $client_data->save();
             } catch (\Throwable $th) {
                 throw $th;
