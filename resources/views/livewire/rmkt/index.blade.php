@@ -16,7 +16,7 @@
             </div>
             <div class="py-2 text-center mt-auto " wire:loading.remove>
                 <x-button lg right-icon="chevron-right" primary
-                    class="rounded-2xl" wire:click="next(0)"
+                    class="rounded-2xl m-2" wire:click="next(0)"
                     type="button" label="ลองใหม่อีกครั้ง" />
 
                 <x-button lg right-icon="chevron-right" primary
@@ -66,7 +66,7 @@
                 {{-- phone number input --}}
                 <div class="mt-8 pb-2">
                     <p class="mb-4">
-                    กรุณากรอกหมายเลขโทรศัพท์ ที่ท่านเคยลง ทะเบียนรับสิทธิ์
+                    กรุณากรอกหมายเลขโทรศัพท์ ที่ท่านเคยลงทะเบียนรับสิทธิ์
                     เข้าโปรแกรม Super TRIO<br>
                     โปรแกรมปกป้องสุนัขจากปรสิตร้ายที่ อันตรายถึงชีวิต
                     </p>
@@ -246,8 +246,8 @@
                     จะไม่สามารถใช้งานได้ <br>
                     หากมีข้อสงสัย ติดต่อ <br>
                     <div class="flex flex-wrap justify-center gap-2 mt-4">
-                        <x-button rounded class="m-2 p-2"  green href="https://line.me/ti/p/%40PetsSociety" label="Line : @PetsSociety" />
-                        <x-button rounded class="m-2 p-2"  sky href="https://www.facebook.com/PetsSocietybyZoetis" label="facebook.com/PetsSocietybyZoetis" />
+                        <x-button rounded class="m-2 p-2" target="_blank" green href="https://line.me/ti/p/%40PetsSociety" label="Line : @PetsSociety" />
+                        <x-button rounded class="m-2 p-2" target="_blank" sky href="https://www.facebook.com/PetsSocietybyZoetis" label="facebook.com/PetsSocietybyZoetis" />
                     </div>
 
                 </p>

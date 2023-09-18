@@ -59,7 +59,11 @@ class Index extends Component
             'otp_code' => ['required', 'numeric',
             // 'digits:10','min:10',
             'regex:/^([0-9\s\(\)]*)$/'],
-        ]);
+        ],
+        ['phone.required' => 'โปรดกรอกหมายเลขโทรศัพท์ของคุณที่ลงทะเบียนไว้']
+        );
+        
+        
         // validate otp api
         // next to 2
         // validate 
