@@ -30,7 +30,7 @@ use Carbon\Carbon;
 */
 
 Route::get('/', function () {
-    $date = Carbon::create('21 Aug 2023');
+    $date = Carbon::create('21 Aug 2025');
     if(now()>=$date){
         return view('under');
     }
@@ -57,7 +57,7 @@ require __DIR__.'/auth.php';
 
 Route::name('client.')->prefix('client')->group(function (){
     Route::get('/', function () {
-        $date = Carbon::create('21 Aug 2023');
+        $date = Carbon::create('21 Aug 2025');
         if(now()>=$date){
             return view('under');
         }
@@ -65,7 +65,7 @@ Route::name('client.')->prefix('client')->group(function (){
     } )->name('index');
 
     Route::get('/login', function () {
-        $date = Carbon::create('21 Aug 2023');
+        $date = Carbon::create('21 Aug 2025');
         if(now()>=$date){
             return view('under');
         }
@@ -74,7 +74,7 @@ Route::name('client.')->prefix('client')->group(function (){
 
     Route::get('/register', function () {
         
-        $date = Carbon::create('21 Aug 2023');
+        $date = Carbon::create('21 Aug 2025');
         if(now()>=$date){
             return view('under');
         }
@@ -99,7 +99,7 @@ Route::name('client.')->prefix('client')->group(function (){
 
     Route::get('/ticket/{phone}', function ($phone) {
 
-        $date = Carbon::create('21 Aug 2023');
+        $date = Carbon::create('21 Aug 2025');
         if(now()>=$date){
             return view('under');
         }
