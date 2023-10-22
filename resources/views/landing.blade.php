@@ -69,16 +69,16 @@
         <div class="bg-primary-blue w-full rounded-t-3xl py-8">
             <section class="container grid md:grid-cols-3 m-auto pt-8 gap-8 text-center md:text-left">
                 <div>
-                    <x-application-logo class="w-24 m-auto my-4" />
+                    <x-application-logo class="w-32 m-auto my-4" />
                     ลงทะเบียนเพื่อรับข่าวสาร คำแนะนำ และเคล็ดลับด้านสุขภาพของสุนัข
                 </div> 
                 <div>SITE MAP
                     <ul>
-                        <li><a href="#">หน้าหลัก</a></li>
-                        <li><a href="#">Super TRIO คืออะไร ?</a></li>
-                        <li><a href="#">ทำไมต้องป้องกัน</a></li>
-                        <li><a href="#">เคล็ดลับปกป้อง</a></li>
-                        <li><a href="#">ติดต่อเราให้อุ่นใจ</a></li>
+                        <li><a href="#" class="hover:text-secondary-red">หน้าหลัก</a></li>
+                        <li><a href="#" class="hover:text-secondary-red">Super TRIO คืออะไร ?</a></li>
+                        <li><a href="#" class="hover:text-secondary-red">ทำไมต้องป้องกัน</a></li>
+                        <li><a href="#" class="hover:text-secondary-red">เคล็ดลับปกป้อง</a></li>
+                        <li><a href="#" class="hover:text-secondary-red">ติดต่อเราให้อุ่นใจ</a></li>
                     </ul>
                 </div>
                 <div>
@@ -93,11 +93,11 @@
         <div class="bg-secondary-red w-full p-2">
             <section class="container grid md:grid-cols-2 m-auto text-center">
                 <div class="md:text-left">
-                    <a href="#">Privacy Policy</a> |  <a href="#">Cookie Settings</a>
+                    <a href="#" class="hover:text-primary-blue">Privacy Policy</a> |  <a href="#" class="hover:text-primary-blue">Cookie Settings</a>
                 </div>
                 <div class="md:text-right">
                     COPYRIGHT © 
-                    <a href="#">Super TRIO</a>
+                    <a href="#" class="hover:text-primary-blue">Super TRIO</a>
                     2022  – ALL RIGHTS RESERVED.
                 </div>
             </section>
