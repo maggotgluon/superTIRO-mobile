@@ -37,6 +37,7 @@ Route::get('/', function () {
     return view('client.register');
     // return view('welcome');
 })->name('index');
+Route::view('/land','landing');
 
 Route::get('/admin', function () {
     return view('welcome');
