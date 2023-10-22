@@ -64,12 +64,12 @@
     </div>
     <footer class="text-white w-full pt-16">
         <div class="m-auto">
-            <img class="h-44 -mb-10 mx-auto" src="{{asset('footer_banner.png')}}">
+            <img class="max-w-xl w-full -mb-10 mx-auto" src="{{asset('footer_banner.png')}}">
         </div>
         <div class="bg-primary-blue w-full rounded-t-3xl py-8">
             <section class="container grid md:grid-cols-3 m-auto pt-8 gap-8 text-center md:text-left">
                 <div>
-                    <x-application-logo class="h-24 m-auto my-4" />
+                    <x-application-logo class="w-24 m-auto my-4" />
                     ลงทะเบียนเพื่อรับข่าวสาร คำแนะนำ และเคล็ดลับด้านสุขภาพของสุนัข
                 </div> 
                 <div>SITE MAP
