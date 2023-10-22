@@ -71,21 +71,46 @@
                 <div>
                     <x-application-logo class="w-32 m-auto my-4" />
                     ลงทะเบียนเพื่อรับข่าวสาร คำแนะนำ และเคล็ดลับด้านสุขภาพของสุนัข
+                    <div class="flex px-4 py-2">
+                        <input type="text" autocomplete="off" 
+                            class="placeholder-secondary-400 
+                                border border-secondary-300 focus:ring-primary-500 focus:border-primary-500 
+                                form-input block w-full sm:text-sm 
+                                transition ease-in-out duration-100 focus:outline-none shadow-sm rounded-l-lg">
+                    
+                        <button type="button" 
+                            class="outline-none inline-flex justify-center items-center group transition-all ease-in duration-150 
+                                focus:ring-2 focus:ring-offset-2 hover:shadow-sm 
+                                disabled:opacity-80 disabled:cursor-not-allowed rounded-r-lg gap-x-2 text-sm px-4 py-2     
+                                bg-secondary-red
+                                border border-secondary-red text-black hover:bg-secondary-red/75 ring-secondary-red/50">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                                </svg>
+                        </button>
+                    </div>
                 </div> 
-                <div>SITE MAP
+                <div>
+                    <b>SITE MAP</b>
                     <ul>
-                        <li><a href="#" class="hover:text-secondary-red">หน้าหลัก</a></li>
-                        <li><a href="#" class="hover:text-secondary-red">Super TRIO คืออะไร ?</a></li>
-                        <li><a href="#" class="hover:text-secondary-red">ทำไมต้องป้องกัน</a></li>
-                        <li><a href="#" class="hover:text-secondary-red">เคล็ดลับปกป้อง</a></li>
-                        <li><a href="#" class="hover:text-secondary-red">ติดต่อเราให้อุ่นใจ</a></li>
+                        <li><a href="https://www.supertriodog.com" class="hover:text-secondary-red">หน้าหลัก</a></li>
+                        <li><a href="https://www.supertriodog.com/what-is-super-trio/" class="hover:text-secondary-red">Super TRIO คืออะไร ?</a></li>
+                        <li><a href="https://www.supertriodog.com/why-protection/" class="hover:text-secondary-red">ทำไมต้องป้องกัน</a></li>
+                        <li><a href="https://www.supertriodog.com/tip/" class="hover:text-secondary-red">เคล็ดลับปกป้อง</a></li>
+                        <li><a href="https://www.supertriodog.com/contact-us/" class="hover:text-secondary-red">ติดต่อเราให้อุ่นใจ</a></li>
                     </ul>
                 </div>
                 <div>
-                    แค่ติดตามก็อุ่นใจ
+                    <b>แค่ติดตามก็อุ่นใจ</b>
                     <ul>
-                        <li><a href="#">@PetsSociety</a>
-                        <li><a href="#">facebook.com/PetsSocietybyZoetis</a>
+                        <li><a href="https://line.me/ti/p/%40PetsSociety">
+                            <svg class="fill-white inline-block mb-1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 50 50">
+                                <path fill="#ffffff" d="M9 4C6.24 4 4 6.24 4 9v32c0 2.76 2.24 5 5 5h32c2.76 0 5-2.24 5-5V9c0-2.76-2.24-5-5-5H9Zm16 7c8.27 0 15 5.35 15 11.94 0 2.63-1.05 5.01-3.23 7.35 -1.57 1.78-4.12 3.73-6.47 5.35 -2.35 1.6-4.52 2.85-5.32 3.18 -.32.13-.56.18-.75.18 -.66 0-.61-.7-.56-.99 .04-.22.22-1.27.22-1.27 .05-.37.09-.96-.06-1.33 -.17-.41-.85-.63-1.34-.73 -7.2-.94-12.54-5.9-12.54-11.8 0-6.59 6.73-11.95 15-11.95Zm-1.01 7.99c-.51 0-1 .39-1 1v6c0 .55.44 1 1 1 .55 0 1-.45 1-1v-2.88l2.18 3.45c.56.79 1.81.39 1.81-.59v-6c0-.56-.45-1-1-1 -.56 0-1 .44-1 1v3l-2.19-3.59c-.22-.3-.52-.43-.83-.43Zm-9 0c-.56 0-1 .44-1 1v6c0 .55.44 1 1 1h3c.55 0 1-.45 1-1 0-.56-.45-1-1-1h-2v-5c0-.56-.45-1-1-1Zm6 0c-.56 0-1 .44-1 1v6c0 .55.44 1 1 1 .55 0 1-.45 1-1v-6c0-.56-.45-1-1-1Zm10 0c-.56 0-1 .44-1 1v6c0 .55.44 1 1 1h3c.55 0 1-.45 1-1 0-.56-.45-1-1-1h-2v-1h2c.55 0 1-.45 1-1 0-.56-.45-1-1-1h-2v-1h2c.55 0 1-.45 1-1 0-.56-.45-1-1-1h-3Z"/>
+                              </svg>
+                            @PetsSociety</a>
+                        <li><a href="https://facebook.com/PetsSocietybyZoetis">
+                            <svg class="fill-white inline-block mb-1" width="24" height="24" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path fill="#ffffff" d="M12 2C6.5 2 2 6.5 2 12c0 5 3.7 9.1 8.4 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.3v7C18.3 21.1 22 17 22 12c0-5.5-4.5-10-10-10z"></path></svg>
+                            facebook.com/PetsSocietybyZoetis</a>
                     </ul>
                 </div>
             </section>
