@@ -4,7 +4,7 @@
     </a>
     <div class="container grid md:grid-cols-2 mt-4">
         <div>
-            <img class="m-auto" src="{{asset('image 10.png')}}">
+            <img class="m-auto" src="{{asset('landing_banner.jpg')}}">
         </div>
         <div class="bg-content-dark/20 p-4 grid place-content-center">
             โปรแกรมปกป้องสุนัขจากปรสิตตัวร้ายที่สัตวแพทย์แนะนำเป็นประจำทุกเดือน 
@@ -13,7 +13,7 @@
         </div>
     </div>
 
-    <main class="container m-auto py-16">
+    <main class="container m-auto py-16 px-2">
         <livewire:client-register />
     </main>
     <div class="container grid md:grid-cols-2 mt-4">
