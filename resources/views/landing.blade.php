@@ -17,7 +17,7 @@
         <livewire:client-register />
     </main>
     <div class="container grid md:grid-cols-2 mt-4">
-        <div class="bg-content-dark/20 grid place-content-center">
+        <div class="bg-content-dark/20 flex">
             <iframe src="https://www.youtube.com/embed/4WHGfONNDM4?si=O32zKrvy87v97Rgd" 
             class="w-full h-auto aspect-video"
             title="YouTube video player" frameborder="0" 
