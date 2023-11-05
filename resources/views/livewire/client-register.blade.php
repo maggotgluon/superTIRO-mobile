@@ -14,8 +14,8 @@
     <div class="text-center absolute inset-0 z-50 {{$currentStep>1? '' : 'hidden'}}" wire:loading>
         <img class="m-auto" src="{{url('/loading.gif')}}"/>
     </div>
-    <div class="flex justify-around relative {{$currentStep>=2? '' : 'hidden'}}">
-        <progress value={{$currentStep}} max="5" style="
+    <div class="flex justify-around relative {{$currentStep>=4? '' : 'hidden'}}">
+        <progress value={{$currentStep-2}} max="5" style="
             position: absolute;
             top: calc(50% - .25rem);
             bottom: calc(50% - .25rem);
@@ -27,13 +27,17 @@
         ">
         </progress>
         
-        <x-button.circle href="#step-1" label="1" style="aspect-ratio: 1/1; z-index:1;"  class="rounded-full font-bold {{$currentStep!=1? 'text-secondary-red ring ring-gray-dark bg-white' : 'bg-primary-blue  ring ring-primary-blue hover:text-primary-blue text-gray-light'}} {{$currentStep>1?'text-primary-blue ring-primary-blue':''}}" />
-        <x-button.circle href="#step-2" label="2" style="aspect-ratio: 1/1; z-index:1;"  class="rounded-full font-bold {{$currentStep!=2? 'text-secondary-red ring ring-gray-dark bg-white' : 'bg-primary-blue  ring ring-primary-blue hover:text-primary-blue text-gray-light'}} {{$currentStep>2?'text-primary-blue ring-primary-blue':''}}" />
-        <x-button.circle href="#step-3" label="3" style="aspect-ratio: 1/1; z-index:1;"  class="rounded-full font-bold {{$currentStep!=3? 'text-secondary-red ring ring-gray-dark bg-white' : 'bg-primary-blue  ring ring-primary-blue hover:text-primary-blue text-gray-light'}} {{$currentStep>3?'text-primary-blue ring-primary-blue':''}}" />
-        <x-button.circle href="#step-4" label="4" style="aspect-ratio: 1/1; z-index:1;"  class="rounded-full font-bold {{$currentStep!=4? 'text-secondary-red ring ring-gray-dark bg-white' : 'bg-primary-blue  ring ring-primary-blue hover:text-primary-blue text-gray-light'}} {{$currentStep>4?'text-primary-blue ring-primary-blue':''}}" disabled="disabled" />
+        <x-button.circle href="#step-1" label="1" style="aspect-ratio: 1/1; z-index:1;"  
+        class="rounded-full font-bold {{$currentStep!=3? 'text-secondary-red ring ring-gray-dark bg-white' : 'bg-primary-blue  ring ring-primary-blue hover:text-primary-blue text-white'}} {{$currentStep>3?'text-primary-blue bg-primary-blue ring-primary-blue':'bg-pink'}}" />
+        <x-button.circle href="#step-2" label="2" style="aspect-ratio: 1/1; z-index:1;"  
+        class="rounded-full font-bold {{$currentStep!=4? 'text-secondary-red ring ring-gray-dark bg-white' : 'bg-primary-blue  ring ring-primary-blue hover:text-primary-blue text-white'}} {{$currentStep>4?'text-primary-blue bg-primary-blue ring-primary-blue':'bg-pink'}}" />
+        <x-button.circle href="#step-3" label="3" style="aspect-ratio: 1/1; z-index:1;"  
+        class="rounded-full font-bold {{$currentStep!=5? 'text-secondary-red ring ring-gray-dark bg-white' : 'bg-primary-blue  ring ring-primary-blue hover:text-primary-blue text-white'}} {{$currentStep>5?'text-primary-blue bg-primary-blue ring-primary-blue':'bg-pink'}}" />
+        <x-button.circle href="#step-4" label="4" style="aspect-ratio: 1/1; z-index:1;"  
+        class="rounded-full font-bold {{$currentStep!=6? 'text-secondary-red ring ring-gray-dark bg-white' : 'bg-primary-blue  ring ring-primary-blue hover:text-primary-blue text-white'}} {{$currentStep>6?'text-primary-blue bg-primary-blue ring-primary-blue':'bg-pink'}}" disabled="disabled" />
     </div>
 
-
+{{-- 1:1 --}}
     <div class="setup-content min-h-[70vh] flex flex-col transition-all {{ $currentStep != 1 ? 'hidden' : '' }}" id="step-1">
         <!-- <h3> Step 1</h3> -->
         <!-- $status -->
@@ -78,8 +82,8 @@
             กำลังดำเนินการ...
         </div>
     </div>
-
-    <div class="setup-content min-h-[70vh] flex flex-col {{ $currentStep != 1.25 ? 'hidden' : '' }}" id="step-1-25">
+{{-- 2:1.25 --}}
+    <div class="setup-content min-h-[70vh] flex flex-col {{ $currentStep != 2 ? 'hidden' : '' }}" id="step-1-25">
         <div class="mt-8 pb-2">
             <h3 class="text-center text-xl py-2 font-bold text-primary-blue">
                 หนังสือขอความยินยอมสำหรับลูกค้า <br>
@@ -112,8 +116,8 @@
             กำลังดำเนินการ...
         </div>
     </div>
-
-    <div class="setup-content min-h-[70vh] flex flex-col {{ $currentStep != 1.5 ? 'hidden' : '' }}" id="step-1-5">
+{{-- 3:1.5 --}}
+    <div class="setup-content min-h-[70vh] flex flex-col {{ $currentStep != 3 ? 'hidden' : '' }}" id="step-1-5">
         <div class="mt-8 pb-2">
             <h3 class="text-center text-xl pb-2 font-bold"> ยืนยัน OTP </h3>
             <p class="text-center">
@@ -148,8 +152,8 @@
             กำลังดำเนินการ...
         </div>
     </div>
-
-    <div class="setup-content  min-h-[70vh] flex flex-col {{ $currentStep != 2 ? 'hidden' : '' }}" id="step-2">
+{{-- 4:2 --}}
+    <div class="setup-content  min-h-[70vh] flex flex-col {{ $currentStep != 4 ? 'hidden' : '' }}" id="step-2">
         <div class="mt-8 pb-2">
             <h3 class="text-center text-xl pb-2 font-bold text-primary-blue"> กรุณากรอกข้อมูลสุนัข </h3>
             <p class="text-center">
@@ -206,8 +210,8 @@
             กำลังดำเนินการ...
         </div>
     </div>
-
-    <div class="row setup-content  min-h-[70vh] flex flex-col {{ $currentStep != 3 ? 'hidden' : '' }} " id="step-3">
+{{-- 5:3 --}}
+    <div class="row setup-content  min-h-[70vh] flex flex-col {{ $currentStep != 5 ? 'hidden' : '' }} " id="step-3">
         <div class="mt-8 pb-2">
             <h3 class="text-center">เลือกคลินิก หรือโรงพยาบาลสัตว์ </h3>
             <p class="text-center">ที่ต้องการรับคำปรึกษาและ<br>
@@ -271,8 +275,8 @@
             กำลังดำเนินการ...
         </div>
     </div>
-
-    <div class="row setup-content  min-h-[70vh] flex flex-col {{ $currentStep != 4 ? 'hidden' : '' }}" id="step-4">
+{{-- 6:4 --}}
+    <div class="row setup-content  min-h-[70vh] flex flex-col {{ $currentStep != 6 ? 'hidden' : '' }}" id="step-4">
         <div class="mt-8 pb-2">    
         <h3 class="text-center text-xl my-8 p-4 font-bold text-white bg-primary-blue"> การลงทะเบียนเสร็จสมบูรณ์ </h3>
         <p class="text-center">

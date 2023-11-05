@@ -32,6 +32,9 @@ class ClientRegister extends Component
     public $token;
     public $refno;
 
+    protected $queryString = [
+        'currentStep'=>['as' => 'p']
+    ];
 
     protected $messages = [
         'email.email' => 'กรุณากรอก อีเมล์ ที่ถูกต้อง',
@@ -109,7 +112,7 @@ class ClientRegister extends Component
             $this->sendCodeTH();
         }
 
-        $this->currentStep = 1.5;
+        $this->currentStep = 3;
         
         if($this->status=='pending'){
         }
@@ -128,12 +131,12 @@ class ClientRegister extends Component
         if($this->validate_test){
             $result = $this->verifyCodeTH($this->code);
             if($this->status=="approved" || $result){
-                $this->currentStep = 2;
+                $this->currentStep = 4;
             }else{
                 $this->status = 'error';
             }
         }else{
-            $this->currentStep = 2;
+            $this->currentStep = 4;
         }
 
     }
@@ -155,7 +158,7 @@ class ClientRegister extends Component
         $this->vet = Vet::all();
         $this->vet_province = Vet::orderBy('vet_province','asc')->distinct('vet_province')->pluck('vet_province');
         
-        $this->currentStep = 3;
+        $this->currentStep = 5;
     }
     /**
      * Write code on Method
@@ -412,7 +415,7 @@ class ClientRegister extends Component
     public function openConsent()
     {
         $this->consent = 1;
-        $this->currentStep =1.25;
+        $this->currentStep =2;
     }
 
 }

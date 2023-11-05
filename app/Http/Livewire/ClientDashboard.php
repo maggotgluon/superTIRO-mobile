@@ -21,13 +21,17 @@ class ClientDashboard extends Component
 
     public $phone;
     public $input_vet_id,$client_code;
-    public $currentStep=1,$status=0;
+    public $currentStep=6,$status=0;
     public $timeleft=0,$startTime,$endTime;
     public $leftMin,$leftSec;
     public $offer=[];
     public $offer_1,$offer_2,$offer_3;
 
     public $count=1 ;
+
+    protected $queryString = [
+        'currentStep'=>['as' => 'p']
+    ];
 
     // public function increment(){
     //     $this->count+=1;
@@ -82,7 +86,7 @@ class ClientDashboard extends Component
         // dd($stock->total_stock,$all_opt1,$all_client);
         $this->stockRemain=$stock->total_stock - $all_opt1;
         if($this->client->active_status == 'activated'){
-            $this->go(6);
+            $this->go(9);
         }
     }
 
@@ -113,7 +117,7 @@ class ClientDashboard extends Component
                 
                 
             $this->client->save();
-            $this->go(6);
+            $this->go(9);
 
         }else{
             $this->status=-1;

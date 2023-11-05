@@ -6,7 +6,8 @@
     <div class="text-center absolute inset-0 z-50" wire:loading.delay.longer>
         <img class="m-auto" src="{{url('/loading.gif')}}"/>
     </div>
-    <div class="row setup-content  min-h-[70vh] flex flex-col {{ $currentStep != 1 ? 'hidden' : '' }}" id="step-4">
+
+    <div class="row setup-content  min-h-[70vh] flex flex-col {{ $currentStep != 6 ? 'hidden' : '' }}" id="step-4">
 
         <div class="flex justify-around relative">
             <progress value="100" max="100" style="
@@ -20,10 +21,10 @@
                 z-index: 0;
             ">
             </progress>
-            <x-button.circle href="#step-1" label="1" style="aspect-ratio: 1/1; z-index:1;" class="rounded-full font-bold bg-primary-blue  ring ring-primary-blue hover:text-primary-blue text-gray-light" />
-            <x-button.circle href="#step-2" label="2" style="aspect-ratio: 1/1; z-index:1;" class="rounded-full font-bold bg-primary-blue  ring ring-primary-blue hover:text-primary-blue text-gray-light" />
-            <x-button.circle href="#step-3" label="3" style="aspect-ratio: 1/1; z-index:1;" class="rounded-full font-bold bg-primary-blue  ring ring-primary-blue hover:text-primary-blue text-gray-light" />
-            <x-button.circle href="#step-4" label="4" style="aspect-ratio: 1/1; z-index:1;" class="rounded-full font-bold bg-primary-blue  ring ring-primary-blue hover:text-primary-blue text-gray-light" disabled="disabled" />
+            <x-button.circle href="#step-1" label="1" style="aspect-ratio: 1/1; z-index:1;" class="rounded-full font-bold bg-primary-blue  ring ring-primary-blue hover:text-primary-blue text-white" />
+            <x-button.circle href="#step-2" label="2" style="aspect-ratio: 1/1; z-index:1;" class="rounded-full font-bold bg-primary-blue  ring ring-primary-blue hover:text-primary-blue text-white" />
+            <x-button.circle href="#step-3" label="3" style="aspect-ratio: 1/1; z-index:1;" class="rounded-full font-bold bg-primary-blue  ring ring-primary-blue hover:text-primary-blue text-white" />
+            <x-button.circle href="#step-4" label="4" style="aspect-ratio: 1/1; z-index:1;" class="rounded-full font-bold bg-primary-blue  ring ring-primary-blue hover:text-primary-blue text-white" disabled="disabled" />
         </div>
 
         <h3 class="text-center text-xl my-4 p-4 font-bold text-white bg-primary-blue"> การลงทะเบียนเสร็จสมบูรณ์ </h3>
@@ -51,15 +52,14 @@
             <!-- <x-button lg outline icon="chevron-left" primary
                 wire:click="back(1)" type="button" label="Back" /> -->
             <x-button lg right-icon="chevron-right" primary class="bg-gradient-to-br from-gradient-start to-gradient-end rounded-2xl"
-                wire:click="go(2)" type="button" label="กดเพื่อแสดงหลักฐาน" />
+                wire:click="go(7)" type="button" label="กดเพื่อแสดงหลักฐาน" />
         </div>
         <div class="py-2 text-center flex justify-center mt-auto" wire:loading>
             กำลังเนินการ...
         </div>
 
     </div>
-
-    <div class="row setup-content  min-h-[70vh] flex flex-col {{ $currentStep != 2 ? 'hidden' : '' }}" id="step-4">
+    <div class="row setup-content  min-h-[70vh] flex flex-col {{ $currentStep != 7 ? 'hidden' : '' }}" id="step-4">
         <div class="text-center my-8 p-4 rounded-3xl text-white bg-primary-blue">
             <p class="my-4 leading-relaxed text-2xl">
                 รหัสจะมีอายุ 15 นาที <br>
@@ -83,16 +83,15 @@
         <div class="py-2 text-center flex justify-between mt-auto" wire:loading.remove>
             <!-- <div></div> -->
             <x-button lg outline icon="chevron-left"
-                wire:click="go(1)" type="button" label="ยกเลิก" />
+                wire:click="go(6)" type="button" label="ยกเลิก" />
             <x-button lg right-icon="chevron-right" primary  class="bg-gradient-to-br from-gradient-start to-gradient-end rounded-2xl"
-                wire:click="go(3)" type="button" label="กดเพื่อแสดงหลักฐาน" />
+                wire:click="go(8)" type="button" label="กดเพื่อแสดงหลักฐาน" />
         </div>
         <div class="py-2 text-center flex justify-center mt-auto" wire:loading>
             กำลังเนินการ...
         </div>
     </div>
-
-    <div class="row setup-content  min-h-[70vh] flex flex-col {{ $currentStep != 3 ? 'hidden' : '' }}" id="step-4">
+    <div class="row setup-content  min-h-[70vh] flex flex-col {{ $currentStep != 8 ? 'hidden' : '' }}" id="step-4">
         <h3 class="text-center text-xl my-4 pt-4 font-bold text-primary-blue"> กรุณากรอกรหัสคลินิก <br>หรือ โรงพยาบาลสัตว์ </h3>
         <p class="text-center mb-8">
             (สอบถามที่พนักงานของคลินิก)
@@ -155,9 +154,7 @@
             กำลังเนินการ...
         </div>
     </div>
-
-
-    <div class="row setup-content  min-h-[70vh] flex flex-col {{ $currentStep != 6 ? 'hidden' : '' }}" id="step-4">
+    <div class="row setup-content  min-h-[70vh] flex flex-col {{ $currentStep != 9 ? 'hidden' : '' }}" id="step-4">
         <p class="text-center mb-8">
             น้อง {{$client->pet_name}}<br>
             ขนาด {{$client->pet_weight}}<br>
