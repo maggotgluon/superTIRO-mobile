@@ -4,6 +4,7 @@ use App\Models\Client;
 use App\Models\ClientInfo;
 use App\Models\User;
 use App\Models\Vet;
+use App\Models\stock;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Request;
@@ -27,7 +28,7 @@ use Carbon\Carbon;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+
 
 Route::get('/', function () {
     $date = Carbon::create('21 Aug 2025');
@@ -37,7 +38,8 @@ Route::get('/', function () {
     return view('client.register');
     // return view('welcome');
 })->name('index');
-Route::view('/land','landing');
+*/
+Route::view('/','landing')->name('index');
 
 Route::get('/admin', function () {
     return view('welcome');
@@ -254,18 +256,38 @@ Route::get('/test',function(){
 Route::get('/upuser',function(){
 
     //seed data
-    $csvFile = fopen(base_path("database/data/vet-Table.csv"), "r");
+    $csvFile = fopen(base_path("database/data/vet-Table-2.csv"), "r");
 
     $firstline = true;
     while (($data = fgetcsv($csvFile, 2000, ",")) !== FALSE) {
+        // dd($data);
+
         if (!$firstline) {
-            $u = User::create([
-                "id" => $data['1'],
-                "name" => $data['1'],
-                "email" => $data['1'],
+            $u = User::updateOrCreate([
+                "id" => $data['9'],
+                "name" => $data['4'],
+                "email" => $data['9'],
+            ],[
                 'email_verified_at' => now(),
-                "password"=> Hash::make($data['1']), // password
+                "password"=> Hash::make($data['2']), // password
             ]);
+            $v = Vet::updateOrCreate([
+                "id" => $data['8'],
+                "vet_name"=>$data['4'],
+            ],[
+                "vet_area" => $data['5'],
+                "vet_city" => $data['6'],
+                "vet_province" => $data['7'],
+                "user_id"=>$data['9'],
+                "stock_id"=>$data['2'],
+            ]);
+            $s = Stock::updateOrCreate([
+                "id" => $data['2'],
+            ],[
+                "total_stock"=>$data['10'],
+                "stock_adj" => 0,
+            ]);
+            // dd($u,$v,$s);
         }
         $firstline = false;
     }
