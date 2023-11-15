@@ -44,7 +44,7 @@
         <!-- End Google Tag Manager (noscript) -->
         
         @if(strpos($_SERVER['HTTP_USER_AGENT'], 'wv') !== false)
-        <div class="min-h-screen flex flex-col justify-center items-center gap-4">
+        <div class="min-h-screen min-h-[calc(var(--vh, 1vh) * 100)] flex flex-col justify-center items-center gap-4">
             
             <svg class="mx-auto h-48 " version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                 viewBox="0 0 600 600" style="enable-background:new 0 0 600 600;" xml:space="preserve">
@@ -80,7 +80,7 @@
             <!-- dots-vertical -->
         </div>
         @elseif( strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false)
-            <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
+            <div class="min-h-screen min-h-[calc(var(--vh, 1vh) * 100)] flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
                 {{-- <div>
                     <a href="/">
                         <x-application-logo class="h-20 fill-current text-gray-500" />
@@ -92,7 +92,7 @@
                 {{-- </div> --}}
             </div>
         @else
-            <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
+            <div class="min-h-screen min-h-[calc(var(--vh, 1vh) * 100)] flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
                 {{-- <div>
                     <a href="/">
                         <x-application-logo class="h-20 fill-current text-gray-500" />

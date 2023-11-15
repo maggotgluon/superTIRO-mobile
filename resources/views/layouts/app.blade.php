@@ -42,7 +42,7 @@
         </noscript>
         <!-- End Google Tag Manager (noscript) -->
 
-        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
+        <div class="min-h-screen min-h-[calc(var(--vh, 1vh) * 100)] flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
             <div class="w-full min-h-[95vh]  sm:max-w-screen-lg mt-2 px-2 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
                 @yield('content')
                 @isset($slot)
