@@ -1,4 +1,4 @@
-<div class="text-content-dark relative min-h-[50vh]">
+<div class="text-content-dark relative ">
     
     @if(!empty($successMessage))
     <div class="alert alert-success">
